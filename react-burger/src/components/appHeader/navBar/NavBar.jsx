@@ -7,18 +7,27 @@ import {NavBarItem} from "../navBarItem/NavBarItem";
 export const NavBar = () => {
     return (
         <nav className={headerClasses.navbar}>
-            <NavBarItem text="Конструктор">
-                <BurgerIcon type="primary" />
-            </NavBarItem>
-            <NavBarItem text="Лента заказов" additionalClass={"text_color_inactive"}>
-                <ListIcon type="secondary" />
-            </NavBarItem>
+            <NavBarItem
+                textClass="text_type_main-default"
+                text="Конструктор"
+                icon={<BurgerIcon type="primary" />}
+            />
+
+            <NavBarItem
+                textClass="text_type_main-default text_color_inactive"
+                text="Лента заказов"
+                icon={<ListIcon type="secondary" />}
+            />
+
             <div style={{marginRight: 289}}>
                 <Logo/>
             </div>
-            <NavBarItem text="Личный кабинет" additionalClass={"text_color_inactive"}>
-                <ProfileIcon type="secondary" />
-            </NavBarItem>
+
+            <NavBarItem
+                textClass="text_type_main-default text_color_inactive"
+                text="Личный кабинет"
+                icon={<ProfileIcon type="secondary" />}
+            />
         </nav>
     )
 

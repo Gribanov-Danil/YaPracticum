@@ -1,14 +1,24 @@
 import headerClasses from "../header.module.css";
 import React from "react";
+import PropTypes from "prop-types";
+import {IconfyText} from "../../iconfyText/IconfyText";
 
 
-export const NavBarItem = ({additionalClass, text, children}) => {
+export const NavBarItem = ({textClass, text, icon}) => {
     return (
         <div className={`pl-5 pr-5 pb-4 pt-4 ${headerClasses.navbarItem}`}>
-            {children}
-            <p style={{display: "inline-block", paddingLeft: 8}} className={"text text_type_main-default " + additionalClass}>
-                {text}
-            </p>
+            <IconfyText
+                text={text}
+                textClass={textClass}
+                iconLocation="Left"
+                gapInPx={8}
+                icon={icon}
+            />
         </div>
     )
+}
+
+NavBarItem.prototype = {
+    additionalClass: PropTypes.string,
+    text: PropTypes.string,
 }
