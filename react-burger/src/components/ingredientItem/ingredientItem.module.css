@@ -1,0 +1,19 @@
+.price {
+    display: inline-block;
+}
+
+.item_card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    max-width: 272px;
+}
+
+.price_block {
+    align-items: center;
+    display: flex;
+}
+
+.name {
+    text-align: center;
+}
