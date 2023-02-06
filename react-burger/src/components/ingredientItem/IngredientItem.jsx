@@ -1,4 +1,4 @@
-import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import {Counter, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import constructorItemStyles from "./ingredientItem.module.css"
 
 export const IngredientItem = (props) => {
@@ -9,6 +9,7 @@ export const IngredientItem = (props) => {
         lastPairClass = props.index === props.collectionLength - 1? "" : "mb-8"
     return (
         <div className={`${lastPairClass} ${(props.index % 2) === 0? "mr-6 ml-4" : ""} ${constructorItemStyles.item_card}`}>
+            <Counter count={1} size="default" extraClass="m-1" />
             <div className="ml-4 mb-1 mr-4">
                 <img src={props.src} alt=""/>
             </div>
