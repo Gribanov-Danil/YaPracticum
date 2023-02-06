@@ -1,5 +1,6 @@
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import panelStyles from "../constructorPanel/constructorPanel.module.css";
+import PropTypes from "prop-types";
 
 export const ConstructorIngredient = ({ingredient}) => {
     return (
@@ -12,4 +13,21 @@ export const ConstructorIngredient = ({ingredient}) => {
             />
         </div>
     )
+}
+
+ConstructorIngredient.propTypes = {
+    ingredient: PropTypes.shape({
+        _id: PropTypes.string,
+        name: PropTypes.string,
+        type: PropTypes.string,
+        proteins: PropTypes.number,
+        fat: PropTypes.number,
+        carbohydrates: PropTypes.number,
+        calories: PropTypes.number,
+        price: PropTypes.number,
+        image: PropTypes.string,
+        image_mobile: PropTypes.string,
+        image_large: PropTypes.string,
+        __v: PropTypes.number,
+    })
 }

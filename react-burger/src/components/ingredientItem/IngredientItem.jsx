@@ -1,5 +1,6 @@
 import {Counter, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import constructorItemStyles from "./ingredientItem.module.css"
+import PropTypes from "prop-types";
 
 export const IngredientItem = (props) => {
     let lastPairClass
@@ -24,4 +25,12 @@ export const IngredientItem = (props) => {
             </div>
         </div>
     )
+}
+
+IngredientItem.propTypes = {
+    index: PropTypes.number,
+    collectionLength: PropTypes.number,
+    src: PropTypes.string,
+    price: PropTypes.number,
+    name: PropTypes.string,
 }

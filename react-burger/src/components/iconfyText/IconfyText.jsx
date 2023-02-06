@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const IconfyText = ({text, textClass, iconLocation,gapInPx, icon}) => {
     let outputComponent
     const textBlock =  <p className={`text ${textClass}`}>{text}</p>
@@ -18,4 +20,12 @@ export const IconfyText = ({text, textClass, iconLocation,gapInPx, icon}) => {
           {outputComponent}
       </>
   )
+}
+
+IconfyText.propTypes = {
+    text: PropTypes.string,
+    textClass: PropTypes.string,
+    iconLocation: PropTypes.string,
+    gapInPx: PropTypes.number,
+    icon: PropTypes.element
 }

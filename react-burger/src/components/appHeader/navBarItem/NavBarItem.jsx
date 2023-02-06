@@ -21,4 +21,5 @@ export const NavBarItem = ({textClass, text, icon}) => {
 NavBarItem.prototype = {
     additionalClass: PropTypes.string,
     text: PropTypes.string,
+    icon: PropTypes.element
 }
