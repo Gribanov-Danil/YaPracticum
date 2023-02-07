@@ -1,6 +1,6 @@
 import {ConstructorPanel} from "../constructorPanel/ConstructorPanel";
 import {PlaceOrder} from "../placeOrder/PlaceOrder";
-import PropTypes from "prop-types";
+import {dataPropTypes} from "../../utils/prop-types";
 
 export const BurgerConstructor = ({data}) => {
     return (
@@ -11,19 +11,4 @@ export const BurgerConstructor = ({data}) => {
     )
 }
 
-BurgerConstructor.propTypes = {
-    data: PropTypes.arrayOf(PropTypes.shape({
-        _id: PropTypes.string,
-        name: PropTypes.string,
-        type: PropTypes.string,
-        proteins: PropTypes.number,
-        fat: PropTypes.number,
-        carbohydrates: PropTypes.number,
-        calories: PropTypes.number,
-        price: PropTypes.number,
-        image: PropTypes.string,
-        image_mobile: PropTypes.string,
-        image_large: PropTypes.string,
-        __v: PropTypes.number,
-    })),
-}
+BurgerConstructor.propTypes = dataPropTypes
