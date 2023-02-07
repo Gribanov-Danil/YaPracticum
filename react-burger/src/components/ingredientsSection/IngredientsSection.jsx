@@ -1,7 +1,7 @@
 import constructorStyle from "../ingredientsBlock/ingredientsBlock.module.css";
 import {IngredientItem} from "../ingredientItem/IngredientItem";
 import PropTypes from "prop-types";
-import {dataPropTypes} from "../../utils/prop-types";
+import {dataElementWithCustomFieldPropTypes} from "../../utils/prop-types";
 
 
 export const IngredientsSection = ({sectionTitle, itemList}) => {
@@ -30,5 +30,6 @@ export const IngredientsSection = ({sectionTitle, itemList}) => {
 
 IngredientsSection.propTypes = {
     sectionTitle: PropTypes.string,
-    itemList: dataPropTypes,
+    itemList: PropTypes.arrayOf(
+        PropTypes.shape(dataElementWithCustomFieldPropTypes("itemList")))
 }

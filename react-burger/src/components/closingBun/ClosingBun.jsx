@@ -1,5 +1,5 @@
 import {ConstructorElement} from "@ya.praktikum/react-developer-burger-ui-components";
-import {dataElementPropTypes} from "../../utils/prop-types";
+import {dataElementWithCustomFieldPropTypes} from "../../utils/prop-types";
 
 export const ClosingBun = ({bun}) => {
     return (
@@ -16,4 +16,4 @@ export const ClosingBun = ({bun}) => {
 }
 
 
-ClosingBun.propTypes = dataElementPropTypes("bun")
+ClosingBun.propTypes = dataElementWithCustomFieldPropTypes("bun")

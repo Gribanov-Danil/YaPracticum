@@ -1,6 +1,6 @@
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import panelStyles from "../constructorPanel/constructorPanel.module.css";
-import {dataElementPropTypes} from "../../utils/prop-types";
+import {dataElementWithCustomFieldPropTypes} from "../../utils/prop-types";
 
 export const ConstructorIngredient = ({ingredient}) => {
     return (
@@ -15,4 +15,4 @@ export const ConstructorIngredient = ({ingredient}) => {
     )
 }
 
-ConstructorIngredient.propTypes = dataElementPropTypes("ingredient")
+ConstructorIngredient.propTypes = dataElementWithCustomFieldPropTypes("ingredient")

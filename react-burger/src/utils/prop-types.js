@@ -17,7 +17,7 @@ export const dataPropTypes = {
     })),
 }
 
-export const dataElementPropTypes = (fieldName) =>  {
+export const dataElementWithCustomFieldPropTypes = (fieldName) =>  {
     return ({
         [fieldName]: PropTypes.shape({
             _id: PropTypes.string,
