@@ -2,10 +2,10 @@ import {ConstructorPanel} from "../constructorPanel/ConstructorPanel";
 import {PlaceOrder} from "../placeOrder/PlaceOrder";
 import PropTypes from "prop-types";
 
-export const BurgerConstructor = (props) => {
+export const BurgerConstructor = ({data}) => {
     return (
         <div className="mt-25">
-            <ConstructorPanel data={props.data}/>
+            <ConstructorPanel data={data}/>
             <PlaceOrder/>
         </div>
     )
