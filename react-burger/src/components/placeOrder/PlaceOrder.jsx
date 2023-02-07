@@ -5,7 +5,7 @@ export const PlaceOrder = () => {
     return (
         <div className={placeOrderStyles.placeOrder}>
             <IconfyText
-                text={1234567890}
+                text={"1234567890"}
                 textClass={"text_type_digits-medium"}
                 iconLocation={"right"}
                 gapInPx={8}

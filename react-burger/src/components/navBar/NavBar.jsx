@@ -1,4 +1,4 @@
-import headerClasses from "../header.module.css";
+import headerClasses from "../appHeader/header.module.css";
 import {BurgerIcon, ListIcon, Logo, ProfileIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import React from "react";
 import {NavBarItem} from "../navBarItem/NavBarItem";

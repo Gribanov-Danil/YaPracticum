@@ -2,6 +2,7 @@ import {OpenBun} from "../openBun/OpenBun";
 import {ConstructorIngredient} from "../constructorIngredient/ConstructorIngredient";
 import {ClosingBun} from "../closingBun/ClosingBun";
 import panelStyles from "./constructorPanel.module.css"
+import PropTypes from "prop-types";
 
 export const ConstructorPanel = ({data}) => {
     const buns = data.filter(item => item.type === "bun")
@@ -33,5 +34,5 @@ ConstructorPanel.propTypes = {
         image_mobile: PropTypes.string,
         image_large: PropTypes.string,
         __v: PropTypes.number,
-    })),
+    }))
 }

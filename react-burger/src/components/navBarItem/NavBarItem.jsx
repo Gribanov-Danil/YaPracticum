@@ -1,7 +1,7 @@
-import headerClasses from "../header.module.css";
+import headerClasses from "../appHeader/header.module.css";
 import React from "react";
 import PropTypes from "prop-types";
-import {IconfyText} from "../../iconfyText/IconfyText";
+import {IconfyText} from "../iconfyText/IconfyText";
 
 
 export const NavBarItem = ({textClass, text, icon}) => {

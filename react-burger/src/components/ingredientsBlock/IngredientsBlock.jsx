@@ -1,5 +1,6 @@
 import constructorStyle from "./ingredientsBlock.module.css"
 import {IngredientsSection} from "../ingredientsSection/IngredientsSection";
+import PropTypes from "prop-types";
 
 export const IngredientsBlock = ({data}) => {
     const bunList = data.filter( (ingredient) => ingredient.type === "bun" )
