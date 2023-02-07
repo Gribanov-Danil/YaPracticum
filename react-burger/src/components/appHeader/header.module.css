@@ -10,6 +10,11 @@
     align-items: center;
 }
 
+.navbarItem a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .navbarItem:nth-child(1) {
     margin-right: 8px;
 }
