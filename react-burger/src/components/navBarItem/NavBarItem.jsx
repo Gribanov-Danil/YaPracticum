@@ -20,7 +20,7 @@ export const NavBarItem = ({textClass, text, icon}) => {
     )
 }
 
-NavBarItem.prototype = {
+NavBarItem.propTypes = {
     additionalClass: PropTypes.string,
     text: PropTypes.string,
     icon: PropTypes.element
