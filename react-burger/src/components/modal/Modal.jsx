@@ -19,9 +19,7 @@ export const Modal = ({active, onClick, children, ingredient}) => {
     return createPortal( (
         <ModalOverlay overlayClass={modalOverlayStyle} onClick={onClick}>
             <div className={modalStyles.modal_content} onClick={(e => e.stopPropagation())}>
-                <IngredientsDetails ingredient={ingredient} onClick={onClick}>
-                    {children}
-                </IngredientsDetails>
+                {children}
             </div>
         </ModalOverlay>
         )
