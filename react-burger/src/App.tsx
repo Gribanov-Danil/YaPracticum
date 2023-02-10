@@ -19,11 +19,9 @@ function App() {
             let response = await fetch(URL)
             let result = await response.json()
             setData({...data, dataArray: result.data, isLoading: false})
-            console.log(result.data)
     }
     getData().catch(e => console.log("Ошибка загрузки данных"))
     }, [URL])
-    console.log(data.dataArray)
     return (
         <div className="App">
             <AppHeader/>
