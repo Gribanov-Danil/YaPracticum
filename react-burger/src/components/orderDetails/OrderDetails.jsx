@@ -1,4 +1,5 @@
 import styles from "./orderDetails.module.css"
+import PropTypes from "prop-types";
 
 export const OrderDetails = ({orderNumber}) => {
     let orderNumberStr = orderNumber.toString()
@@ -14,4 +15,8 @@ export const OrderDetails = ({orderNumber}) => {
             <span className={`${styles.wait_order} text text_type_main-default text_color_inactive`}>Дождитесь готовности на орбитальной станции</span>
         </>
     )
+}
+
+OrderDetails.propTypes = {
+    orderNumber: PropTypes.number
 }

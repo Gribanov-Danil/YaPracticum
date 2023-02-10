@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import {useState} from "react";
 import {Modal} from "../modal/Modal";
 import {IngredientsDetails} from "../ingredientDetails/IngredientsDetails";
+import {dataElementWithCustomFieldPropTypes} from "../../utils/prop-types";
 
 export const IngredientItem = ({ingredient, index, collectionLength}) => {
     const [isModalVisible, setModalVisible] = useState(false)
@@ -41,7 +42,5 @@ export const IngredientItem = ({ingredient, index, collectionLength}) => {
 IngredientItem.propTypes = {
     index: PropTypes.number,
     collectionLength: PropTypes.number,
-    src: PropTypes.string,
-    price: PropTypes.number,
-    name: PropTypes.string,
+    ingredient:  PropTypes.shape(dataElementWithCustomFieldPropTypes("ingredient"))
 }

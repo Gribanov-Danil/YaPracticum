@@ -1,5 +1,6 @@
 import ingredientsDetailsStyles from "./ingredientsDetails.module.css"
 import {IngredientCharacteristic} from "../ingredientCharacteristic/IngredientCharacteristic";
+import {dataElementWithCustomFieldPropTypes} from "../../utils/prop-types";
 
 export const IngredientsDetails = ({ingredient}) => {
     return (
@@ -19,3 +20,5 @@ export const IngredientsDetails = ({ingredient}) => {
         </>
     )
 }
+
+IngredientsDetails.propTypes = dataElementWithCustomFieldPropTypes("ingredient")

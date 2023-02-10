@@ -4,6 +4,7 @@ import {createPortal} from "react-dom";
 import {ModalOverlay} from "../modalOverlay/ModalOverlay";
 import ingredientsDetailsStyles from "../ingredientDetails/ingredientsDetails.module.css";
 import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from "prop-types";
 
 export const Modal = ({active, onClick, children, title}) => {
     useEffect(() => {
@@ -32,4 +33,10 @@ export const Modal = ({active, onClick, children, title}) => {
         )
         , document.body
     )
+}
+
+Modal.propTypes = {
+    active: PropTypes.bool,
+    onClick: PropTypes.func,
+    title: PropTypes.string
 }
