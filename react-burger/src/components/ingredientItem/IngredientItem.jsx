@@ -18,8 +18,8 @@ export const IngredientItem = ({ingredient, index, collectionLength}) => {
 
     return (
         <div onClick={handleToggleModal} className={`${lastPairClass} ${(index % 2) === 0? "mr-6 ml-4" : ""} ${constructorItemStyles.item_card}`}>
-            <Modal active={isModalVisible} onClick={handleCloseModal} ingredient={ingredient}>
-                <IngredientsDetails ingredient={ingredient} onClick={handleCloseModal} />
+            <Modal active={isModalVisible} onClick={handleCloseModal} title={"Детали ингредиента"}>
+                <IngredientsDetails ingredient={ingredient} onClick={handleCloseModal}/>
             </Modal>
             <Counter count={1} size="default" extraClass="m-1" />
             <div className="ml-4 mb-1 mr-4">
