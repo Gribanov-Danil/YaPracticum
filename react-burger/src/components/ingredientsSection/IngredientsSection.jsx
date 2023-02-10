@@ -17,6 +17,7 @@ export const IngredientsSection = ({sectionTitle, itemList}) => {
                     <IngredientItem
                         key={index}
                         index={index}
+                        ingredient={item}
                         collectionLength={itemList.length}
                         src={item.image}
                         price={item.price}
