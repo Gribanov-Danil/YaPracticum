@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {AppHeader} from "./components/appHeader/AppHeader";
+import {Page} from "./components/page/Page";
+import {BurgerIngredients} from "./components/burgerIngredients/BurgerIngredients";
+import {BurgerConstructor} from "./components/burgerConstructor/burgerConstructor";
+import {useEffect, useState} from "react";
+
+//TODO сделать layout для ошибки getData().catch
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const URL = 'https://norma.nomoreparties.space/api/ingredients';
+    const [data, setData] = useState({
+        dataArray: [],
+        isLoading: false
+    })
+    useEffect( () => {
+        const getData = async () => {
+            setData({...data, isLoading: true})
+            let response = await fetch(URL)
+            let result = await response.json()
+            setData({...data, dataArray: result.data, isLoading: false})
+    }
+    getData().catch(e => console.log("Ошибка загрузки данных"))
+    }, [URL])
+    return (
+        <div className="App">
+            <AppHeader/>
+            <main>
+                <Page>
+                    {!data.isLoading && Object.keys(data.dataArray).length && (
+                        <>
+                            <BurgerIngredients data={data.dataArray}/>
+                            <BurgerConstructor data={data.dataArray}/>
+                        </>
+                    )}
+
+                </Page>
+            </main>
+        </div>
+    );
 }
 
 export default App;

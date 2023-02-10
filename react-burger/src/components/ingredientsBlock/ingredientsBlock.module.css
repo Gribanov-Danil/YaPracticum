@@ -1,0 +1,24 @@
+.constructor{
+    height: 664px; /* высота нашего блока */
+    width: 600px; /* ширина нашего блока */
+    overflow-y: scroll; /* прокрутка по вертикали */
+}
+
+.constructor::-webkit-scrollbar {
+    width: 8px;               /* ширина scrollbar */
+}
+.constructor::-webkit-scrollbar-track {
+    background: #2F2F37;
+}
+.constructor::-webkit-scrollbar-thumb {
+    background: #8585AD;
+}
+
+.type_container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.section:not(:last-child) {
+    margin-bottom: 40px;
+}

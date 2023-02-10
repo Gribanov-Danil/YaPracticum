@@ -1,0 +1,30 @@
+.header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.text_block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.name {
+
+}
+
+.characteristic_block {
+    display: flex;
+    gap: 20px;
+}
+
+.characteristic {
+    display: flex;
+    flex-direction: column;
+}
+
+.close:hover {
+    cursor: pointer;
+}

@@ -1,0 +1,28 @@
+.panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.constructor_block {
+    height: 464px; /* высота нашего блока */
+    min-width: 600px; /* ширина нашего блока */
+    overflow-y: scroll; /* прокрутка по вертикали */
+}
+
+.constructor_block::-webkit-scrollbar {
+    width: 8px;               /* ширина scrollbar */
+}
+.constructor_block::-webkit-scrollbar-track {
+    background: #2F2F37;
+}
+.constructor_block::-webkit-scrollbar-thumb {
+    background: #8585AD;
+}
+
+.ingredient:not(:last-child) {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 16px;
+}
