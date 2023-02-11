@@ -4,6 +4,7 @@ import {Page} from "./components/page/Page";
 import {BurgerIngredients} from "./components/burgerIngredients/BurgerIngredients";
 import {BurgerConstructor} from "./components/burgerConstructor/burgerConstructor";
 import {useEffect, useState} from "react";
+import {checkResponse} from "./utils/checkReponse";
 
 //TODO сделать layout для ошибки getData().catch
 
@@ -17,7 +18,7 @@ function App() {
         const getData = async () => {
             setData({...data, isLoading: true})
             let response = await fetch(URL)
-            let result = await response.json()
+            let result = await checkResponse(response) /*response.json()*/
             setData({...data, dataArray: result.data, isLoading: false})
     }
     getData().catch(e => console.log("Ошибка загрузки данных"))
