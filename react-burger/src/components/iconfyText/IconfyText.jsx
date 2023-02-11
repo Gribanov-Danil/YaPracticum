@@ -23,9 +23,9 @@ export const IconfyText = ({text, textClass, iconLocation,gapInPx, icon}) => {
 }
 
 IconfyText.propTypes = {
-    text: PropTypes.string,
-    textClass: PropTypes.string,
-    iconLocation: PropTypes.string,
-    gapInPx: PropTypes.number,
-    icon: PropTypes.element
+    text: PropTypes.string.isRequired,
+    textClass: PropTypes.string.isRequired,
+    iconLocation: PropTypes.string.isRequired,
+    gapInPx: PropTypes.number.isRequired,
+    icon: PropTypes.element.isRequired
 }

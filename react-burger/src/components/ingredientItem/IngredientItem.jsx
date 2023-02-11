@@ -40,7 +40,7 @@ export const IngredientItem = ({ingredient, index, collectionLength}) => {
 }
 
 IngredientItem.propTypes = {
-    index: PropTypes.number,
-    collectionLength: PropTypes.number,
+    index: PropTypes.number.isRequired,
+    collectionLength: PropTypes.number.isRequired,
     ingredient:  PropTypes.shape(dataElementWithCustomFieldPropTypes("ingredient"))
 }

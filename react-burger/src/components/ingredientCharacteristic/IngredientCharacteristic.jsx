@@ -11,6 +11,6 @@ export const IngredientCharacteristic = ({title, characteristic}) => {
 }
 
 IngredientCharacteristic.propTypes = {
-    title: PropTypes.string,
-    characteristic: PropTypes.number
+    title: PropTypes.string.isRequired,
+    characteristic: PropTypes.number.isRequired
 }

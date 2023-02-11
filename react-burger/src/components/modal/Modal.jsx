@@ -36,7 +36,7 @@ export const Modal = ({active, onClick, children, title}) => {
 }
 
 Modal.propTypes = {
-    active: PropTypes.bool,
-    onClick: PropTypes.func,
+    active: PropTypes.bool.isRequired,
+    onClick: PropTypes.func.isRequired,
     title: PropTypes.string
 }
