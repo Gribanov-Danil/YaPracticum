@@ -1,5 +1,4 @@
 .header {
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -11,8 +10,9 @@
     align-items: center;
 }
 
-.name {
-
+.ingredient_image {
+    margin: 0 120px 16px 120px;
+    max-width: 480px;
 }
 
 .characteristic_block {

@@ -1,5 +1,6 @@
 import React from 'react';
 import {createPortal} from "react-dom";
+import PropTypes from "prop-types";
 
 export const ModalOverlay = ({children, overlayClass, onClick}) => {
 
@@ -11,4 +12,9 @@ export const ModalOverlay = ({children, overlayClass, onClick}) => {
 
         ), document.body
     )
+}
+
+ModalOverlay.propTypes = {
+    onClick: PropTypes.func.isRequired,
+    overlayClass: PropTypes.string.isRequired
 }

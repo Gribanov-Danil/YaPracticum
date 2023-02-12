@@ -21,7 +21,7 @@ export const NavBarItem = ({textClass, text, icon}) => {
 }
 
 NavBarItem.propTypes = {
-    additionalClass: PropTypes.string,
-    text: PropTypes.string,
-    icon: PropTypes.element
+    textClass: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    icon: PropTypes.element.isRequired
 }

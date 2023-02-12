@@ -30,7 +30,7 @@ export const IngredientsSection = ({sectionTitle, itemList}) => {
 }
 
 IngredientsSection.propTypes = {
-    sectionTitle: PropTypes.string,
+    sectionTitle: PropTypes.string.isRequired,
     itemList: PropTypes.arrayOf(
         PropTypes.shape(dataElementWithCustomFieldPropTypes("itemList")))
 }
