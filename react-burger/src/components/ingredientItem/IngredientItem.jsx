@@ -5,6 +5,9 @@ import {useState} from "react";
 import {Modal} from "../modal/Modal";
 import {IngredientsDetails} from "../ingredientDetails/IngredientsDetails";
 import {dataElementWithCustomFieldPropTypes} from "../../utils/prop-types";
+import {useSelector} from "react-redux";
+
+//TODO сделать <Counter>, сейчас почему-то выводит сумму ингредиентов в конструкторе
 
 export const IngredientItem = ({ingredient, index, collectionLength}) => {
     const [isModalVisible, setModalVisible] = useState(false)
@@ -16,6 +19,21 @@ export const IngredientItem = ({ingredient, index, collectionLength}) => {
         lastPairClass = index === collectionLength - 2 || index === collectionLength - 1? "" : "mb-8"
     else
         lastPairClass = index === collectionLength - 1? "" : "mb-8"
+
+    const state = useSelector(state => state.pickedIngredientsReducer)
+    const data = state.pickedIngredient
+
+
+    /*Разобраться*/
+    let ingredientCount = 0
+    data.forEach((item) => {
+        if (item.id === ingredient.id) {
+            ingredientCount += 1
+        }
+    })
+    // const ingredientCount = data.filter((item) => item.id === ingredient.id)
+    console.log(ingredient, data, ingredientCount)
+    /*Разобраться*/
 
     return (
         <div onClick={handleToggleModal} className={`${lastPairClass} ${(index % 2) === 0? "mr-6 ml-4" : ""} ${constructorItemStyles.item_card}`}>

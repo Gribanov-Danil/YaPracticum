@@ -4,14 +4,18 @@ import placeOrderStyles from "./placeOrder.module.css"
 import {Modal} from "../modal/Modal";
 import {useState} from "react";
 import {OrderDetails} from "../orderDetails/OrderDetails";
+import {useSelector} from "react-redux";
 export const PlaceOrder = () => {
     const [isModalVisible, setModalVisible] = useState(false)
     const handleToggleModal = () => setModalVisible(!isModalVisible)
     const handleCloseModal = () => setModalVisible(false)
+    const state = useSelector(state => state.pickedIngredientsReducer)
+    const data = state.pickedIngredient
+    const orderAmount = data.reduce((amount, currentItem) => amount + currentItem.price, 0)
     return (
         <div className={placeOrderStyles.placeOrder}>
             <IconfyText
-                text={"1234567890"}
+                text={orderAmount.toString()}
                 textClass={"text_type_digits-medium"}
                 iconLocation={"right"}
                 gapInPx={8}
