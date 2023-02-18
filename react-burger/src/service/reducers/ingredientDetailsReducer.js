@@ -18,4 +18,3 @@ export const ingredientDetailsSlice = createSlice({
 })
 
 export default ingredientDetailsSlice.reducer
-export const {setModalData} = ingredientDetailsSlice.actions

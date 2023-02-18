@@ -6,8 +6,8 @@ import {dataPropTypes} from "../../utils/prop-types";
 import {useSelector} from "react-redux";
 
 export const ConstructorPanel = () => {
-    const state = useSelector(state => state.ingredientDetailsReducer)
-    const data = state.dataArray
+    const state = useSelector(state => state.pickedIngredientsReducer)
+    const data = state.pickedIngredient
     // const data = useContext(ResponseContext)
     const buns = data.filter(item => item.type === "bun")
     const ingredients = data.filter(item => item.type !== "bun")

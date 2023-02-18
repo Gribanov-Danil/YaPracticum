@@ -20,9 +20,12 @@
     background: #8585AD;
 }
 
-.ingredient:not(:last-child) {
+.ingredient{
     display: flex;
     gap: 8px;
     align-items: center;
+}
+
+.ingredient:not(:last-child) {
     margin-bottom: 16px;
 }
