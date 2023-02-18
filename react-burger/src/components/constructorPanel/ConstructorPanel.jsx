@@ -3,8 +3,12 @@ import {ConstructorIngredient} from "../constructorIngredient/ConstructorIngredi
 import {ClosingBun} from "../closingBun/ClosingBun";
 import panelStyles from "./constructorPanel.module.css"
 import {dataPropTypes} from "../../utils/prop-types";
+import {useSelector} from "react-redux";
 
-export const ConstructorPanel = ({data}) => {
+export const ConstructorPanel = () => {
+    const state = useSelector(state => state.ingredientDetailsReducer)
+    const data = state.dataArray
+    // const data = useContext(ResponseContext)
     const buns = data.filter(item => item.type === "bun")
     const ingredients = data.filter(item => item.type !== "bun")
     return (

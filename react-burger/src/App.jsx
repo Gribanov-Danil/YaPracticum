@@ -5,10 +5,15 @@ import {BurgerIngredients} from "./components/burgerIngredients/BurgerIngredient
 import {BurgerConstructor} from "./components/burgerConstructor/burgerConstructor";
 import {useEffect, useState} from "react";
 import {checkResponse} from "./utils/checkReponse";
+import {ingredientDetailsSlice} from "./service/reducers/ingredientDetailsReducer";
+import {useDispatch} from "react-redux";
 
 //TODO сделать layout для ошибки getData().catch
 
+
 function App() {
+    const {setFetchData} = ingredientDetailsSlice.actions
+    const dispatch = useDispatch()
     const URL = 'https://norma.nomoreparties.space/api/ingredients';
     const [data, setData] = useState({
         dataArray: [],
@@ -18,8 +23,10 @@ function App() {
         const getData = async () => {
             setData({...data, isLoading: true})
             let response = await fetch(URL)
-            let result = await checkResponse(response) /*response.json()*/
+            let result = await checkResponse(response)
+            dispatch(setFetchData({ dataArray: result.data, isLoading: false}))
             setData({...data, dataArray: result.data, isLoading: false})
+
     }
     getData().catch(e => console.log("Ошибка загрузки данных"))
     }, [URL])
@@ -30,11 +37,10 @@ function App() {
                 <Page>
                     {!data.isLoading && Object.keys(data.dataArray).length && (
                         <>
-                            <BurgerIngredients data={data.dataArray}/>
-                            <BurgerConstructor data={data.dataArray}/>
+                            <BurgerIngredients/>
+                            <BurgerConstructor/>
                         </>
                     )}
-
                 </Page>
             </main>
         </div>
