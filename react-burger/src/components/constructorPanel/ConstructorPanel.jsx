@@ -3,24 +3,41 @@ import {ConstructorIngredient} from "../constructorIngredient/ConstructorIngredi
 import {ClosingBun} from "../closingBun/ClosingBun";
 import panelStyles from "./constructorPanel.module.css"
 import {dataPropTypes} from "../../utils/prop-types";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {useDrop} from "react-dnd";
+import {pickedIngredientSlice} from "../../service/reducers/pickedIngredientsReducer";
 
 export const ConstructorPanel = () => {
     const state = useSelector(state => state.pickedIngredientsReducer)
-    const data = state.pickedIngredient
-    // const data = useContext(ResponseContext)
-    const buns = data.filter(item => item.type === "bun")
-    const ingredients = data.filter(item => item.type !== "bun")
+    const pickedIngredient = state.pickedIngredient
+    const pickedBun = state.pickedBun
+
+    const {setPickedIngredient, setPickedBun} = pickedIngredientSlice.actions
+    const dispatch = useDispatch()
+
+    const [, dropTarget] = useDrop({
+        accept: "ingredientItem",
+        collect: monitor => ({
+            isHover: monitor.isOver(),
+        }),
+        drop(ingredient) {
+            if (ingredient.type === "bun")
+                dispatch(setPickedBun({pickedIngredient: ingredient}))
+            else
+                dispatch(setPickedIngredient({pickedIngredient: ingredient}))
+        },
+    });
     return (
-        <div className={`${panelStyles.panel} mb-10`}>
-            <OpenBun bun={buns[0]}/>
-            <div className={panelStyles.constructor_block}>
-                {ingredients.map((ingredient, index) => (
-                    <ConstructorIngredient key={index} ingredient={ingredient}/>
-                ))}
+            <div ref={dropTarget} className={`${panelStyles.panel} mb-10`}>
+                {Object.keys(pickedBun).length !== 0 && <OpenBun bun={pickedBun}/>}
+
+                <div className={panelStyles.constructor_block}>
+                    {pickedIngredient.map((ingredient, index) => (
+                        <ConstructorIngredient key={index} ingredient={ingredient}/>
+                    ))}
+                </div>
+                {Object.keys(pickedBun).length !== 0 && <ClosingBun bun={pickedBun}/>}
             </div>
-            <ClosingBun bun={buns[1]}/>
-        </div>
     )
 }
 

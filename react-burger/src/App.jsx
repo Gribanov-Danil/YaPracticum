@@ -7,6 +7,8 @@ import {useEffect, useState} from "react";
 import {checkResponse} from "./utils/checkReponse";
 import {ingredientDetailsSlice} from "./service/reducers/ingredientDetailsReducer";
 import {useDispatch} from "react-redux";
+import {HTML5Backend} from "react-dnd-html5-backend";
+import {DndProvider} from "react-dnd";
 
 //TODO сделать layout для ошибки getData().catch
 
@@ -28,7 +30,7 @@ function App() {
             setData({...data, dataArray: result.data, isLoading: false})
 
     }
-    getData().catch(e => console.log("Ошибка загрузки данных"))
+    getData().catch(() => console.log("Ошибка загрузки данных"))
     }, [URL])
     return (
         <div className="App">
@@ -36,10 +38,10 @@ function App() {
             <main>
                 <Page>
                     {!data.isLoading && Object.keys(data.dataArray).length && (
-                        <>
+                        <DndProvider backend={HTML5Backend}>
                             <BurgerIngredients/>
                             <BurgerConstructor/>
-                        </>
+                        </DndProvider>
                     )}
                 </Page>
             </main>

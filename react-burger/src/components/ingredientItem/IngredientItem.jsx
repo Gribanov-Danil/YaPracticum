@@ -1,18 +1,33 @@
 import {Counter, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import constructorItemStyles from "./ingredientItem.module.css"
 import PropTypes from "prop-types";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Modal} from "../modal/Modal";
 import {IngredientsDetails} from "../ingredientDetails/IngredientsDetails";
 import {dataElementWithCustomFieldPropTypes} from "../../utils/prop-types";
 import {useSelector} from "react-redux";
-
-//TODO сделать <Counter>, сейчас почему-то выводит сумму ингредиентов в конструкторе
+import {useDrag} from "react-dnd";
 
 export const IngredientItem = ({ingredient, index, collectionLength}) => {
     const [isModalVisible, setModalVisible] = useState(false)
+
+    const [ingredientCount, setIngredientCount] = useState(0)
+    const state = useSelector(state => state.pickedIngredientsReducer)
+
+    const pickedIngredient = state.pickedIngredient
+    let pickedBun = state.pickedBun
+    pickedBun = Object.keys(pickedBun).length !== 0? [pickedBun]: []
+    const data = [...pickedIngredient, ...pickedBun, ...pickedBun]
+    useEffect(() => {
+        setIngredientCount(data.filter((item) => item._id === ingredient._id).length)
+    }, )
+
     const handleToggleModal = () => setModalVisible(!isModalVisible)
     const handleCloseModal = () => setModalVisible(false)
+    const [, dragRef] = useDrag({
+        type: "ingredientItem",
+        item: ingredient
+    });
 
     let lastPairClass
     if (collectionLength % 2 === 0)
@@ -20,27 +35,13 @@ export const IngredientItem = ({ingredient, index, collectionLength}) => {
     else
         lastPairClass = index === collectionLength - 1? "" : "mb-8"
 
-    const state = useSelector(state => state.pickedIngredientsReducer)
-    const data = state.pickedIngredient
-
-
-    /*Разобраться*/
-    let ingredientCount = 0
-    data.forEach((item) => {
-        if (item.id === ingredient.id) {
-            ingredientCount += 1
-        }
-    })
-    // const ingredientCount = data.filter((item) => item.id === ingredient.id)
-    console.log(ingredient, data, ingredientCount)
-    /*Разобраться*/
-
     return (
-        <div onClick={handleToggleModal} className={`${lastPairClass} ${(index % 2) === 0? "mr-6 ml-4" : ""} ${constructorItemStyles.item_card}`}>
+        <div ref={dragRef} onClick={handleToggleModal} className={`${lastPairClass} ${(index % 2) === 0? "mr-6 ml-4" : ""} ${constructorItemStyles.item_card}`}>
             <Modal active={isModalVisible} onClick={handleCloseModal} title={"Детали ингредиента"}>
                 <IngredientsDetails ingredient={ingredient} onClick={handleCloseModal}/>
             </Modal>
-            <Counter count={1} size="default" extraClass="m-1" />
+            {ingredientCount !== 0 && <Counter count={ingredientCount} size="default" extraClass="m-1" />}
+
             <div className="ml-4 mb-1 mr-4">
                 <img src={ingredient.image} alt=""/>
             </div>

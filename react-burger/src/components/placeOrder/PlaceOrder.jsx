@@ -10,8 +10,12 @@ export const PlaceOrder = () => {
     const handleToggleModal = () => setModalVisible(!isModalVisible)
     const handleCloseModal = () => setModalVisible(false)
     const state = useSelector(state => state.pickedIngredientsReducer)
-    const data = state.pickedIngredient
-    const orderAmount = data.reduce((amount, currentItem) => amount + currentItem.price, 0)
+    const pickedIngredient = state.pickedIngredient
+    let pickedBun = state.pickedBun
+    pickedBun = Object.keys(pickedBun).length !== 0? [pickedBun]: []
+    let orderAmount = [...pickedIngredient, ...pickedBun, ...pickedBun]
+    orderAmount = orderAmount.reduce((amount, currentItem) => amount + currentItem.price, 0)
+    orderAmount = orderAmount || 0
     return (
         <div className={placeOrderStyles.placeOrder}>
             <IconfyText
