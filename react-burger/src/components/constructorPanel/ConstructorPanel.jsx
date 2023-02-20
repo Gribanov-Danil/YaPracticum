@@ -1,11 +1,11 @@
 import {OpenBun} from "../openBun/OpenBun";
-import {ConstructorIngredient} from "../constructorIngredient/ConstructorIngredient";
 import {ClosingBun} from "../closingBun/ClosingBun";
 import panelStyles from "./constructorPanel.module.css"
 import {dataPropTypes} from "../../utils/prop-types";
 import {useDispatch, useSelector} from "react-redux";
 import {useDrop} from "react-dnd";
 import {pickedIngredientSlice} from "../../service/reducers/pickedIngredientsReducer";
+import {DraggableIngredientsBlock} from "../draggableIngredientsBlock/DraggableIngredientsBlock";
 
 export const ConstructorPanel = () => {
     const state = useSelector(state => state.pickedIngredientsReducer)
@@ -28,22 +28,10 @@ export const ConstructorPanel = () => {
         },
     })
 
-    // const [, dropIngredientTarget] = useDrop({
-    //     accept: "draggableIngredientItem",
-    //     drop(ingredient) {
-    //         dispatch(setPickedIngredient({pickedIngredient: {ingredient: ingredient}}))
-    //     },
-    // })
     return (
-            <div ref={(el) => {dropTarget(el); /*dropIngredientTarget(el)*/}} className={`${panelStyles.panel} mb-10`}>
+            <div ref={dropTarget} className={`${panelStyles.panel} mb-10`}>
                 {Object.keys(pickedBun).length !== 0 && <OpenBun bun={pickedBun}/>}
-
-                <div className={panelStyles.constructor_block}>
-                    {pickedIngredient.map((ingredientObj, index) => (
-                        Object.keys(ingredientObj.ingredient).length !== 0 &&
-                        <ConstructorIngredient key={index} ingredientObj={ingredientObj} index={index}/>
-                    ))}
-                </div>
+                <DraggableIngredientsBlock pickedIngredient={pickedIngredient}/>
                 {Object.keys(pickedBun).length !== 0 && <ClosingBun bun={pickedBun}/>}
             </div>
     )

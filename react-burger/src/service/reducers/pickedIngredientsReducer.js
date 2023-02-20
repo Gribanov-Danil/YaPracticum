@@ -33,14 +33,13 @@ export const pickedIngredientSlice = createSlice({
             state.pickedBun = {...action.payload.pickedIngredient}
         },
         deleteDraggableIngredient: (state, action) => {
-            console.log(action.payload.pickedIngredient)
           state.pickedIngredient = [
               ...state.pickedIngredient.filter((ingredientObj) => ingredientObj.index !== action.payload.pickedIngredient.index)
           ]
         },
-        // setDraggableIngredient: (state, action) => {
-        //   // let newState =
-        // }
+        setDraggableIngredient: (state, action) => {
+          // let newState =
+        }
     }
 })
 
