@@ -12,28 +12,36 @@ export const ConstructorPanel = () => {
     const pickedIngredient = state.pickedIngredient
     const pickedBun = state.pickedBun
 
-    const {setPickedIngredient, setPickedBun} = pickedIngredientSlice.actions
+    const {setPickedIngredient, setPickedBun, setFirstIngredient} = pickedIngredientSlice.actions
     const dispatch = useDispatch()
 
     const [, dropTarget] = useDrop({
         accept: "ingredientItem",
-        collect: monitor => ({
-            isHover: monitor.isOver(),
-        }),
         drop(ingredient) {
             if (ingredient.type === "bun")
                 dispatch(setPickedBun({pickedIngredient: ingredient}))
             else
-                dispatch(setPickedIngredient({pickedIngredient: ingredient}))
+                if (pickedIngredient.length === 0 || Object.keys(pickedIngredient[0].ingredient).length === 0)
+                    dispatch(setFirstIngredient({ingredient: ingredient}))
+                else
+                    dispatch(setPickedIngredient({ingredient: ingredient}))
         },
-    });
+    })
+
+    // const [, dropIngredientTarget] = useDrop({
+    //     accept: "draggableIngredientItem",
+    //     drop(ingredient) {
+    //         dispatch(setPickedIngredient({pickedIngredient: {ingredient: ingredient}}))
+    //     },
+    // })
     return (
-            <div ref={dropTarget} className={`${panelStyles.panel} mb-10`}>
+            <div ref={(el) => {dropTarget(el); /*dropIngredientTarget(el)*/}} className={`${panelStyles.panel} mb-10`}>
                 {Object.keys(pickedBun).length !== 0 && <OpenBun bun={pickedBun}/>}
 
                 <div className={panelStyles.constructor_block}>
-                    {pickedIngredient.map((ingredient, index) => (
-                        <ConstructorIngredient key={index} ingredient={ingredient}/>
+                    {pickedIngredient.map((ingredientObj, index) => (
+                        Object.keys(ingredientObj.ingredient).length !== 0 &&
+                        <ConstructorIngredient key={index} ingredientObj={ingredientObj} index={index}/>
                     ))}
                 </div>
                 {Object.keys(pickedBun).length !== 0 && <ClosingBun bun={pickedBun}/>}

@@ -13,7 +13,8 @@ export const PlaceOrder = () => {
     const pickedIngredient = state.pickedIngredient
     let pickedBun = state.pickedBun
     pickedBun = Object.keys(pickedBun).length !== 0? [pickedBun]: []
-    let orderAmount = [...pickedIngredient, ...pickedBun, ...pickedBun]
+    let orderAmount = [...pickedBun, ...pickedBun]
+    pickedIngredient.map((ingredientObj) => orderAmount.push(ingredientObj.ingredient))
     orderAmount = orderAmount.reduce((amount, currentItem) => amount + currentItem.price, 0)
     orderAmount = orderAmount || 0
     return (

@@ -17,7 +17,8 @@ export const IngredientItem = ({ingredient, index, collectionLength}) => {
     const pickedIngredient = state.pickedIngredient
     let pickedBun = state.pickedBun
     pickedBun = Object.keys(pickedBun).length !== 0? [pickedBun]: []
-    const data = [...pickedIngredient, ...pickedBun, ...pickedBun]
+    let data = [...pickedBun, ...pickedBun]
+    pickedIngredient.map((ingredientObj) => data.push(ingredientObj.ingredient))
     useEffect(() => {
         setIngredientCount(data.filter((item) => item._id === ingredient._id).length)
     }, )
