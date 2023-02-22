@@ -1,9 +1,9 @@
 import {createSlice} from "@reduxjs/toolkit";
-
+import uuid from 'react-uuid';
 
 const initialState = {
     pickedIngredient: [{
-        index: 0,
+        id: 0,
         ingredient: {}
     }],
     pickedBun: {}
@@ -15,7 +15,7 @@ export const pickedIngredientSlice = createSlice({
     reducers: {
         setFirstIngredient: (state, action) => {
             state.pickedIngredient = [{
-                index: 0,
+                id: uuid(),
                 ingredient: action.payload.ingredient
             }
             ]
@@ -24,7 +24,7 @@ export const pickedIngredientSlice = createSlice({
             state.pickedIngredient = [...state.pickedIngredient,
                 ...[
                     {
-                        index: state.pickedIngredient.length,
+                        id: uuid(),
                         ingredient: action.payload.ingredient
                     }]
             ]
@@ -34,11 +34,15 @@ export const pickedIngredientSlice = createSlice({
         },
         deleteDraggableIngredient: (state, action) => {
           state.pickedIngredient = [
-              ...state.pickedIngredient.filter((ingredientObj) => ingredientObj.index !== action.payload.pickedIngredient.index)
+              ...state.pickedIngredient.filter((ingredientObj) => ingredientObj.id !== action.payload.pickedIngredient.id)
           ]
         },
         setDraggableIngredient: (state, action) => {
-          // let newState =
+          state.pickedIngredient = [...state.pickedIngredient, action.payload.pickedIngredient]
+        },
+        updatePickedIngredient: (state, action) => {
+            console.log(action.payload)
+            state.pickedIngredient = [...action.payload]
         }
     }
 })

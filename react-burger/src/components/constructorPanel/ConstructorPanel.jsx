@@ -31,7 +31,7 @@ export const ConstructorPanel = () => {
     return (
             <div ref={dropTarget} className={`${panelStyles.panel} mb-10`}>
                 {Object.keys(pickedBun).length !== 0 && <OpenBun bun={pickedBun}/>}
-                <DraggableIngredientsBlock pickedIngredient={pickedIngredient}/>
+                <DraggableIngredientsBlock pickedIngredients={pickedIngredient}/>
                 {Object.keys(pickedBun).length !== 0 && <ClosingBun bun={pickedBun}/>}
             </div>
     )

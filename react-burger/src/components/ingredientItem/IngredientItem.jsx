@@ -42,7 +42,6 @@ export const IngredientItem = ({ingredient, index, collectionLength}) => {
                 <IngredientsDetails ingredient={ingredient} onClick={handleCloseModal}/>
             </Modal>
             {ingredientCount !== 0 && <Counter count={ingredientCount} size="default" extraClass="m-1" />}
-
             <div className="ml-4 mb-1 mr-4">
                 <img src={ingredient.image} alt=""/>
             </div>

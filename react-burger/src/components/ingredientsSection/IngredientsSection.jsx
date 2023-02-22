@@ -1,14 +1,14 @@
 import constructorStyle from "../ingredientsBlock/ingredientsBlock.module.css";
 import {IngredientItem} from "../ingredientItem/IngredientItem";
-import PropTypes from "prop-types";
-import {dataElementWithCustomFieldPropTypes} from "../../utils/prop-types";
+import uuid from 'react-uuid';
+import {forwardRef, memo} from "react";
 
 
-export const IngredientsSection = ({sectionTitle, itemList}) => {
+export const IngredientsSection = memo(forwardRef(({sectionTitle, itemList, id}, ref) => {
     return (
         <section className={constructorStyle.section}>
             <div className="mb-6">
-                <p className="text text_type_main-medium">
+                <p className="text text_type_main-medium" id={id} ref={ref}>
                     {sectionTitle}
                 </p>
             </div>
@@ -16,7 +16,7 @@ export const IngredientsSection = ({sectionTitle, itemList}) => {
                 <div className={constructorStyle.type_container}>
                     {itemList.map((item, index) => (
                         <IngredientItem
-                            key={index}
+                            key={uuid()}
                             index={index}
                             ingredient={item}
                             collectionLength={itemList.length}
@@ -28,10 +28,10 @@ export const IngredientsSection = ({sectionTitle, itemList}) => {
                 </div>
         </section>
     )
-}
+}))
 
-IngredientsSection.propTypes = {
-    sectionTitle: PropTypes.string.isRequired,
-    itemList: PropTypes.arrayOf(
-        PropTypes.shape(dataElementWithCustomFieldPropTypes("itemList")))
-}
+// IngredientsSection.propTypes = {
+//     sectionTitle: PropTypes.string.isRequired,
+//     itemList: PropTypes.arrayOf(
+//         PropTypes.shape(dataElementWithCustomFieldPropTypes("itemList")))
+// }
