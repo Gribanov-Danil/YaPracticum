@@ -11,8 +11,6 @@ export const IngredientsBlock = ({refList}) => {
     const mainList = data.filter((ingredient) => ingredient.type === "main" )
     const sauceList = data.filter((ingredient) => ingredient.type === "sauce" )
 
-
-
     return (
         <div className={`ingredients_block ${constructorStyle.constructor}`}>
             <IngredientsSection

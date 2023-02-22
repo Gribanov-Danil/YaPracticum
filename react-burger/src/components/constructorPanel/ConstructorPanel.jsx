@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useDrop} from "react-dnd";
 import {pickedIngredientSlice} from "../../service/reducers/pickedIngredientsReducer";
 import {DraggableIngredientsBlock} from "../draggableIngredientsBlock/DraggableIngredientsBlock";
+import uuid from "react-uuid";
 
 export const ConstructorPanel = () => {
     const state = useSelector(state => state.pickedIngredientsReducer)
@@ -22,9 +23,9 @@ export const ConstructorPanel = () => {
                 dispatch(setPickedBun({pickedIngredient: ingredient}))
             else
                 if (pickedIngredient.length === 0 || Object.keys(pickedIngredient[0].ingredient).length === 0)
-                    dispatch(setFirstIngredient({ingredient: ingredient}))
+                    dispatch(setFirstIngredient({ingredient: ingredient, id: uuid()}))
                 else
-                    dispatch(setPickedIngredient({ingredient: ingredient}))
+                    dispatch(setPickedIngredient({ingredient: ingredient, id: uuid()}))
         },
     })
 

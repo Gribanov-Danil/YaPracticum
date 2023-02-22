@@ -1,5 +1,4 @@
 import {createSlice} from "@reduxjs/toolkit";
-import uuid from 'react-uuid';
 
 const initialState = {
     pickedIngredient: [{
@@ -15,7 +14,7 @@ export const pickedIngredientSlice = createSlice({
     reducers: {
         setFirstIngredient: (state, action) => {
             state.pickedIngredient = [{
-                id: uuid(),
+                id: action.payload.id,
                 ingredient: action.payload.ingredient
             }
             ]
@@ -24,7 +23,7 @@ export const pickedIngredientSlice = createSlice({
             state.pickedIngredient = [...state.pickedIngredient,
                 ...[
                     {
-                        id: uuid(),
+                        id: action.payload.id,
                         ingredient: action.payload.ingredient
                     }]
             ]

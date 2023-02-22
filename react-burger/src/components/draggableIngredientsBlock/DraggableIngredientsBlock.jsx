@@ -1,7 +1,6 @@
 import panelStyles from "../constructorPanel/constructorPanel.module.css";
 import {ConstructorIngredient} from "../constructorIngredient/ConstructorIngredient";
 import {memo} from "react";
-import uuid from 'react-uuid';
 import {Reorder} from "framer-motion";
 import {pickedIngredientSlice} from "../../service/reducers/pickedIngredientsReducer";
 import {useDispatch} from "react-redux";
@@ -22,7 +21,7 @@ export const DraggableIngredientsBlock = memo(function DraggableIngredientsBlock
           {pickedIngredients.map((ingredientObj) => (
               Object.keys(ingredientObj.ingredient).length !== 0 &&
               <ConstructorIngredient
-                  key={uuid()}
+                  key={ingredientObj.id}
                   ingredientObj={ingredientObj}
               />
           ))}
