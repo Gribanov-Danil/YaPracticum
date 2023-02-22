@@ -1,5 +1,5 @@
 import {combineReducers} from "redux";
-import ingredientDetailsReducer from "./reducers/ingredientDetailsSlice";
+import ingredientDetailsReducer from "./reducers/ingredientsSlice";
 import {configureStore} from "@reduxjs/toolkit";
 import pickedIngredientsReducer from "./reducers/pickedIngredientsSlice.js"
 import orderDetailsReducer from "./reducers/orderDetailsSlice"

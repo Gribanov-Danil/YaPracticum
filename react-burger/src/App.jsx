@@ -5,7 +5,7 @@ import {BurgerIngredients} from "./components/burgerIngredients/BurgerIngredient
 import {BurgerConstructor} from "./components/burgerConstructor/burgerConstructor";
 import {useEffect, useState} from "react";
 import {checkResponse} from "./utils/checkReponse";
-import {ingredientDetailsSlice} from "./service/reducers/ingredientDetailsSlice";
+import {ingredientsSlice} from "./service/reducers/ingredientsSlice";
 import {useDispatch} from "react-redux";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import {DndProvider} from "react-dnd";
@@ -14,7 +14,7 @@ import {DndProvider} from "react-dnd";
 
 
 function App() {
-    const {setFetchData} = ingredientDetailsSlice.actions
+    const {setFetchData} = ingredientsSlice.actions
     const dispatch = useDispatch()
     const URL = 'https://norma.nomoreparties.space/api/ingredients';
     const [data, setData] = useState({

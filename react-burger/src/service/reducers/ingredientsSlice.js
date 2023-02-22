@@ -6,7 +6,7 @@ const initialState = {
     isLoading: false
 }
 
-export const ingredientDetailsSlice = createSlice({
+export const ingredientsSlice = createSlice({
     name: "ingredientDetails",
     initialState,
     reducers: {
@@ -17,4 +17,4 @@ export const ingredientDetailsSlice = createSlice({
     }
 })
 
-export default ingredientDetailsSlice.reducer
+export default ingredientsSlice.reducer
