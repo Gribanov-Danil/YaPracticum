@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 import {TabValues} from "../../utils/constants/tabValues";
 
 export const IngredientsBlock = ({refList}) => {
-    const state = useSelector(state => state.ingredientDetailsReducer)
+    const state = useSelector(state => state.ingredientsReducer)
     const data = state.dataArray
     const bunList = data.filter((ingredient) => ingredient.type === "bun" )
     const mainList = data.filter((ingredient) => ingredient.type === "main" )

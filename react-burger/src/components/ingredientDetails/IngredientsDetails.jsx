@@ -1,8 +1,11 @@
 import ingredientsDetailsStyles from "./ingredientsDetails.module.css"
 import {IngredientCharacteristic} from "../ingredientCharacteristic/IngredientCharacteristic";
 import {dataElementWithCustomFieldPropTypes} from "../../utils/prop-types";
+import {useSelector} from "react-redux";
 
-export const IngredientsDetails = ({ingredient}) => {
+export const IngredientsDetails = () => {
+    let ingredient = useSelector(state => state.ingredientDetailsReducer)
+    ingredient = ingredient.ingredient
     return (
         <>
             <div className={`${ingredientsDetailsStyles.ingredient_image}`}>

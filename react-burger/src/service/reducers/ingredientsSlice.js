@@ -7,7 +7,7 @@ const initialState = {
 }
 
 export const ingredientsSlice = createSlice({
-    name: "ingredientDetails",
+    name: "ingredients",
     initialState,
     reducers: {
         setFetchData: (state, action) => {

@@ -1,14 +1,15 @@
 import {Counter, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import constructorItemStyles from "./ingredientItem.module.css"
 import PropTypes from "prop-types";
-import {useEffect, useState} from "react";
+import {memo, useEffect, useState} from "react";
 import {Modal} from "../modal/Modal";
 import {IngredientsDetails} from "../ingredientDetails/IngredientsDetails";
 import {dataElementWithCustomFieldPropTypes} from "../../utils/prop-types";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useDrag} from "react-dnd";
+import {ingredientDetailsSlice} from "../../service/reducers/ingredientDetailsSlice";
 
-export const IngredientItem = ({ingredient, index, collectionLength}) => {
+export const IngredientItem = memo(function IngredientItem ({ingredient, index, collectionLength})  {
     const [isModalVisible, setModalVisible] = useState(false)
 
     const [ingredientCount, setIngredientCount] = useState(0)
@@ -23,8 +24,19 @@ export const IngredientItem = ({ingredient, index, collectionLength}) => {
         setIngredientCount(data.filter((item) => item._id === ingredient._id).length)
     }, )
 
-    const handleToggleModal = () => setModalVisible(!isModalVisible)
-    const handleCloseModal = () => setModalVisible(false)
+
+    const dispatch = useDispatch()
+    const {setModalData, deleteModalData} = ingredientDetailsSlice.actions
+    const handleToggleModal = (ingredient) => {
+        console.log(isModalVisible)
+        setModalVisible(!isModalVisible)
+        console.log(isModalVisible)
+        dispatch(setModalData({ingredient: ingredient}))
+    }
+    const handleCloseModal = () => {
+        setModalVisible(false)
+        dispatch(deleteModalData({}))
+    }
     const [, dragRef] = useDrag({
         type: "ingredientItem",
         item: ingredient
@@ -37,7 +49,7 @@ export const IngredientItem = ({ingredient, index, collectionLength}) => {
         lastPairClass = index === collectionLength - 1? "" : "mb-8"
 
     return (
-        <div ref={dragRef} onClick={handleToggleModal} className={`${lastPairClass} ${(index % 2) === 0? "mr-6 ml-4" : ""} ${constructorItemStyles.item_card}`}>
+        <div ref={dragRef} onClick={() => handleToggleModal(ingredient)} className={`${lastPairClass} ${(index % 2) === 0? "mr-6 ml-4" : ""} ${constructorItemStyles.item_card}`}>
             <Modal active={isModalVisible} onClick={handleCloseModal} title={"Детали ингредиента"}>
                 <IngredientsDetails ingredient={ingredient} onClick={handleCloseModal}/>
             </Modal>
@@ -56,7 +68,7 @@ export const IngredientItem = ({ingredient, index, collectionLength}) => {
             </div>
         </div>
     )
-}
+})
 
 IngredientItem.propTypes = {
     index: PropTypes.number.isRequired,
