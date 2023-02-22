@@ -2,10 +2,10 @@ import panelStyles from "../constructorPanel/constructorPanel.module.css";
 import {ConstructorIngredient} from "../constructorIngredient/ConstructorIngredient";
 import {memo} from "react";
 import {Reorder} from "framer-motion";
-import {pickedIngredientSlice} from "../../service/reducers/pickedIngredientsReducer";
+import {pickedIngredientSlice} from "../../service/reducers/pickedIngredientsSlice";
 import {useDispatch} from "react-redux";
 
-// Контейнер ингредиентов, имеющих dnd
+
 export const DraggableIngredientsBlock = memo(function DraggableIngredientsBlock({pickedIngredients}) {
     const {updatePickedIngredient} = pickedIngredientSlice.actions
     const dispatch = useDispatch()

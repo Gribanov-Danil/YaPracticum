@@ -2,21 +2,45 @@ import {Button, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-comp
 import {IconfyText} from "../iconfyText/IconfyText";
 import placeOrderStyles from "./placeOrder.module.css"
 import {Modal} from "../modal/Modal";
-import {useState} from "react";
+import {useCallback, useMemo, useState} from "react";
 import {OrderDetails} from "../orderDetails/OrderDetails";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {orderDetailsSlice} from "../../service/reducers/orderDetailsSlice";
+import {postAxiosOrder} from "../../utils/postAxiosOrder";
+
+
 export const PlaceOrder = () => {
     const [isModalVisible, setModalVisible] = useState(false)
-    const handleToggleModal = () => setModalVisible(!isModalVisible)
-    const handleCloseModal = () => setModalVisible(false)
+    const dispatch = useDispatch()
+    const handleCloseModal = useCallback( () => {
+        dispatch(deleteId())
+        setModalVisible(false)
+    }, [])
+
     const state = useSelector(state => state.pickedIngredientsReducer)
+    const {deleteId, updateId} = orderDetailsSlice.actions
     const pickedIngredient = state.pickedIngredient
     let pickedBun = state.pickedBun
+
     pickedBun = Object.keys(pickedBun).length !== 0? [pickedBun]: []
     let orderAmount = [...pickedBun, ...pickedBun]
     pickedIngredient.map((ingredientObj) => orderAmount.push(ingredientObj.ingredient))
+    let ingredients = orderAmount
+    const ingredientsIdsList = useMemo(() =>
+        ingredients.map(ingredient => ingredient["_id"]),
+        [ingredients])
     orderAmount = orderAmount.reduce((amount, currentItem) => amount + currentItem.price, 0)
     orderAmount = orderAmount || 0
+
+
+    //TODO сделать оповещение о ошибке при заказе в попапчик
+    const handleToggleModal = useCallback(() => {
+        setModalVisible(true)
+        postAxiosOrder(ingredientsIdsList).then(res =>
+            dispatch(updateId({id : res?.id})))
+            .catch(e => console.log(e.message))
+    }, [ingredientsIdsList])
+
     return (
         <div className={placeOrderStyles.placeOrder}>
             <IconfyText
@@ -30,7 +54,7 @@ export const PlaceOrder = () => {
                 Оформить заказ
             </Button>
             <Modal active={isModalVisible} onClick={handleCloseModal}>
-                <OrderDetails orderNumber={3456}/>
+                <OrderDetails/>
             </Modal>
         </div>
     )

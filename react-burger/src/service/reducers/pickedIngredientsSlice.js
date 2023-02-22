@@ -40,7 +40,6 @@ export const pickedIngredientSlice = createSlice({
           state.pickedIngredient = [...state.pickedIngredient, action.payload.pickedIngredient]
         },
         updatePickedIngredient: (state, action) => {
-            console.log(action.payload)
             state.pickedIngredient = [...action.payload]
         }
     }

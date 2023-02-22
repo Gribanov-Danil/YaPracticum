@@ -17,9 +17,9 @@ export const BurgerIngredients = () => {
         mains: mainRef
     }
     const tabs = [
-        { value: TabValues.BUNS, ref: bunsRef, title: TabValues.BUNS },
-        { value: TabValues.SAUCES, ref: saucesRef, title: TabValues.SAUCES },
-        { value: TabValues.MAINS, ref: mainRef, title: TabValues.MAINS},
+        { value: TabValues.BUNS, title: TabValues.BUNS, ref: bunsRef},
+        { value: TabValues.SAUCES, title: TabValues.SAUCES, ref: saucesRef},
+        { value: TabValues.MAINS, title: TabValues.MAINS, ref: mainRef},
     ];
 
     const state = useSelector(state => state.ingredientDetailsReducer)
@@ -30,7 +30,6 @@ export const BurgerIngredients = () => {
         for (const entry of entries) {
             visibleHeaders[entry.target.id] = entry.isIntersecting;
         }
-
         for (const header in visibleHeaders) {
             if (visibleHeaders[header]) {
                 setCurrentTab(header);

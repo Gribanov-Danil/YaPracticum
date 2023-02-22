@@ -4,7 +4,7 @@ import panelStyles from "./constructorPanel.module.css"
 import {dataPropTypes} from "../../utils/prop-types";
 import {useDispatch, useSelector} from "react-redux";
 import {useDrop} from "react-dnd";
-import {pickedIngredientSlice} from "../../service/reducers/pickedIngredientsReducer";
+import {pickedIngredientSlice} from "../../service/reducers/pickedIngredientsSlice";
 import {DraggableIngredientsBlock} from "../draggableIngredientsBlock/DraggableIngredientsBlock";
 import uuid from "react-uuid";
 

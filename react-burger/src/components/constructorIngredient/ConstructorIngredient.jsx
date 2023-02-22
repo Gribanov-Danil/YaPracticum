@@ -1,6 +1,6 @@
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import panelStyles from "../constructorPanel/constructorPanel.module.css";
-import {pickedIngredientSlice} from "../../service/reducers/pickedIngredientsReducer";
+import {pickedIngredientSlice} from "../../service/reducers/pickedIngredientsSlice";
 import {useDispatch} from "react-redux";
 import {memo} from "react";
 import {Reorder} from "framer-motion";

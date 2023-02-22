@@ -1,9 +1,9 @@
 import styles from "./orderDetails.module.css"
-import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
 
-export const OrderDetails = ({orderNumber}) => {
-    let orderNumberStr = orderNumber.toString()
-    orderNumberStr = String(orderNumberStr).padStart(5, '0');
+export const OrderDetails = () => {
+    let orderNumberStr = useSelector(state => state.orderDetailsReducer)
+    orderNumberStr = String(orderNumberStr.id).padStart(5, '0');
     return (
         <>
             <p className={`${styles.order_number} text text_type_digits-large`}>{`${orderNumberStr}`}</p>
@@ -15,8 +15,4 @@ export const OrderDetails = ({orderNumber}) => {
             <span className={`${styles.wait_order} text text_type_main-default text_color_inactive`}>Дождитесь готовности на орбитальной станции</span>
         </>
     )
-}
-
-OrderDetails.propTypes = {
-    orderNumber: PropTypes.number.isRequired
 }

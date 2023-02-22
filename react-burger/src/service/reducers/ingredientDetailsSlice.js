@@ -10,7 +10,7 @@ export const ingredientDetailsSlice = createSlice({
     name: "ingredientDetails",
     initialState,
     reducers: {
-        setFetchData(state, action) {
+        setFetchData: (state, action) => {
             state.dataArray = action.payload.dataArray
             state.isLoading = action.payload.isLoading
         }
