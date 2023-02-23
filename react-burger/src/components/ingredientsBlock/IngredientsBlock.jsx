@@ -4,7 +4,7 @@ import {dataPropTypes} from "../../utils/prop-types";
 import {useSelector} from "react-redux";
 import {TabValues} from "../../utils/constants/tabValues";
 
-export const IngredientsBlock = ({refList}) => {
+export const IngredientsBlock = ({refList, handleOpenModal}) => {
     const state = useSelector(state => state.ingredientsReducer)
     const data = state.dataArray
     const bunList = data.filter((ingredient) => ingredient.type === "bun" )
@@ -18,18 +18,21 @@ export const IngredientsBlock = ({refList}) => {
                 itemList={bunList}
                 id={TabValues.BUNS}
                 ref={refList.buns}
+                handleOpenModal={handleOpenModal}
             />
             <IngredientsSection
                 sectionTitle={TabValues.SAUCES}
                 itemList={sauceList}
                 id={TabValues.SAUCES}
                 ref={refList.sauces}
+                handleOpenModal={handleOpenModal}
             />
             <IngredientsSection
                 sectionTitle={TabValues.MAINS}
                 itemList={mainList}
                 id={TabValues.MAINS}
                 ref={refList.mains}
+                handleOpenModal={handleOpenModal}
             />
         </div>
     )

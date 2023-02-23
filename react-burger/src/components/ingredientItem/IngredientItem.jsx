@@ -2,15 +2,11 @@ import {Counter, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-com
 import constructorItemStyles from "./ingredientItem.module.css"
 import PropTypes from "prop-types";
 import {memo, useEffect, useState} from "react";
-import {Modal} from "../modal/Modal";
-import {IngredientsDetails} from "../ingredientDetails/IngredientsDetails";
 import {dataElementWithCustomFieldPropTypes} from "../../utils/prop-types";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {useDrag} from "react-dnd";
-import {ingredientDetailsSlice} from "../../service/reducers/ingredientDetailsSlice";
 
-export const IngredientItem = memo(function IngredientItem ({ingredient, index, collectionLength})  {
-    const [isModalVisible, setModalVisible] = useState(false)
+export const IngredientItem = memo(function IngredientItem ({ingredient, index, collectionLength, handleOpenModal})  {
 
     const [ingredientCount, setIngredientCount] = useState(0)
     const state = useSelector(state => state.pickedIngredientsReducer)
@@ -24,19 +20,6 @@ export const IngredientItem = memo(function IngredientItem ({ingredient, index, 
         setIngredientCount(data.filter((item) => item._id === ingredient._id).length)
     }, )
 
-
-    const dispatch = useDispatch()
-    const {setModalData, deleteModalData} = ingredientDetailsSlice.actions
-    const handleToggleModal = (ingredient) => {
-        console.log(isModalVisible)
-        setModalVisible(!isModalVisible)
-        console.log(isModalVisible)
-        dispatch(setModalData({ingredient: ingredient}))
-    }
-    const handleCloseModal = () => {
-        setModalVisible(false)
-        dispatch(deleteModalData({}))
-    }
     const [, dragRef] = useDrag({
         type: "ingredientItem",
         item: ingredient
@@ -49,10 +32,7 @@ export const IngredientItem = memo(function IngredientItem ({ingredient, index, 
         lastPairClass = index === collectionLength - 1? "" : "mb-8"
 
     return (
-        <div ref={dragRef} onClick={() => handleToggleModal(ingredient)} className={`${lastPairClass} ${(index % 2) === 0? "mr-6 ml-4" : ""} ${constructorItemStyles.item_card}`}>
-            <Modal active={isModalVisible} onClick={handleCloseModal} title={"Детали ингредиента"}>
-                <IngredientsDetails ingredient={ingredient} onClick={handleCloseModal}/>
-            </Modal>
+        <div ref={dragRef} onClick={() => handleOpenModal(ingredient)} className={`${lastPairClass} ${(index % 2) === 0? "mr-6 ml-4" : ""} ${constructorItemStyles.item_card}`}>
             {ingredientCount !== 0 && <Counter count={ingredientCount} size="default" extraClass="m-1" />}
             <div className="ml-4 mb-1 mr-4">
                 <img src={ingredient.image} alt=""/>

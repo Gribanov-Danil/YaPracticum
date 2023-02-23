@@ -8,7 +8,7 @@ export const IngredientsDetails = () => {
     ingredient = ingredient.ingredient
     return (
         <>
-            <div className={`${ingredientsDetailsStyles.ingredient_image}`}>
+            <div className={`${ingredientsDetailsStyles.ingredient_image}`} onClick={(e => e.stopPropagation())}>
                 <img src={ingredient.image_large} alt=""/>
             </div>
             <div className={ingredientsDetailsStyles.text_block}>

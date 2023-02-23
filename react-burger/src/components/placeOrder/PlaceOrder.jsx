@@ -27,7 +27,7 @@ export const PlaceOrder = () => {
     pickedIngredient.map((ingredientObj) => orderAmount.push(ingredientObj.ingredient))
     let ingredients = orderAmount
     const ingredientsIdsList = useMemo(() =>
-        ingredients.map(ingredient => ingredient["_id"]),
+        ingredients.map(ingredient => ingredient._id),
         [ingredients])
     orderAmount = orderAmount.reduce((amount, currentItem) => amount + currentItem.price, 0)
     orderAmount = orderAmount || 0
