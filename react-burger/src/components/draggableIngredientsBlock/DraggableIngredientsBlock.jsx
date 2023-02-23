@@ -4,6 +4,7 @@ import {memo} from "react";
 import {Reorder} from "framer-motion";
 import {pickedIngredientSlice} from "../../service/reducers/pickedIngredientsSlice";
 import {useDispatch} from "react-redux";
+import styles from "./draggableIngredientsBlock.module.css"
 
 
 export const DraggableIngredientsBlock = memo(function DraggableIngredientsBlock({pickedIngredients}) {
@@ -19,11 +20,13 @@ export const DraggableIngredientsBlock = memo(function DraggableIngredientsBlock
           className={panelStyles.constructor_block}
       >
           {pickedIngredients.map((ingredientObj) => (
-              Object.keys(ingredientObj.ingredient).length !== 0 &&
-              <ConstructorIngredient
-                  key={ingredientObj.id}
-                  ingredientObj={ingredientObj}
-              />
+              Object.keys(ingredientObj.ingredient).length !== 0 ?
+                  <ConstructorIngredient
+                      key={ingredientObj.id}
+                      ingredientObj={ingredientObj}
+                  />
+                  :
+                  <div className={`ml-8 ${styles.no_ingredient}`}>И не забудтье добавить начинку</div>
           ))}
       </Reorder.Group>
   )

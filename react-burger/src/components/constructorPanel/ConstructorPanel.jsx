@@ -7,6 +7,8 @@ import {useDrop} from "react-dnd";
 import {pickedIngredientSlice} from "../../service/reducers/pickedIngredientsSlice";
 import {DraggableIngredientsBlock} from "../draggableIngredientsBlock/DraggableIngredientsBlock";
 import uuid from "react-uuid";
+import {EmptyOpenBun} from "../emptyOpenBun/EmptyOpenBun";
+import {EmptyClosingBun} from "../emptyClosingBun/EmptyClosingBun";
 
 export const ConstructorPanel = () => {
     const state = useSelector(state => state.pickedIngredientsReducer)
@@ -31,9 +33,12 @@ export const ConstructorPanel = () => {
 
     return (
             <div ref={dropTarget} className={`${panelStyles.panel} mb-10`}>
-                {Object.keys(pickedBun).length !== 0 && <OpenBun bun={pickedBun}/>}
+                {Object.keys(pickedBun).length !== 0 ? <OpenBun bun={pickedBun}/>
+                    : <EmptyOpenBun text={"Положите выбранную булку"} />
+                }
                 <DraggableIngredientsBlock pickedIngredients={pickedIngredient}/>
-                {Object.keys(pickedBun).length !== 0 && <ClosingBun bun={pickedBun}/>}
+                {Object.keys(pickedBun).length !== 0 ? <ClosingBun bun={pickedBun}/>
+                    : <EmptyClosingBun text={"Положите выбранную булку"}/>}
             </div>
     )
 }

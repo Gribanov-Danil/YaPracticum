@@ -5,7 +5,8 @@
 }
 
 .constructor_block {
-    height: 464px; /* высота нашего блока */
+    min-height: 80px;
+    max-height: 464px;/* высота нашего блока */
     min-width: 600px; /* ширина нашего блока */
     overflow-y: scroll; /* прокрутка по вертикали */
 }
@@ -28,4 +29,8 @@
 
 .ingredient:not(:last-child) {
     margin-bottom: 16px;
+}
+
+.empty_open_bun {
+    background-color: rgba(0,0,0,0.6);
 }
