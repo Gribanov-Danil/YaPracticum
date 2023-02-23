@@ -18,7 +18,7 @@ export const PlaceOrder = () => {
     }, [])
 
     const state = useSelector(state => state.pickedIngredientsReducer)
-    const {deleteId, updateId} = orderDetailsSlice.actions
+    const {deleteId} = orderDetailsSlice.actions
     const pickedIngredient = state.pickedIngredient
     let pickedBun = state.pickedBun
 
@@ -36,10 +36,8 @@ export const PlaceOrder = () => {
     //TODO сделать оповещение о ошибке при заказе в попапчик
     const handleToggleModal = useCallback(() => {
         setModalVisible(true)
-        postAxiosOrder(ingredientsIdsList).then(res =>
-            dispatch(updateId({id : res?.id})))
-            .catch(e => console.log(e.message))
-    }, [ingredientsIdsList])
+        dispatch(postAxiosOrder(ingredientsIdsList))
+    }, [ingredientsIdsList, dispatch])
 
     return (
         <div className={placeOrderStyles.placeOrder}>

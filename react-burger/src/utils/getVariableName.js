@@ -1,1 +1,0 @@
-export const getVariableName = varObj => Object.keys(varObj)[0]

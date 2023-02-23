@@ -37,7 +37,8 @@ export const BurgerIngredients = () => {
         { value: TabValues.MAINS, title: TabValues.MAINS, ref: mainRef},
     ];
 
-    const state = useSelector(state => state.ingredientDetailsReducer)
+    const getState = (state) => state.ingredientDetailsReducer
+    const state = useSelector(getState)
     const ingredients = state.dataArray
 
     let visibleHeaders = {};

@@ -5,6 +5,7 @@ import {Reorder} from "framer-motion";
 import {pickedIngredientSlice} from "../../service/reducers/pickedIngredientsSlice";
 import {useDispatch} from "react-redux";
 import styles from "./draggableIngredientsBlock.module.css"
+import uuid from "react-uuid";
 
 
 export const DraggableIngredientsBlock = memo(function DraggableIngredientsBlock({pickedIngredients}) {
@@ -26,7 +27,7 @@ export const DraggableIngredientsBlock = memo(function DraggableIngredientsBlock
                       ingredientObj={ingredientObj}
                   />
                   :
-                  <div className={`ml-8 ${styles.no_ingredient}`}>И не забудтье добавить начинку</div>
+                  <div key={uuid()} className={`ml-8 ${styles.no_ingredient}`}>И не забудтье добавить начинку</div>
           ))}
       </Reorder.Group>
   )

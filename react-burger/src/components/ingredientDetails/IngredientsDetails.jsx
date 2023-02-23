@@ -4,8 +4,8 @@ import {dataElementWithCustomFieldPropTypes} from "../../utils/prop-types";
 import {useSelector} from "react-redux";
 
 export const IngredientsDetails = () => {
-    let ingredient = useSelector(state => state.ingredientDetailsReducer)
-    ingredient = ingredient.ingredient
+    const getIngredient = (state) => state.ingredientDetailsReducer.ingredient
+    const ingredient = useSelector(getIngredient)
     return (
         <>
             <div className={`${ingredientsDetailsStyles.ingredient_image}`} onClick={(e => e.stopPropagation())}>

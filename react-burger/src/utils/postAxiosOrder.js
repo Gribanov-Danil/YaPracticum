@@ -1,11 +1,15 @@
 import {NormaNomorepartiesInstance, URL_ORDER} from "./constants/axiosInstance";
+import {orderDetailsSlice} from "../service/reducers/orderDetailsSlice";
 
-export const postAxiosOrder = async (ingredientsIdsList) => {
-    const res = await NormaNomorepartiesInstance.post(URL_ORDER, { ingredients: ingredientsIdsList });
-    if (res.status === 200) {
-        const { name, order } = res.data;
-        return { name, id: order.number };
-    } else {
-        return Promise.reject(`Ошибка ${res.status}`);
+const {fetchDataProcessing, updateId, fetchDataError} = orderDetailsSlice.actions
+
+export const postAxiosOrder = (ingredientsIdsList) => async (dispatch) => {
+    dispatch(fetchDataProcessing())
+    try {
+        const response = await NormaNomorepartiesInstance.post(URL_ORDER, {ingredients: ingredientsIdsList});
+        const {order} = response.data;
+        dispatch(updateId({id: order.number}))
+    } catch (e) {
+        dispatch(fetchDataError())
     }
-};
+}

@@ -2,7 +2,9 @@ import styles from "./orderDetails.module.css"
 import {useSelector} from "react-redux";
 
 export const OrderDetails = () => {
-    let orderNumberStr = useSelector(state => state.orderDetailsReducer)
+    let {orderNumberStr, isError, isLoading} = useSelector(state => state.orderDetailsReducer)
+    console.log(orderNumberStr)
+    // let orderNumberStr = useSelector(state => state.orderDetailsReducer)
     orderNumberStr = String(orderNumberStr.id).padStart(5, '0');
     return (
         <>
