@@ -7,3 +7,5 @@ export const EmptyClosingBun = ({text}) => {
         </div>
     )
 }
+
+//TODO пропс

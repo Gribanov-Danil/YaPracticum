@@ -2,13 +2,20 @@ import styles from "./orderDetails.module.css"
 import {useSelector} from "react-redux";
 
 export const OrderDetails = () => {
-    let {orderNumberStr, isError, isLoading} = useSelector(state => state.orderDetailsReducer)
-    console.log(orderNumberStr)
-    // let orderNumberStr = useSelector(state => state.orderDetailsReducer)
-    orderNumberStr = String(orderNumberStr.id).padStart(5, '0');
+    const getState = (state) => state.orderDetailsReducer
+    const state = useSelector(getState)
+    const orderNumberStr = String(state.id).padStart(5, '0');
     return (
         <>
-            <p className={`${styles.order_number} text text_type_digits-large`}>{`${orderNumberStr}`}</p>
+            {state.status.isError &&
+                <p className={`${styles.order_number} text text_type_main-large`}>{`Ошибка при выполнении заказа`}</p>
+            }
+            {state.status.isLoading &&
+                <p className={`${styles.order_number} text text_type_main-large`}>{`Загрузка...`}</p>
+            }
+            { !(state.status.isLoading || state.status.isError) &&
+                <p className={`${styles.order_number} text text_type_digits-large`}>{`${orderNumberStr}`}</p>
+            }
             <span className={`text text_type_main-medium mb-15 ${styles.order_description}`}>идентификатор заказа</span>
             <div className={styles.image_container}>
                 <img src={require("../../images/done.png")} alt={"Done"}/>

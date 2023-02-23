@@ -22,3 +22,5 @@ export const IngredientsTab = ({ tabs, handleTabScroll, current }) => {
         </div>
     )
 }
+
+//TODO пропс

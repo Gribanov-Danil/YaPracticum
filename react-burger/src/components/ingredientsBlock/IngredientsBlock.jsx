@@ -1,6 +1,5 @@
 import constructorStyle from "./ingredientsBlock.module.css"
 import {IngredientsSection} from "../ingredientsSection/IngredientsSection";
-import {dataPropTypes} from "../../utils/prop-types";
 import {useSelector} from "react-redux";
 import {TabValues} from "../../utils/constants/tabValues";
 
@@ -38,4 +37,4 @@ export const IngredientsBlock = ({refList, handleOpenModal}) => {
     )
 }
 
-IngredientsBlock.propTypes = dataPropTypes
+//TODO пропс

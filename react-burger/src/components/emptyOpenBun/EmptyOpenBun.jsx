@@ -7,3 +7,5 @@ export const EmptyOpenBun = ({text}) => {
             </div>
     )
 }
+
+//TODO пропс

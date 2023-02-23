@@ -32,3 +32,5 @@ export const DraggableIngredientsBlock = memo(function DraggableIngredientsBlock
       </Reorder.Group>
   )
 })
+
+//TODO пропс

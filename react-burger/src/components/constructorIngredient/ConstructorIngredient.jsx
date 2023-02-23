@@ -26,4 +26,5 @@ export const ConstructorIngredient = memo(function ConstructorIngredient ({ingre
     )
 })
 
+// TODO пропс
 // ConstructorIngredient.propTypes = dataElementWithCustomFieldPropTypes("ingredient")
