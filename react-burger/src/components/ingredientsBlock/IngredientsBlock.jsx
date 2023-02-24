@@ -2,6 +2,7 @@ import constructorStyle from "./ingredientsBlock.module.css"
 import {IngredientsSection} from "../ingredientsSection/IngredientsSection";
 import {useSelector} from "react-redux";
 import {TabValues} from "../../utils/constants/tabValues";
+import PropTypes from "prop-types";
 
 export const IngredientsBlock = ({refList, handleOpenModal}) => {
     const state = useSelector(state => state.ingredientsReducer)
@@ -37,4 +38,11 @@ export const IngredientsBlock = ({refList, handleOpenModal}) => {
     )
 }
 
-//TODO пропс
+IngredientsBlock.propTypes = {
+    refList: PropTypes.shape({
+        buns: PropTypes.object.isRequired,
+        sauces: PropTypes.object.isRequired,
+        mains: PropTypes.object.isRequired,
+    }),
+    handleOpenModal: PropTypes.func.isRequired,
+}

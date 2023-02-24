@@ -6,6 +6,7 @@ import {pickedIngredientSlice} from "../../service/reducers/pickedIngredientsSli
 import {useDispatch} from "react-redux";
 import styles from "./draggableIngredientsBlock.module.css"
 import uuid from "react-uuid";
+import {ingredientObjectPropTypes} from "../../utils/prop-types";
 
 
 export const DraggableIngredientsBlock = memo(function DraggableIngredientsBlock({pickedIngredients}) {
@@ -33,4 +34,4 @@ export const DraggableIngredientsBlock = memo(function DraggableIngredientsBlock
   )
 })
 
-//TODO пропс
+DraggableIngredientsBlock.propTypes = ingredientObjectPropTypes

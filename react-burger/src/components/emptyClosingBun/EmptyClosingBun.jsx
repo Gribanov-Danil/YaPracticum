@@ -1,4 +1,5 @@
 import styles from "./emptyClosingBun.module.css"
+import PropTypes from "prop-types";
 
 export const EmptyClosingBun = ({text}) => {
     return (
@@ -8,4 +9,6 @@ export const EmptyClosingBun = ({text}) => {
     )
 }
 
-//TODO пропс
+EmptyClosingBun.propTypes = {
+    text: PropTypes.string.isRequired,
+}

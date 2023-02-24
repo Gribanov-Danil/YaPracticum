@@ -1,6 +1,7 @@
 import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 import tabStyles from "./ingredientsTab.module.css"
 import uuid from "react-uuid";
+import PropTypes from "prop-types";
 
 
 
@@ -23,4 +24,12 @@ export const IngredientsTab = ({ tabs, handleTabScroll, current }) => {
     )
 }
 
-//TODO пропс
+IngredientsTab.propTypes = {
+    tabs: PropTypes.arrayOf(PropTypes.shape({
+        value: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        ref: PropTypes.object.isRequired,
+    })),
+    handleTabScroll: PropTypes.func.isRequired,
+    current: PropTypes.string.isRequired,
+}

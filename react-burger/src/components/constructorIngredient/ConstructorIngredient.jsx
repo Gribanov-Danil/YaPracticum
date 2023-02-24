@@ -4,6 +4,7 @@ import {pickedIngredientSlice} from "../../service/reducers/pickedIngredientsSli
 import {useDispatch} from "react-redux";
 import {memo} from "react";
 import {Reorder} from "framer-motion";
+import { ingredientObjectWithCustomFieldPropTypes} from "../../utils/prop-types";
 
 // Элемент, имеющий днд
 export const ConstructorIngredient = memo(function ConstructorIngredient ({ingredientObj}) {
@@ -26,5 +27,4 @@ export const ConstructorIngredient = memo(function ConstructorIngredient ({ingre
     )
 })
 
-// TODO пропс
-// ConstructorIngredient.propTypes = dataElementWithCustomFieldPropTypes("ingredient")
+ConstructorIngredient.propTypes = ingredientObjectWithCustomFieldPropTypes

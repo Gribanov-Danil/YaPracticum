@@ -1,4 +1,5 @@
 import styles from "./emptyOpenBun.module.css"
+import PropTypes from "prop-types";
 
 export const EmptyOpenBun = ({text}) => {
     return (
@@ -8,4 +9,6 @@ export const EmptyOpenBun = ({text}) => {
     )
 }
 
-//TODO пропс
+EmptyOpenBun.propTypes = {
+    text: PropTypes.string.isRequired,
+}
