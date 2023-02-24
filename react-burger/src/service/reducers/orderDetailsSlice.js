@@ -15,7 +15,7 @@ export const orderDetailsSlice = createSlice({
         fetchDataProcessing: (state) => {
             state.status.isLoading = true
         },
-        fetchDataError(state) {
+        fetchDataError: (state) => {
             state.status.isError = true
             state.status.isLoading = false
             state = initialState

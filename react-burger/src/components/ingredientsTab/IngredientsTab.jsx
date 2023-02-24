@@ -3,8 +3,6 @@ import tabStyles from "./ingredientsTab.module.css"
 import uuid from "react-uuid";
 import PropTypes from "prop-types";
 
-
-
 export const IngredientsTab = ({ tabs, handleTabScroll, current }) => {
     return (
         <div className={`mb-10 ${tabStyles.tab}`}>
