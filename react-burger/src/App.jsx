@@ -1,14 +1,14 @@
 import './App.css';
-import {AppHeader} from "./components/appHeader/AppHeader";
-import {Page} from "./components/page/Page";
-import {BurgerIngredients} from "./components/burgerIngredients/BurgerIngredients";
-import {BurgerConstructor} from "./components/burgerConstructor/burgerConstructor";
+import styles from "./App.css"
+import {ConstructorPage} from "./pages/constructorPage/ConstructorPage";
 import {useEffect, useState} from "react";
 import {checkResponse} from "./utils/checkReponse";
 import {ingredientsSlice} from "./service/reducers/ingredientsSlice";
-import {useDispatch, useSelector} from "react-redux";
-import {HTML5Backend} from "react-dnd-html5-backend";
-import {DndProvider} from "react-dnd";
+import {useDispatch} from "react-redux";
+import {AppHeader} from "./components/appHeader/AppHeader";
+import {Route, Routes} from "react-router-dom";
+import {SignInPage} from "./pages/sign-inPage/Sign-inPage";
+
 
 //TODO сделать layout для ошибки getData().catch
 
@@ -33,25 +33,16 @@ function App() {
     getData().catch(() => console.log("Ошибка загрузки данных"))
     }, [URL])
 
-    const getState = (state) => state.ingredientsReducer
-    const state = useSelector(getState)
 
     return (
-        <div className="App">
+        <div className={styles.main_background}>
             <AppHeader/>
-            <main>
-                <Page>
-                    {state.status.isError &&  <h1 className={"text text_type_main-large"}>Произошла ошибка при загрузке данных</h1>}
-                    {state.status.isLoading && <h1 className={"text text_type_main-large"}>Загрузка...</h1> }
-                    {!state.status.isLoading && Object.keys(state.dataArray).length && (
-                        <DndProvider backend={HTML5Backend}>
-                            <BurgerIngredients/>
-                            <BurgerConstructor/>
-                        </DndProvider>
-                    )}
-                </Page>
-            </main>
+            <Routes>
+                <Route path={'/'} element={<ConstructorPage/>}/>
+                <Route path={'/login'} element={<SignInPage/>}/>
+            </Routes>
         </div>
+
     );
 }
 
