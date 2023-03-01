@@ -10,6 +10,7 @@ import {Route, Routes} from "react-router-dom";
 import {SignInPage} from "./pages/sign-inPage/Sign-inPage";
 import {RegistrationPage} from "./pages/registrationPage/RegistrationPage";
 import {ForgotPasswordPage} from "./pages/forgotPasswordPage/ForgotPasswordPage";
+import {ResetPasswordPage} from "./pages/resetPasswordPage/ResetPasswordPage";
 
 
 //TODO сделать layout для ошибки getData().catch
@@ -44,6 +45,7 @@ function App() {
                 <Route path={'/login'} element={<SignInPage/>}/>
                 <Route path={'/registration'} element={<RegistrationPage/>}/>
                 <Route path={'/forgot-password'} element={<ForgotPasswordPage/>}/>
+                <Route path={'/reset-password'} element={<ResetPasswordPage/>}/>
             </Routes>
         </div>
 
