@@ -8,6 +8,7 @@ import {useDispatch} from "react-redux";
 import {AppHeader} from "./components/appHeader/AppHeader";
 import {Route, Routes} from "react-router-dom";
 import {SignInPage} from "./pages/sign-inPage/Sign-inPage";
+import {RegistrationPage} from "./pages/registrationPage/RegistrationPage";
 
 
 //TODO сделать layout для ошибки getData().catch
@@ -40,6 +41,7 @@ function App() {
             <Routes>
                 <Route path={'/'} element={<ConstructorPage/>}/>
                 <Route path={'/login'} element={<SignInPage/>}/>
+                <Route path={'/registration'} element={<RegistrationPage/>}/>
             </Routes>
         </div>
 
