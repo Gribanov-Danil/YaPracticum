@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {EmailInput} from "@ya.praktikum/react-developer-burger-ui-components";
 
-export const OwnEmailInput = ({extraClass}) => {
+export const OwnEmailInput = ({extraClass, placeholder}) => {
     const [value, setValue] = useState('')
     const onChange = e => {
         setValue(e.target.value)
@@ -13,6 +13,7 @@ export const OwnEmailInput = ({extraClass}) => {
             name={'email'}
             isIcon={false}
             extraClass={extraClass}
+            placeholder={placeholder}
         />
     )
 }
