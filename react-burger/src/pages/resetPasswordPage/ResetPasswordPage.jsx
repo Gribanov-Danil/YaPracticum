@@ -2,8 +2,13 @@ import styles from "../pagesStyles.module.css";
 import {OwnInput} from "../../components/input/OwnInput";
 import {OwnPasswordInput} from "../../components/passwordInput/OwnPasswordInput";
 import {Button} from "@ya.praktikum/react-developer-burger-ui-components";
+import {useNavigate} from "react-router-dom";
 
 export const ResetPasswordPage = () => {
+    const navigate = useNavigate();
+    const onLoginClick = () => {
+        navigate('/login', { replace: true })
+    }
     return (
         <main className={styles.page}>
             <div className={styles.registration_container}>
@@ -18,7 +23,7 @@ export const ResetPasswordPage = () => {
                       <span className={`text text_type_main-default text_color_inactive ${styles.registration_text}`}>
                           Вспомнили пароль?
                       </span>
-                        <Button htmlType="button" type="secondary" size="medium" extraClass={styles.registration_btn}>
+                        <Button onClick={onLoginClick} htmlType="button" type="secondary" size="medium" extraClass={styles.registration_btn}>
                             Войти
                         </Button>
                     </div>

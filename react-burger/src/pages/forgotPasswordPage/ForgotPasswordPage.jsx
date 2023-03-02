@@ -1,14 +1,43 @@
 import styles from "../pagesStyles.module.css";
-import {OwnEmailInput} from "../../components/emailInput/EmailInput";
-import {Button} from "@ya.praktikum/react-developer-burger-ui-components";
+import {Button, EmailInput} from "@ya.praktikum/react-developer-burger-ui-components";
+import {useNavigate} from "react-router-dom";
+import {useState} from "react";
+import {postForgotPassword} from "../../utils/postForgorPassword";
 
+/* /reset-password */
 export const ForgotPasswordPage = () => {
+    const navigate = useNavigate();
+    const onLoginClick = () => {
+        navigate('/login', { replace: true })
+    }
+
+    const [emailValue, setEmailValue] = useState('')
+    const onChange = e => setEmailValue(e.target.value)
+    let SaveClickErrorMessage = () => <></>
+    const onSaveClick = async () => {
+        let response = await postForgotPassword(emailValue)
+        console.log(response)
+        if (response.success) {
+            navigate('/reset-password', { replace: true })
+        }
+        else {
+            SaveClickErrorMessage = () => <>Упс, что-то пошло не так...</>
+        }
+
+    }
     return (
         <main className={styles.page}>
             <div className={styles.registration_container}>
                 <h1 className={`text text_type_main-medium mb-6`}>Восстановление пароля</h1>
-                <OwnEmailInput extraClass={`mb-6`} placeholder={`Укажите e-mail`}/>
-                <Button htmlType="button" type="primary" size="medium" extraClass={`mb-20`}>
+                <EmailInput
+                    onChange={onChange}
+                    value={emailValue}
+                    name={'email'}
+                    extraClass={`mb-6`}
+                    placeholder={`Укажите e-mail`}
+                />
+                <SaveClickErrorMessage/>
+                <Button onClick={onSaveClick} htmlType="button" type="primary" size="medium" extraClass={`mb-20`}>
                     Восстановить
                 </Button>
                 <div className={styles.registration_text_block}>
@@ -16,7 +45,7 @@ export const ForgotPasswordPage = () => {
                       <span className={`text text_type_main-default text_color_inactive ${styles.registration_text}`}>
                           Вспомнили пароль?
                       </span>
-                        <Button htmlType="button" type="secondary" size="medium" extraClass={styles.registration_btn}>
+                        <Button onClick={onLoginClick} htmlType="button" type="secondary" size="medium" extraClass={styles.registration_btn}>
                             Войти
                         </Button>
                     </div>
