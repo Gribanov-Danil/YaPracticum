@@ -11,12 +11,14 @@ export const NavBar = () => {
                 textClass="text_type_main-default"
                 text="Конструктор"
                 icon={<BurgerIcon type="primary" />}
+                linkAddress={'#'}
             />
 
             <NavBarItem
                 textClass="text_type_main-default text_color_inactive"
                 text="Лента заказов"
                 icon={<ListIcon type="secondary" />}
+                linkAddress={'#'}
             />
 
             <div style={{marginRight: 289}}>
@@ -26,7 +28,8 @@ export const NavBar = () => {
             <NavBarItem
                 textClass="text_type_main-default text_color_inactive"
                 text="Личный кабинет"
-                icon={<ProfileIcon type="secondary" />}
+                icon={<ProfileIcon type="secondary"/>}
+                linkAddress={'login'}
             />
         </nav>
     )

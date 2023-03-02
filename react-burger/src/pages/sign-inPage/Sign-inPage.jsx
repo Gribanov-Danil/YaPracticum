@@ -2,8 +2,16 @@ import styles from '../pagesStyles.module.css'
 import {OwnEmailInput} from "../../components/emailInput/EmailInput";
 import {OwnPasswordInput} from "../../components/passwordInput/OwnPasswordInput";
 import {Button} from "@ya.praktikum/react-developer-burger-ui-components";
+import {useNavigate} from "react-router-dom";
 
 export const SignInPage = () => {
+    const navigate = useNavigate();
+    const onRegistrationClick = () => {
+        navigate('/register', { replace: true })
+    }
+    const onResetPasswordClick = () => {
+        navigate('/forgot-password', { replace: true })
+    }
   return (
       <main className={styles.page}>
           <div className={styles.registration_container}>
@@ -18,7 +26,7 @@ export const SignInPage = () => {
                       <span className={`text text_type_main-default text_color_inactive ${styles.registration_text}`}>
                           Вы - новый пользователь?
                       </span>
-                      <Button htmlType="button" type="secondary" size="medium" extraClass={styles.registration_btn}>
+                      <Button onClick={onRegistrationClick} htmlType="button" type="secondary" size="medium" extraClass={styles.registration_btn}>
                           Зарегестрироваться
                       </Button>
                   </div>
@@ -26,7 +34,7 @@ export const SignInPage = () => {
                       <span className={`text text_type_main-default text_color_inactive ${styles.registration_text}`}>
                           Забыли пароль?
                       </span>
-                      <Button htmlType="button" type="secondary" size="medium" extraClass={styles.registration_btn}>
+                      <Button onClick={onResetPasswordClick} htmlType="button" type="secondary" size="medium" extraClass={styles.registration_btn}>
                           Восстановить пароль
                       </Button>
                   </div>

@@ -3,8 +3,13 @@ import {OwnEmailInput} from "../../components/emailInput/EmailInput";
 import {OwnPasswordInput} from "../../components/passwordInput/OwnPasswordInput";
 import {Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import {OwnInput} from "../../components/input/OwnInput";
+import {useNavigate} from "react-router-dom";
 
 export const RegistrationPage = () => {
+    const navigate = useNavigate();
+    const onLoginClick = () => {
+        navigate('/login', { replace: true })
+    }
     return (
         <main className={styles.page}>
             <div className={styles.registration_container}>
@@ -20,7 +25,7 @@ export const RegistrationPage = () => {
                       <span className={`text text_type_main-default text_color_inactive ${styles.registration_text}`}>
                           Уже зарегистрированы?
                       </span>
-                        <Button htmlType="button" type="secondary" size="medium" extraClass={styles.registration_btn}>
+                        <Button onClick={onLoginClick} htmlType="button" type="secondary" size="medium" extraClass={styles.registration_btn}>
                             Войти
                         </Button>
                     </div>
