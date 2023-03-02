@@ -1,4 +1,4 @@
-import styles from "../sign-inPage/sign-inPage.module.css";
+import styles from "../pagesStyles.module.css";
 import {OwnInput} from "../../components/input/OwnInput";
 import {OwnPasswordInput} from "../../components/passwordInput/OwnPasswordInput";
 import {Button} from "@ya.praktikum/react-developer-burger-ui-components";

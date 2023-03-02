@@ -1,7 +1,7 @@
 import {useRef, useState} from "react";
 import {Input} from "@ya.praktikum/react-developer-burger-ui-components";
 
-export const OwnInput = ({extraClass, initialState, placeholder}) => {
+export const OwnInput = ({extraClass, initialState, placeholder, icon}) => {
     const [value, setValue] = useState(initialState)
     const inputRef = useRef(null)
     const onIconClick = () => {
@@ -21,6 +21,7 @@ export const OwnInput = ({extraClass, initialState, placeholder}) => {
             errorText={'Ошибка'}
             size={'default'}
             extraClass={extraClass}
+            icon={icon}
         />
     )
 }

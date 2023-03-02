@@ -1,4 +1,4 @@
-import styles from './sign-inPage.module.css'
+import styles from '../pagesStyles.module.css'
 import {OwnEmailInput} from "../../components/emailInput/EmailInput";
 import {OwnPasswordInput} from "../../components/passwordInput/OwnPasswordInput";
 import {Button} from "@ya.praktikum/react-developer-burger-ui-components";
