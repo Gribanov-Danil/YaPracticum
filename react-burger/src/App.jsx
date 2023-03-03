@@ -47,7 +47,7 @@ function App() {
                 <Route path={'/register'} element={<RegistrationPage/>}/>
                 <Route path={'/forgot-password'} element={<ForgotPasswordPage/>}/>
                 <Route path={'/reset-password'} element={<ResetPasswordPage/>}/>
-                <Route path={'/profile'} element={<ProfilePage/>}/>
+                <Route path={'/profile/*'} element={<ProfilePage/>}/>
             </Routes>
         </div>
 
