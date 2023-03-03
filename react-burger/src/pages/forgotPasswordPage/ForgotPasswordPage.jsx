@@ -4,26 +4,21 @@ import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {postForgotPassword} from "../../utils/postForgorPassword";
 
-/* /reset-password */
+/* /forgot-password */
 export const ForgotPasswordPage = () => {
     const navigate = useNavigate();
-    const onLoginClick = () => {
-        navigate('/login', { replace: true })
-    }
-
+    const onLoginClick = () => navigate('/login', { replace: true })
     const [emailValue, setEmailValue] = useState('')
     const onChange = e => setEmailValue(e.target.value)
     let SaveClickErrorMessage = () => <></>
     const onSaveClick = async () => {
         let response = await postForgotPassword(emailValue)
-        console.log(response)
         if (response.success) {
             navigate('/reset-password', { replace: true })
         }
         else {
-            SaveClickErrorMessage = () => <>Упс, что-то пошло не так...</>
+            SaveClickErrorMessage = () => <h1 className={`text text_type_main-medium`}>Упс, что-то пошло не так...</h1>
         }
-
     }
     return (
         <main className={styles.page}>
