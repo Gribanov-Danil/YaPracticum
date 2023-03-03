@@ -8,10 +8,6 @@ import {postRegistration} from "../../utils/postRegistration";
 /* /reset-password */
 // TODO разобраться с ошибкой 404 и 403
 export const ResetPasswordPage = () => {
-    useEffect(() => {
-        const test = postRegistration()
-        console.log(test)
-    }, [])
     const navigate = useNavigate();
     const onLoginClick = () => navigate('/login', { replace: true })
     const [newPasswordValue, setNewPasswordValue] = useState('')
@@ -27,12 +23,6 @@ export const ResetPasswordPage = () => {
     const onSaveClick = async () => {
         let response = await postResetPassword(newPasswordValue, tokenValue)
         console.log(response)
-        if (response.success) {
-            SaveClickMessage = () => <h1 className={`text text_type_main-medium`}>Пароль успешно изменён</h1>
-        }
-        else {
-            SaveClickMessage = () => <h1 className={`text text_type_main-medium`}>Упс, что-то пошло не так...</h1>
-        }
     }
     return (
         <main className={styles.page}>

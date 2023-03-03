@@ -12,6 +12,6 @@ export const postResetPassword = async (password, token)  => {
         );
         return response.data
     } catch (e) {
-        console.log("error")
+        console.log(e)
     }
 }
