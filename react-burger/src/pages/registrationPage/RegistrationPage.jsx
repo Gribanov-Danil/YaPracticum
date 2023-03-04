@@ -1,23 +1,61 @@
 import styles from "../pagesStyles.module.css"
-import {OwnEmailInput} from "../../components/emailInput/EmailInput";
-import {OwnPasswordInput} from "../../components/passwordInput/OwnPasswordInput";
-import {Button} from "@ya.praktikum/react-developer-burger-ui-components";
-import {OwnInput} from "../../components/input/OwnInput";
+import {Button, EmailInput, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useNavigate} from "react-router-dom";
+import {useRef, useState} from "react";
+import {postRegistration} from "../../utils/postRegistration";
+import {useDispatch} from "react-redux";
 
 export const RegistrationPage = () => {
     const navigate = useNavigate();
-    const onLoginClick = () => {
-        navigate('/login', { replace: true })
+    const onLoginClick = () => navigate('/login', { replace: true })
+
+    const [inputValue, setInputValue] = useState('')
+    const inputRef = useRef(null)
+    const onIconClick = () => {
+        setTimeout(() => inputRef.current.focus(), 0)
+        alert('Icon Click Callback')
+    }
+
+    const [emailValue, setEmailValue] = useState('')
+    const onEmailChange = e => setEmailValue(e.target.value)
+
+    const [passwordValue, setPasswordValue] = useState('')
+    const onPasswordChange = e => setPasswordValue(e.target.value)
+
+    const dispatch = useDispatch()
+    const onRegistrationClick = async () => {
+        dispatch(postRegistration(emailValue, passwordValue, inputValue))
     }
     return (
         <main className={styles.page}>
             <div className={styles.registration_container}>
                 <h1 className={`text text_type_main-medium mb-6`}>Регистрация</h1>
-                <OwnInput extraClass={`mb-6`} placeholder={'Имя'}/>
-                <OwnEmailInput extraClass={`mb-6`}/>
-                <OwnPasswordInput extraClass={`mb-6`}/>
-                <Button htmlType="button" type="primary" size="medium" extraClass={`mb-20`}>
+                <Input
+                    type={'text'}
+                    placeholder={'Имя'}
+                    onChange={e => setInputValue(e.target.value)}
+                    value={inputValue}
+                    name={'name'}
+                    error={false}
+                    ref={inputRef}
+                    onIconClick={onIconClick}
+                    errorText={'Ошибка'}
+                    size={'default'}
+                    extraClass={`mb-6`}
+                />
+                <EmailInput
+                    onChange={onEmailChange}
+                    value={emailValue}
+                    name={'email'}
+                    extraClass={`mb-6`}
+                />
+                <PasswordInput
+                    onChange={onPasswordChange}
+                    value={passwordValue}
+                    name={'password'}
+                    extraClass={`mb-6`}
+                />
+                <Button onClick={onRegistrationClick} htmlType="button" type="primary" size="medium" extraClass={`mb-20`}>
                     Зарегистрироваться
                 </Button>
                 <div className={styles.registration_text_block}>

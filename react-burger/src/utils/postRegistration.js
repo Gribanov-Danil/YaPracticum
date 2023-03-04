@@ -1,21 +1,20 @@
 import {URL_REGISTRATION} from "./constants/axiosInstance";
 import {AxiosRequestInstance} from "./constants/axiosInstance";
-import uuid from "react-uuid";
+import {userDataSlice} from "../service/reducers/userDataSlice";
 
-// TODO разобраться с ошибкой 403
-export const postRegistration = async ()  => {
+const {setFetchDataSuccess, fetchingData, fetchDataError} = userDataSlice.actions
+
+export const postRegistration = (email, password, name) => async (dispatch) => {
+    dispatch(fetchingData())
     try {
-        let email = uuid()
-        const response = await AxiosRequestInstance.post(URL_REGISTRATION,
-            {
-                email: `gribanovtestwork2022@yandex.ru`,
-                password: "passwordik",
-                name: "Danil"
-            }
-        )
-        return response
-        // return response.data
+        const response = await AxiosRequestInstance.post(URL_REGISTRATION, {
+                email: email,
+                password: password,
+                name: name
+            });
+        const data = response.data;
+        dispatch(setFetchDataSuccess({data}))
     } catch (e) {
-        console.log(e)
+        dispatch(fetchDataError())
     }
 }
