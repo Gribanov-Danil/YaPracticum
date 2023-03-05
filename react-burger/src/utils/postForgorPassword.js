@@ -6,6 +6,6 @@ export const postForgotPassword = async (userEmail)  => {
         const response = await AxiosRequestInstance.post(URL_FORGOT_PASSWORD, {email: userEmail});
         return response.data
     } catch (e) {
-        console.log("error")
+        console.log(e)
     }
 }

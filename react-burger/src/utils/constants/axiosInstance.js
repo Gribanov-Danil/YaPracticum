@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const AxiosRequestInstance = axios.create({
     baseURL: 'https://norma.nomoreparties.space/api/',
-    timeout: 1000,
+    timeout: 5000,
     headers: { Accept: 'application/json' }
 })
 
