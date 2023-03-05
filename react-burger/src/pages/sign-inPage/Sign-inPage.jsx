@@ -18,7 +18,6 @@ export const SignInPage = () => {
 
     const dispatch = useDispatch()
     const onLoginClick = async () => {
-        console.log("onLoginClick")
         let response = await dispatch(postRegistration(emailValue, passwordValue))
         if (response.success) {
             navigate('/', { replace: true })
