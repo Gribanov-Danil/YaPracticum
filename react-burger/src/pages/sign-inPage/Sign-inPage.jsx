@@ -2,8 +2,9 @@ import styles from '../pagesStyles.module.css'
 import {Button, EmailInput, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
-import {postRegistration} from "../../utils/postAuth";
+import {postAuth} from "../../utils/postAuth";
 import {useDispatch} from "react-redux";
+import {unwrapResult} from "@reduxjs/toolkit";
 
 export const SignInPage = () => {
     const navigate = useNavigate();
@@ -18,8 +19,9 @@ export const SignInPage = () => {
 
     const dispatch = useDispatch()
     const onLoginClick = async () => {
-        let response = await dispatch(postRegistration(emailValue, passwordValue))
-        if (response.success) {
+        let isSuccess = await dispatch(postAuth(emailValue, passwordValue))
+        unwrapResult(isSuccess)
+        if (isSuccess) {
             navigate('/', { replace: true })
         }
     }

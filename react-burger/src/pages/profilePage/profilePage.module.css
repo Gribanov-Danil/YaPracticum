@@ -20,4 +20,10 @@
     padding: 20px 0;
 }
 
+.exit_btn {
+    background-color: inherit;
+    border: none;
+    text-align: inherit;
+    cursor: pointer;
+}
 

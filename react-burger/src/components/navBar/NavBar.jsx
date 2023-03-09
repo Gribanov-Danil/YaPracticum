@@ -29,7 +29,7 @@ export const NavBar = () => {
                 textClass="text_type_main-default"
                 text="Личный кабинет"
                 icon={<ProfileIcon type="secondary"/>}
-                linkAddress={'login'}
+                linkAddress={'/profile'}
             />
         </nav>
     )

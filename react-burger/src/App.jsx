@@ -12,9 +12,16 @@ import {RegistrationPage} from "./pages/registrationPage/RegistrationPage";
 import {ForgotPasswordPage} from "./pages/forgotPasswordPage/ForgotPasswordPage";
 import {ResetPasswordPage} from "./pages/resetPasswordPage/ResetPasswordPage";
 import {ProfilePage} from "./pages/profilePage/ProfilePage";
+import {ProtectedRouteElement} from "./components/protectedRouteElement/ProtectedRouteElement";
 
 
 //TODO сделать layout для ошибки getData().catch
+
+//TODO Реализовать автологин
+//TODO 7 пункт
+//TODO Редактирование пользователя
+//TODO Проверить все диспатчи и применить анврап по необходимости
+//TODO Сделать страницу 404
 
 
 function App() {
@@ -47,10 +54,9 @@ function App() {
                 <Route path={'/register'} element={<RegistrationPage/>}/>
                 <Route path={'/forgot-password'} element={<ForgotPasswordPage/>}/>
                 <Route path={'/reset-password'} element={<ResetPasswordPage/>}/>
-                <Route path={'/profile/*'} element={<ProfilePage/>}/>
+                <Route path={'/profile/*'} element={<ProtectedRouteElement element={<ProfilePage />}/>}/>
             </Routes>
         </div>
-
     );
 }
 

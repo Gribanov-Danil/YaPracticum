@@ -1,4 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {setCookie} from "../cookies/setCookie";
 
 
 const initialState = {
@@ -11,7 +12,8 @@ const initialState = {
     status: {
         isLoading: false,
         isError: false,
-    }
+        error: ""
+    },
 }
 
 export const userDataSlice = createSlice({
@@ -19,22 +21,34 @@ export const userDataSlice = createSlice({
     initialState,
     reducers: {
         setFetchDataSuccess: (state, action) => {
-            console.log(action)
             state.user.email = action.payload.data.user.email
             state.user.name = action.payload.data.user.name
             state.accessToken = action.payload.data.accessToken
+            setCookie('token', action.payload.data.accessToken.split('Bearer ')[1])
             state.refreshToken = action.payload.data.refreshToken
+            setCookie('refreshToken', action.payload.data.refreshToken, {expires: 30*60})
             state.status.isLoading = false
             state.status.isError = false
+            state.status.error = ""
         },
         fetchingData: (state) => {
             state.status.isLoading = true
         },
-        fetchDataError: (state) => {
+        fetchDataError: (state, action) => {
             state.status.isError = true
+            state.status.error = action.payload.message
             state.status.isLoading = false
-            state = initialState
-        }
+        },
+        updateTokens: (state, action) => {
+            setCookie('token', action.payload.data.accessToken.split('Bearer ')[1])
+            setCookie('refreshToken', action.payload.data.refreshToken, {expires: 30*60})
+        },
+        logoutUser: (state) => {
+            state.accessToken = ""
+            setCookie('token', "", {expires: 1})
+            state.refreshToken = ""
+            setCookie('refreshToken', "", {expires: 1})
+        },
     }
 })
 
