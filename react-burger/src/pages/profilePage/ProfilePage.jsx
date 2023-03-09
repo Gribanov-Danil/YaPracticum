@@ -6,6 +6,7 @@ import {useDispatch} from "react-redux";
 import {ProtectedRouteElement} from "../../components/protectedRouteElement/ProtectedRouteElement";
 import {postLogout} from "../../utils/postLogoutUser";
 import {getCookie} from "../../service/cookies/getCookie";
+import {unwrapResult} from "@reduxjs/toolkit";
 
 export const ProfilePage = () => {
     const dispatch = useDispatch()
@@ -13,6 +14,7 @@ export const ProfilePage = () => {
 
     const onExitClick = async () => {
         let response = await dispatch(postLogout(getCookie('refreshToken')))
+        unwrapResult(response)
         if (response.success) {
             navigate('/login', { replace: true })
         }

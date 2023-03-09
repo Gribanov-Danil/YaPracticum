@@ -34,9 +34,8 @@ export const userDataSlice = createSlice({
         fetchingData: (state) => {
             state.status.isLoading = true
         },
-        fetchDataError: (state, action) => {
+        fetchDataError: (state) => {
             state.status.isError = true
-            state.status.error = action.payload.message
             state.status.isLoading = false
         },
         updateTokens: (state, action) => {

@@ -6,7 +6,7 @@ import {postRefreshUserData} from "./postRefreshUserData";
 
 const {fetchingData} = userDataSlice.actions
 
-export const getAuthUser = (isFirstTry = true) => async (dispatch) => {
+export const getAuthUser = () => async (dispatch) => {
     dispatch(fetchingData())
     try {
         const response = await AxiosRequestInstance.get(URL_AUTH_USER, {
@@ -17,16 +17,17 @@ export const getAuthUser = (isFirstTry = true) => async (dispatch) => {
         })
         return response.data.success
     } catch (e) {
-        if ((e.response.status === 403 || e.response.status === 401) && isFirstTry) {
-            isFirstTry = false
-            try {
-                await dispatch(postRefreshUserData())
-                dispatch(getAuthUser(isFirstTry))
-            } catch (e) {
-                console.log(e)
-            }
+        try {
+            await dispatch(postRefreshUserData())
+            const response = await AxiosRequestInstance.get(URL_AUTH_USER, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${getCookie('token')}`
+                }
+            })
+            return response.data.success;
         }
-        else {
+        catch (e) {
             console.log(e)
         }
     }
