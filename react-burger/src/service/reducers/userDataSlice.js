@@ -26,7 +26,7 @@ export const userDataSlice = createSlice({
             state.accessToken = action.payload.data.accessToken
             setCookie('token', action.payload.data.accessToken.split('Bearer ')[1])
             state.refreshToken = action.payload.data.refreshToken
-            setCookie('refreshToken', action.payload.data.refreshToken, {expires: 30*60})
+            setCookie('refreshToken', action.payload.data.refreshToken)
             state.status.isLoading = false
             state.status.isError = false
             state.status.error = ""
@@ -40,7 +40,11 @@ export const userDataSlice = createSlice({
         },
         updateTokens: (state, action) => {
             setCookie('token', action.payload.data.accessToken.split('Bearer ')[1])
-            setCookie('refreshToken', action.payload.data.refreshToken, {expires: 30*60})
+            setCookie('refreshToken', action.payload.data.refreshToken)
+        },
+        updateUser: (state, action) => {
+            state.user.email = action.payload.data.user.email
+            state.user.name = action.payload.data.user.name
         },
         logoutUser: (state) => {
             state.accessToken = ""

@@ -10,9 +10,9 @@ export const ProtectedRouteElement = ({element}) => {
     let dispatch = useDispatch()
     const init = async () => {
         let res = await dispatch(getAuthUser());
-        if (res) {
-            await unwrapResult(res)
-            setIsSuccess(true)
+        if (res && res.success) {
+                await unwrapResult(res)
+                setIsSuccess(true)
         }
         setUserLoaded(true);
     };

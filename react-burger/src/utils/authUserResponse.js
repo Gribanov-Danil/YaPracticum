@@ -4,7 +4,7 @@ import {userDataSlice} from "../service/reducers/userDataSlice";
 import {getCookie} from "../service/cookies/getCookie";
 import {postRefreshUserData} from "./postRefreshUserData";
 
-const {fetchingData} = userDataSlice.actions
+const {fetchingData, updateUser} = userDataSlice.actions
 
 export const getAuthUser = () => async (dispatch) => {
     dispatch(fetchingData())
@@ -15,7 +15,9 @@ export const getAuthUser = () => async (dispatch) => {
                 Authorization: `Bearer ${getCookie('token')}`
             }
         })
-        return response.data.success
+        const data = response.data
+        dispatch(updateUser({data}))
+        return data;
     } catch (e) {
         try {
             await dispatch(postRefreshUserData())
@@ -25,7 +27,7 @@ export const getAuthUser = () => async (dispatch) => {
                     Authorization: `Bearer ${getCookie('token')}`
                 }
             })
-            return response.data.success;
+            return response.data;
         }
         catch (e) {
             console.log(e)
@@ -34,16 +36,22 @@ export const getAuthUser = () => async (dispatch) => {
 }
 
 //TODO сделать патч запрос
-export const patchAuthUser = async () => {
+export const patchAuthUser = (name, email, password) => async (dispatch) => {
     try {
-        console.log("patch")
-        console.log(document.cookie)
-        const response = await AxiosRequestInstance.patch(URL_AUTH_USER, {
+        const response = await AxiosRequestInstance.patch(URL_AUTH_USER,
+            {
+                name,
+                email,
+                password
+            },
+            {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: 'Bearer ' + getCookie('token')
             }
         })
+        const data = response.data
+        dispatch(updateUser({data}))
         return response.data
     } catch (e) {
         console.log(e)

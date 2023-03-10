@@ -17,10 +17,9 @@ import {ProtectedRouteElement} from "./components/protectedRouteElement/Protecte
 
 //TODO сделать layout для ошибки getData().catch
 
-//TODO Реализовать автологин
 //TODO 7 пункт
-//TODO Редактирование пользователя
 //TODO Проверить все диспатчи и применить анврап по необходимости
+//TODO Сделать защищенные роуты для залогиненного пользователя
 //TODO Сделать страницу 404
 
 
@@ -43,7 +42,6 @@ function App() {
     }
     getData().catch(() => console.log("Ошибка загрузки данных"))
     }, [URL])
-
 
     return (
         <div className={styles.main_background}>
