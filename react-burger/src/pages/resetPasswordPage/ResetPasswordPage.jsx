@@ -1,8 +1,9 @@
 import styles from "../pagesStyles.module.css";
 import {Button, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useNavigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 import {useRef, useState} from "react";
 import {postResetPassword} from "../../utils/postResetPassword";
+import {useSelector} from "react-redux";
 
 /* /reset-password */
 export const ResetPasswordPage = () => {
@@ -13,14 +14,16 @@ export const ResetPasswordPage = () => {
     const [tokenValue, setTokenValue] = useState('')
     const onTokenChange = e => setTokenValue(e.target.value)
     const inputRef = useRef(null)
-    const onIconClick = () => {
-        setTimeout(() => inputRef.current.focus(), 0)
-        alert('Icon Click Callback')
-    }
+
     let SaveClickMessage = () => <></>
     const onSaveClick = async () => {
         let response = await postResetPassword(newPasswordValue, tokenValue)
         console.log(response)
+    }
+
+    const { user } = useSelector(state => state.userDataReducer)
+    if (user.email !== '') {
+        return <Navigate to={'/'} replace />
     }
     return (
         <main className={styles.page}>
@@ -42,7 +45,6 @@ export const ResetPasswordPage = () => {
                     name={'name'}
                     error={false}
                     ref={inputRef}
-                    onIconClick={onIconClick}
                     errorText={'Ошибка'}
                     size={'default'}
                     extraClass={`mb-6`}

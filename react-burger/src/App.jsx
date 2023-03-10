@@ -14,13 +14,11 @@ import {ResetPasswordPage} from "./pages/resetPasswordPage/ResetPasswordPage";
 import {ProfilePage} from "./pages/profilePage/ProfilePage";
 import {ProtectedRouteElement} from "./components/protectedRouteElement/ProtectedRouteElement";
 import {NotFound404} from "./pages/notFound404Page/NotFound404";
-
-
-//TODO сделать layout для ошибки getData().catch
+import {getAuthUser} from "./utils/authUserResponse";
+import {unwrapResult} from "@reduxjs/toolkit";
 
 // TODO 7 пункт
 // TODO Проверить все диспатчи и применить анврап по необходимости
-// TODO Сделать защищенные роуты для залогиненного пользователя
 
 
 function App() {
@@ -42,6 +40,16 @@ function App() {
     }
     getData().catch(() => console.log("Ошибка загрузки данных"))
     }, [URL])
+
+    const init = async () => {
+        let res = await dispatch(getAuthUser());
+        if (res && res.success) {
+            await unwrapResult(res)
+        }
+    };
+    useEffect(() => {
+        init()
+    }, []);
 
     return (
         <div className={styles.main_background}>
