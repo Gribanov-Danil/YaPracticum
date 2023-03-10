@@ -13,14 +13,14 @@ import {ForgotPasswordPage} from "./pages/forgotPasswordPage/ForgotPasswordPage"
 import {ResetPasswordPage} from "./pages/resetPasswordPage/ResetPasswordPage";
 import {ProfilePage} from "./pages/profilePage/ProfilePage";
 import {ProtectedRouteElement} from "./components/protectedRouteElement/ProtectedRouteElement";
+import {NotFound404} from "./pages/notFound404Page/NotFound404";
 
 
 //TODO сделать layout для ошибки getData().catch
 
-//TODO 7 пункт
-//TODO Проверить все диспатчи и применить анврап по необходимости
-//TODO Сделать защищенные роуты для залогиненного пользователя
-//TODO Сделать страницу 404
+// TODO 7 пункт
+// TODO Проверить все диспатчи и применить анврап по необходимости
+// TODO Сделать защищенные роуты для залогиненного пользователя
 
 
 function App() {
@@ -53,6 +53,7 @@ function App() {
                 <Route path={'/forgot-password'} element={<ForgotPasswordPage/>}/>
                 <Route path={'/reset-password'} element={<ResetPasswordPage/>}/>
                 <Route path={'/profile/*'} element={<ProtectedRouteElement element={<ProfilePage />}/>}/>
+                <Route path="*" element={<NotFound404 />} />
             </Routes>
         </div>
     );

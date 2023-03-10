@@ -35,7 +35,6 @@ export const getAuthUser = () => async (dispatch) => {
     }
 }
 
-//TODO сделать патч запрос
 export const patchAuthUser = (name, email, password) => async (dispatch) => {
     try {
         const response = await AxiosRequestInstance.patch(URL_AUTH_USER,

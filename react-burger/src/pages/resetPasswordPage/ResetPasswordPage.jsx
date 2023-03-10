@@ -1,12 +1,10 @@
 import styles from "../pagesStyles.module.css";
 import {Button, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useNavigate} from "react-router-dom";
-import {useEffect, useRef, useState} from "react";
+import {useRef, useState} from "react";
 import {postResetPassword} from "../../utils/postResetPassword";
-import {postRegistration} from "../../utils/postRegistration";
 
 /* /reset-password */
-// TODO разобраться с ошибкой 404 и 403
 export const ResetPasswordPage = () => {
     const navigate = useNavigate();
     const onLoginClick = () => navigate('/login', { replace: true })
