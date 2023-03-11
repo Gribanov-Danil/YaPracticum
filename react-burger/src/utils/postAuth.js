@@ -13,7 +13,6 @@ export const postAuth = (email, password) => async (dispatch) => {
         })
         const data = response.data
         const success = data.success
-        console.log(response.data)
         dispatch(setFetchDataSuccess({data}))
         return success
     } catch (e) {
