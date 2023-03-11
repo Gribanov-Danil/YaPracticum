@@ -1,9 +1,9 @@
 import styles from '../pagesStyles.module.css'
 import {Button, EmailInput, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
-import {Navigate, useNavigate} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {postAuth} from "../../utils/postAuth";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {unwrapResult} from "@reduxjs/toolkit";
 
 export const SignInPage = () => {
@@ -24,11 +24,6 @@ export const SignInPage = () => {
         if (isSuccess) {
             navigate('/', { replace: true })
         }
-    }
-
-    const { user } = useSelector(state => state.userDataReducer)
-    if (user.email !== '') {
-        return <Navigate to={'/'} replace />
     }
   return (
       <main className={styles.page}>

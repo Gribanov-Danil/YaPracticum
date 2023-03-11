@@ -1,9 +1,9 @@
 import styles from "../pagesStyles.module.css";
 import {Button, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
-import {Navigate, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {useRef, useState} from "react";
 import {postResetPassword} from "../../utils/postResetPassword";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 
 /* /reset-password */
 export const ResetPasswordPage = () => {
@@ -21,11 +21,6 @@ export const ResetPasswordPage = () => {
         if (res && res.success) {
             navigate('/login', { replace: true })
         }
-    }
-
-    const { user } = useSelector(state => state.userDataReducer)
-    if (user.email !== '') {
-        return <Navigate to={'/'} replace />
     }
     return (
         <main className={styles.page}>

@@ -1,9 +1,9 @@
 import styles from "../pagesStyles.module.css";
 import {Button, EmailInput} from "@ya.praktikum/react-developer-burger-ui-components";
-import {Navigate, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {postForgotPassword} from "../../utils/postForgorPassword";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 
 /* /forgot-password */
 export const ForgotPasswordPage = () => {
@@ -21,10 +21,6 @@ export const ForgotPasswordPage = () => {
         else {
             SaveClickErrorMessage = () => <h1 className={`text text_type_main-medium`}>Упс, что-то пошло не так...</h1>
         }
-    }
-    const { user } = useSelector(state => state.userDataReducer)
-    if (user.email !== '') {
-        return <Navigate to={'/'} replace />
     }
     return (
         <main className={styles.page}>

@@ -1,9 +1,9 @@
 import styles from "../pagesStyles.module.css"
 import {Button, EmailInput, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
-import {Navigate, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {useRef, useState} from "react";
 import {postRegistration} from "../../utils/postRegistration";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 
 export const RegistrationPage = () => {
     const navigate = useNavigate();
@@ -21,10 +21,6 @@ export const RegistrationPage = () => {
     const dispatch = useDispatch()
     const onRegistrationClick = async () => {
         dispatch(postRegistration(emailValue, passwordValue, inputValue))
-    }
-    const { user } = useSelector(state => state.userDataReducer)
-    if (user.email !== '') {
-        return <Navigate to={'/'} replace />
     }
     return (
         <main className={styles.page}>

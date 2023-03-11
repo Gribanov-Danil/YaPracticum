@@ -51,10 +51,10 @@ function App() {
             <AppHeader/>
             <Routes location={background || location}>
                 <Route path={'/'} element={<ConstructorPage/>}/>
-                <Route path={'/login'} element={<SignInPage/>}/>
-                <Route path={'/register'} element={<RegistrationPage/>}/>
-                <Route path={'/forgot-password'} element={<ForgotPasswordPage/>}/>
-                <Route path={'/reset-password'} element={<ResetPasswordPage/>}/>
+                <Route path={'/login'} element={<ProtectedRouteElement element={<SignInPage/>} onlyAuth={false}/>}/>
+                <Route path={'/register'} element={<ProtectedRouteElement element={<RegistrationPage/>} onlyAuth={false} /> }/>
+                <Route path={'/forgot-password'} element={<ProtectedRouteElement element={<ForgotPasswordPage/>} onlyAuth={false} /> }/>
+                <Route path={'/reset-password'} element={<ProtectedRouteElement element={<ResetPasswordPage/>} onlyAuth={false} />}/>
                 <Route path={'/profile/*'} element={<ProtectedRouteElement element={<ProfilePage />}/>}/>
                 <Route path="*" element={<NotFound404 />} />
                 <Route
