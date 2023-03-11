@@ -51,6 +51,7 @@ export const userDataSlice = createSlice({
             setCookie('token', "", {expires: 1})
             state.refreshToken = ""
             setCookie('refreshToken', "", {expires: 1})
+            state.user = initialState.user
         },
     }
 })

@@ -3,7 +3,7 @@ import {Button, Input, PasswordInput} from "@ya.praktikum/react-developer-burger
 import {Navigate, useNavigate} from "react-router-dom";
 import {useRef, useState} from "react";
 import {postResetPassword} from "../../utils/postResetPassword";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 /* /reset-password */
 export const ResetPasswordPage = () => {
@@ -15,9 +15,12 @@ export const ResetPasswordPage = () => {
     const onTokenChange = e => setTokenValue(e.target.value)
     const inputRef = useRef(null)
 
-    let SaveClickMessage = () => <></>
+    const dispatch = useDispatch()
     const onSaveClick = async () => {
-        await postResetPassword(newPasswordValue, tokenValue)
+        let res = await dispatch(postResetPassword(newPasswordValue, tokenValue))
+        if (res && res.success) {
+            navigate('/login', { replace: true })
+        }
     }
 
     const { user } = useSelector(state => state.userDataReducer)
@@ -28,7 +31,6 @@ export const ResetPasswordPage = () => {
         <main className={styles.page}>
             <div className={styles.registration_container}>
                 <h1 className={`text text_type_main-medium mb-6`}>Восстановление пароля</h1>
-                <SaveClickMessage/>
                 <PasswordInput
                     onChange={onPasswordChange}
                     value={newPasswordValue}

@@ -19,9 +19,6 @@ import {unwrapResult} from "@reduxjs/toolkit";
 import {ModalSwitch} from "./components/modalSwitch/ModalSwitch";
 import {IngredientsDetails} from "./components/ingredientDetails/IngredientsDetails";
 
-// TODO Проверить все диспатчи и применить анврап по необходимости
-
-
 function App() {
     const {setFetchDataSuccess} = ingredientsSlice.actions
     const dispatch = useDispatch()
