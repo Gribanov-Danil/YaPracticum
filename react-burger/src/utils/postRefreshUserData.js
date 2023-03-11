@@ -14,7 +14,6 @@ export const postRefreshUserData = () => async (dispatch) => {
         const data = response.data;
         dispatch(updateTokens({data}))
     } catch (e) {
-        console.log(e)
         dispatch(fetchDataError())
     }
 }

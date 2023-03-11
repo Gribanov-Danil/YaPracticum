@@ -4,7 +4,7 @@ import {userDataSlice} from "../service/reducers/userDataSlice";
 import {getCookie} from "../service/cookies/getCookie";
 import {postRefreshUserData} from "./postRefreshUserData";
 
-const {fetchingData, updateUser} = userDataSlice.actions
+const {fetchingData, updateUser, fetchDataError} = userDataSlice.actions
 
 export const getAuthUser = () => async (dispatch) => {
     dispatch(fetchingData())
@@ -30,7 +30,7 @@ export const getAuthUser = () => async (dispatch) => {
             return response.data;
         }
         catch (e) {
-            console.log(e)
+            dispatch(fetchDataError())
         }
     }
 }
@@ -53,6 +53,6 @@ export const patchAuthUser = (name, email, password) => async (dispatch) => {
         dispatch(updateUser({data}))
         return response.data
     } catch (e) {
-        console.log(e)
+        dispatch(fetchDataError())
     }
 }

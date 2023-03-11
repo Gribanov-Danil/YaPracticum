@@ -17,7 +17,6 @@ export const postAuth = (email, password) => async (dispatch) => {
         dispatch(setFetchDataSuccess({data}))
         return success
     } catch (e) {
-        console.log(e)
         dispatch(fetchDataError(e.response.data))
     }
 }

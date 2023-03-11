@@ -3,7 +3,7 @@ import {Button, EmailInput} from "@ya.praktikum/react-developer-burger-ui-compon
 import {Navigate, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {postForgotPassword} from "../../utils/postForgorPassword";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 /* /forgot-password */
 export const ForgotPasswordPage = () => {
@@ -12,9 +12,10 @@ export const ForgotPasswordPage = () => {
     const [emailValue, setEmailValue] = useState('')
     const onChange = e => setEmailValue(e.target.value)
     let SaveClickErrorMessage = () => <></>
+    const dispatch = useDispatch()
     const onSaveClick = async () => {
-        let response = await postForgotPassword(emailValue)
-        if (response.success) {
+        let response = await dispatch(postForgotPassword(emailValue))
+        if (response && response.success) {
             navigate('/reset-password', { replace: true })
         }
         else {
