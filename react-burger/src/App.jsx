@@ -34,7 +34,7 @@ function App() {
     }, [])
 
     const init = async () => {
-        let res = await dispatch(getAuthUser());
+        let res = dispatch(getAuthUser());
         if (res && res.success) {
             await unwrapResult(res)
         }

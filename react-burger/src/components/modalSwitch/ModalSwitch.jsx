@@ -8,7 +8,7 @@ import {IngredientsDetails} from "../ingredientDetails/IngredientsDetails";
 export const ModalSwitch = ({ background }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { deleteModalData} = ingredientDetailsSlice.actions
+    const {deleteModalData} = ingredientDetailsSlice.actions
     const handleCloseModal = () => {
         dispatch(deleteModalData({}))
         navigate(-1)
