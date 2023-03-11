@@ -17,8 +17,7 @@ export const ResetPasswordPage = () => {
 
     let SaveClickMessage = () => <></>
     const onSaveClick = async () => {
-        let response = await postResetPassword(newPasswordValue, tokenValue)
-        console.log(response)
+        await postResetPassword(newPasswordValue, tokenValue)
     }
 
     const { user } = useSelector(state => state.userDataReducer)

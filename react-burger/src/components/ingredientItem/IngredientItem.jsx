@@ -5,8 +5,9 @@ import {memo, useEffect, useState} from "react";
 import {dataElementWithCustomFieldPropTypes} from "../../utils/prop-types";
 import {useSelector} from "react-redux";
 import {useDrag} from "react-dnd";
+import {Link, useLocation} from "react-router-dom";
 
-export const IngredientItem = memo(function IngredientItem ({ingredient, index, collectionLength, handleOpenModal})  {
+export const IngredientItem = memo(function IngredientItem ({ingredient, index, collectionLength})  {
 
     const [ingredientCount, setIngredientCount] = useState(0)
     const state = useSelector(state => state.pickedIngredientsReducer)
@@ -30,23 +31,26 @@ export const IngredientItem = memo(function IngredientItem ({ingredient, index, 
         lastPairClass = index === collectionLength - 2 || index === collectionLength - 1? "" : "mb-8"
     else
         lastPairClass = index === collectionLength - 1? "" : "mb-8"
+    const location = useLocation()
 
     return (
-        <div ref={dragRef} onClick={() => handleOpenModal(ingredient)} className={`${lastPairClass} ${(index % 2) === 0? "mr-6 ml-4" : ""} ${constructorItemStyles.item_card}`}>
-            {ingredientCount !== 0 && <Counter count={ingredientCount} size="default" extraClass="m-1" />}
-            <div className="ml-4 mb-1 mr-4">
-                <img src={ingredient.image} alt=""/>
+        <Link key={ingredient._id} to={`/ingredients/${ingredient._id}`} state={{ background: location }}>
+            <div ref={dragRef} className={`${lastPairClass} ${(index % 2) === 0? "mr-6 ml-4" : ""} ${constructorItemStyles.item_card}`}>
+                {ingredientCount !== 0 && <Counter count={ingredientCount} size="default" extraClass="m-1" />}
+                <div className="ml-4 mb-1 mr-4">
+                    <img src={ingredient.image} alt=""/>
+                </div>
+                <div className={`${constructorItemStyles.price_block} mb-1`}>
+                    <p className = {`text text_type_digits-default ${constructorItemStyles.price} mr-2`}>{ingredient.price}</p>
+                    <CurrencyIcon type="primary" />
+                </div>
+                <div>
+                    <p className={`text text_type_main-default ${constructorItemStyles.name}`}>
+                        {ingredient.name}
+                    </p>
+                </div>
             </div>
-            <div className={`${constructorItemStyles.price_block} mb-1`}>
-                <p className = {`text text_type_digits-default ${constructorItemStyles.price} mr-2`}>{ingredient.price}</p>
-                <CurrencyIcon type="primary" />
-            </div>
-            <div>
-                <p className={`text text_type_main-default ${constructorItemStyles.name}`}>
-                    {ingredient.name}
-                </p>
-            </div>
-        </div>
+        </Link>
     )
 })
 

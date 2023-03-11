@@ -6,6 +6,7 @@ export const AxiosRequestInstance = axios.create({
     headers: { Accept: 'application/json' }
 })
 
+export const URL_INGREDIENT = "/ingredients"
 export const URL_ORDER = "/orders"
 export const URL_FORGOT_PASSWORD = "/password-reset"
 export const URL_PASSWORD_RESET = "/password-reset/reset"

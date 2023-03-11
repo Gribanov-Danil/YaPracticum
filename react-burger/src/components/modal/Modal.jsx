@@ -5,8 +5,10 @@ import {ModalOverlay} from "../modalOverlay/ModalOverlay";
 import ingredientsDetailsStyles from "../ingredientDetails/ingredientsDetails.module.css";
 import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
+import {useLocation} from "react-router-dom";
 
 export const Modal = ({active, onClick, children, title}) => {
+    const location = useLocation()
     useEffect(() => {
         const closeOnEscapeKey = e => e.key === "Escape" ? onClick() : null;
         document.body.addEventListener("keydown", closeOnEscapeKey);
@@ -15,9 +17,8 @@ export const Modal = ({active, onClick, children, title}) => {
         };
     }, [onClick]);
 
-    const modalOverlayStyle = active? `${modalStyles.modal} ${modalStyles.active}` : modalStyles.modal
-    if (!active)
-        return null
+    const modalOverlayStyle = (location.pathname !== `/` || active) ? `${modalStyles.modal} ${modalStyles.active}` : modalStyles.modal
+
     return createPortal( (
         <ModalOverlay overlayClass={modalOverlayStyle} onClick={onClick}>
             <div className={modalStyles.modal_content} onClick={(e => e.stopPropagation())}>
@@ -36,7 +37,7 @@ export const Modal = ({active, onClick, children, title}) => {
 }
 
 Modal.propTypes = {
-    active: PropTypes.bool.isRequired,
+    active: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
     title: PropTypes.string
 }

@@ -11,10 +11,6 @@ export const RegistrationPage = () => {
 
     const [inputValue, setInputValue] = useState('')
     const inputRef = useRef(null)
-    const onIconClick = () => {
-        setTimeout(() => inputRef.current.focus(), 0)
-        alert('Icon Click Callback')
-    }
 
     const [emailValue, setEmailValue] = useState('')
     const onEmailChange = e => setEmailValue(e.target.value)
@@ -42,7 +38,6 @@ export const RegistrationPage = () => {
                     name={'name'}
                     error={false}
                     ref={inputRef}
-                    onIconClick={onIconClick}
                     errorText={'Ошибка'}
                     size={'default'}
                     extraClass={`mb-6`}

@@ -1,27 +1,35 @@
-import ingredientsDetailsStyles from "./ingredientsDetails.module.css"
+import styles from "./ingredientsDetails.module.css"
 import {IngredientCharacteristic} from "../ingredientCharacteristic/IngredientCharacteristic";
-import {dataElementWithCustomFieldPropTypes} from "../../utils/prop-types";
 import {useSelector} from "react-redux";
+import {useLocation, useParams} from "react-router-dom";
 
 export const IngredientsDetails = () => {
-    const getIngredient = (state) => state.ingredientDetailsReducer.ingredient
-    const ingredient = useSelector(getIngredient)
+    const location = useLocation()
+    const { ingredientId } = useParams()
+    const getIngredient = (state) => state.ingredientsReducer
+    const { dataArray, status } = useSelector(getIngredient)
+    console.log(dataArray)
+    const data = dataArray.filter(el => el._id === ingredientId)[0]
     return (
         <>
-            <div className={`${ingredientsDetailsStyles.ingredient_image}`} onClick={(e => e.stopPropagation())}>
-                <img src={ingredient.image_large} alt=""/>
-            </div>
-            <div className={ingredientsDetailsStyles.text_block}>
-                <p className="text text_type_main-medium mb-8">{ingredient.name}</p>
-                <div className={`mb-15 mr-25 ml-25 ${ingredientsDetailsStyles.characteristic_block}`}>
-                    <IngredientCharacteristic title={"Калории,ккал"} characteristic={ingredient.calories}/>
-                    <IngredientCharacteristic title={"Белки, г"} characteristic={ingredient.proteins}/>
-                    <IngredientCharacteristic title={"Жиры, г"} characteristic={ingredient.fat}/>
-                    <IngredientCharacteristic title={"Углеводы, г"} characteristic={ingredient.carbohydrates}/>
-                </div>
-            </div>
+            {!status.isLoading && !status.isError &&
+                (
+                    <>
+                        <div className={`${styles.ingredient_image} ${!location.state? styles.new_page_modal : ''}`} onClick={(e => e.stopPropagation())}>
+                            <img src={data?.image_large} alt=""/>
+                        </div>
+                        <div className={styles.text_block}>
+                            <p className="text text_type_main-medium mb-8">{data?.name}</p>
+                            <div className={`mb-15 mr-25 ml-25 ${styles.characteristic_block}`}>
+                                <IngredientCharacteristic title={"Калории,ккал"} characteristic={data?.calories}/>
+                                <IngredientCharacteristic title={"Белки, г"} characteristic={data?.proteins}/>
+                                <IngredientCharacteristic title={"Жиры, г"} characteristic={data?.fat}/>
+                                <IngredientCharacteristic title={"Углеводы, г"} characteristic={data?.carbohydrates}/>
+                            </div>
+                        </div>
+                    </>
+                )
+            }
         </>
     )
 }
-
-IngredientsDetails.propTypes = dataElementWithCustomFieldPropTypes("ingredient")

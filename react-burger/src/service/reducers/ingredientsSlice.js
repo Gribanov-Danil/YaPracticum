@@ -7,7 +7,6 @@ const initialState = {
         isLoading: false,
         isError: false,
     }
-
 }
 
 export const ingredientsSlice = createSlice({

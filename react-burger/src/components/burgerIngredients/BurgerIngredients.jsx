@@ -3,25 +3,10 @@ import {IngredientsBlock} from "../ingredientsBlock/IngredientsBlock";
 import {dataPropTypes} from "../../utils/prop-types";
 import {useEffect, useRef, useState} from "react";
 import {TabValues} from "../../utils/constants/tabValues";
-import {useDispatch, useSelector} from "react-redux";
-import {IngredientsDetails} from "../ingredientDetails/IngredientsDetails";
-import {Modal} from "../modal/Modal";
-import {ingredientDetailsSlice} from "../../service/reducers/ingredientDetailsSlice";
+import {useSelector} from "react-redux";
 
 export const BurgerIngredients = () => {
     const [currentTab, setCurrentTab] = useState(TabValues.BUNS);
-    const [isModalVisible, setModalVisible] = useState(false)
-    const dispatch = useDispatch()
-    const {setModalData, deleteModalData} = ingredientDetailsSlice.actions
-    const handleOpenModal = (ingredient) => {
-        setModalVisible(true)
-        dispatch(setModalData({ingredient: ingredient}))
-        console.log(isModalVisible)
-    }
-    const handleCloseModal = () => {
-        setModalVisible(false)
-        dispatch(deleteModalData({}))
-    }
 
     const bunsRef = useRef();
     const saucesRef = useRef();
@@ -78,10 +63,7 @@ export const BurgerIngredients = () => {
                 handleTabScroll={handleTabScroll}
                 current={currentTab}
             />
-            <IngredientsBlock refList={refList} handleOpenModal={handleOpenModal}/>
-            <Modal active={isModalVisible} onClick={handleCloseModal} title={"Детали ингредиента"}>
-                <IngredientsDetails/>
-            </Modal>
+            <IngredientsBlock refList={refList}/>
         </div>
     )
 }
