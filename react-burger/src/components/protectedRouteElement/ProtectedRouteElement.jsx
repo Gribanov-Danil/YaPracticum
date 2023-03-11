@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import {getAuthUser} from "../../utils/authUserResponse";
 import {useDispatch, useSelector} from "react-redux";
 import {unwrapResult} from "@reduxjs/toolkit";
+import PropTypes from "prop-types";
 
 export const ProtectedRouteElement = ({element, onlyAuth = true}) => {
     const [isUserLoaded, setUserLoaded] = useState(false);
@@ -32,6 +33,9 @@ export const ProtectedRouteElement = ({element, onlyAuth = true}) => {
     else {
         return isSuccess ? element : <Navigate to="/login"/>;
     }
+}
 
-
+ProtectedRouteElement.propTypes = {
+    element: PropTypes.element.isRequired,
+    onlyAuth: PropTypes.bool
 }

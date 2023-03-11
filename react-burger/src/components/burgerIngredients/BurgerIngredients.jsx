@@ -1,6 +1,5 @@
 import {IngredientsTab} from "../ingredientsTab/IngredientsTab";
 import {IngredientsBlock} from "../ingredientsBlock/IngredientsBlock";
-import {dataPropTypes} from "../../utils/prop-types";
 import {useEffect, useRef, useState} from "react";
 import {TabValues} from "../../utils/constants/tabValues";
 import {useSelector} from "react-redux";
@@ -67,7 +66,3 @@ export const BurgerIngredients = () => {
         </div>
     )
 }
-
-
-
-BurgerIngredients.propTypes = dataPropTypes
