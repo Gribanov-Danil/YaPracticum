@@ -4,7 +4,7 @@ import uuid from 'react-uuid';
 import {forwardRef, memo} from "react";
 
 
-export const IngredientsSection = memo(forwardRef(({sectionTitle, itemList, id, handleOpenModal}, ref) => {
+export const IngredientsSection = memo(forwardRef(({sectionTitle, itemList, id}, ref) => {
     return (
         <section className={constructorStyle.section}>
             <div className="mb-6">
@@ -23,16 +23,9 @@ export const IngredientsSection = memo(forwardRef(({sectionTitle, itemList, id, 
                             src={item.image}
                             price={item.price}
                             name={item.name}
-                            handleOpenModal={handleOpenModal}
                         />
                     ))}
                 </div>
         </section>
     )
 }))
-
-// IngredientsSection.propTypes = {
-//     sectionTitle: PropTypes.string.isRequired,
-//     itemList: PropTypes.arrayOf(
-//         PropTypes.shape(dataElementWithCustomFieldPropTypes("itemList")))
-// }

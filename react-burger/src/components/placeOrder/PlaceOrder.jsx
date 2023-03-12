@@ -7,6 +7,7 @@ import {OrderDetails} from "../orderDetails/OrderDetails";
 import {useDispatch, useSelector} from "react-redux";
 import {orderDetailsSlice} from "../../service/reducers/orderDetailsSlice";
 import {postAxiosOrder} from "../../utils/postAxiosOrder";
+import {useNavigate} from "react-router-dom";
 
 
 export const PlaceOrder = () => {
@@ -32,11 +33,16 @@ export const PlaceOrder = () => {
     orderAmount = orderAmount.reduce((amount, currentItem) => amount + currentItem.price, 0)
     orderAmount = orderAmount || 0
 
-
-    //TODO сделать оповещение о ошибке при заказе в попапчик
-    const handleToggleModal = useCallback(() => {
-        setModalVisible(true)
+    const navigate = useNavigate()
+    const { user } = useSelector(state => state.userDataReducer)
+    const handleToggleModal = useCallback(async () => {
         dispatch(postAxiosOrder(ingredientsIdsList))
+        if (user.email !== '') {
+            setModalVisible(true)
+        }
+        else {
+            navigate('/login', { replace: true })
+        }
     }, [ingredientsIdsList, dispatch])
 
     return (

@@ -10,13 +10,15 @@ export const NavBar = () => {
             <NavBarItem
                 textClass="text_type_main-default"
                 text="Конструктор"
-                icon={<BurgerIcon type="primary" />}
+                icon={<BurgerIcon type="secondary" />}
+                linkAddress={'/'}
             />
 
             <NavBarItem
-                textClass="text_type_main-default text_color_inactive"
+                textClass="text_type_main-default"
                 text="Лента заказов"
                 icon={<ListIcon type="secondary" />}
+                linkAddress={'/wayAnyway'}
             />
 
             <div style={{marginRight: 289}}>
@@ -24,9 +26,10 @@ export const NavBar = () => {
             </div>
 
             <NavBarItem
-                textClass="text_type_main-default text_color_inactive"
+                textClass="text_type_main-default"
                 text="Личный кабинет"
-                icon={<ProfileIcon type="secondary" />}
+                icon={<ProfileIcon type="secondary"/>}
+                linkAddress={'/profile'}
             />
         </nav>
     )

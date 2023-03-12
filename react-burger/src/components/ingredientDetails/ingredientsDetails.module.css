@@ -11,8 +11,12 @@
 }
 
 .ingredient_image {
-    margin: 0 120px 16px 120px;
+    margin: 0 auto 16px auto;
     max-width: 480px;
+}
+
+.new_page_modal {
+    margin-top: 120px;
 }
 
 .characteristic_block {

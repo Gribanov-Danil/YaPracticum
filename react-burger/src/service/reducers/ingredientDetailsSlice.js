@@ -9,7 +9,6 @@ export const ingredientDetailsSlice = createSlice({
     initialState,
     reducers: {
         setModalData: (state, action) => {
-            console.log(action.payload)
             state.ingredient = action.payload.ingredient
         },
         deleteModalData: (state) => {

@@ -1,56 +1,68 @@
 import './App.css';
-import {AppHeader} from "./components/appHeader/AppHeader";
-import {Page} from "./components/page/Page";
-import {BurgerIngredients} from "./components/burgerIngredients/BurgerIngredients";
-import {BurgerConstructor} from "./components/burgerConstructor/burgerConstructor";
-import {useEffect, useState} from "react";
+import styles from "./App.css"
+import {ConstructorPage} from "./pages/constructorPage/ConstructorPage";
+import {useEffect} from "react";
 import {checkResponse} from "./utils/checkReponse";
 import {ingredientsSlice} from "./service/reducers/ingredientsSlice";
-import {useDispatch, useSelector} from "react-redux";
-import {HTML5Backend} from "react-dnd-html5-backend";
-import {DndProvider} from "react-dnd";
-
-//TODO сделать layout для ошибки getData().catch
-
+import {useDispatch} from "react-redux";
+import {AppHeader} from "./components/appHeader/AppHeader";
+import {Route, Routes, useLocation} from "react-router-dom";
+import {SignInPage} from "./pages/sign-inPage/Sign-inPage";
+import {RegistrationPage} from "./pages/registrationPage/RegistrationPage";
+import {ForgotPasswordPage} from "./pages/forgotPasswordPage/ForgotPasswordPage";
+import {ResetPasswordPage} from "./pages/resetPasswordPage/ResetPasswordPage";
+import {ProfilePage} from "./pages/profilePage/ProfilePage";
+import {ProtectedRouteElement} from "./components/protectedRouteElement/ProtectedRouteElement";
+import {NotFound404} from "./pages/notFound404Page/NotFound404";
+import {getAuthUser} from "./utils/authUserResponse";
+import {unwrapResult} from "@reduxjs/toolkit";
+import {ModalSwitch} from "./components/modalSwitch/ModalSwitch";
+import {IngredientsDetails} from "./components/ingredientDetails/IngredientsDetails";
 
 function App() {
     const {setFetchDataSuccess} = ingredientsSlice.actions
     const dispatch = useDispatch()
     const URL = 'https://norma.nomoreparties.space/api/ingredients';
-    const [data, setData] = useState({
-        dataArray: [],
-        isLoading: false
-    })
-    useEffect( () => {
-        const getData = async () => {
-            setData({...data, isLoading: true})
-            let response = await fetch(URL)
-            let result = await checkResponse(response)
-            dispatch(setFetchDataSuccess({ dataArray: result.data }))
-            setData({...data, dataArray: result.data, isLoading: false})
 
+    const getData = async () => {
+        let response = await fetch(URL)
+        let result = await checkResponse(response)
+        dispatch(setFetchDataSuccess({ dataArray: result.data }))
     }
-    getData().catch(() => console.log("Ошибка загрузки данных"))
-    }, [URL])
+    useEffect( () => {
+        getData().catch(() => console.log("Ошибка загрузки данных"))
+    }, [])
 
-    const getState = (state) => state.ingredientsReducer
-    const state = useSelector(getState)
+    const init = async () => {
+        let res = dispatch(getAuthUser());
+        if (res && res.success) {
+            await unwrapResult(res)
+        }
+    }
+    useEffect(() => {
+        init()
+    }, [])
+
+    const location = useLocation();
+    let background = location.state && location.state.background;
 
     return (
-        <div className="App">
+        <div className={styles.main_background}>
             <AppHeader/>
-            <main>
-                <Page>
-                    {state.status.isError &&  <h1 className={"text text_type_main-large"}>Произошла ошибка при загрузке данных</h1>}
-                    {state.status.isLoading && <h1 className={"text text_type_main-large"}>Загрузка...</h1> }
-                    {!state.status.isLoading && Object.keys(state.dataArray).length && (
-                        <DndProvider backend={HTML5Backend}>
-                            <BurgerIngredients/>
-                            <BurgerConstructor/>
-                        </DndProvider>
-                    )}
-                </Page>
-            </main>
+            <Routes location={background || location}>
+                <Route path={'/'} element={<ConstructorPage/>}/>
+                <Route path={'/login'} element={<ProtectedRouteElement element={<SignInPage/>} onlyAuth={false}/>}/>
+                <Route path={'/register'} element={<ProtectedRouteElement element={<RegistrationPage/>} onlyAuth={false} /> }/>
+                <Route path={'/forgot-password'} element={<ProtectedRouteElement element={<ForgotPasswordPage/>} onlyAuth={false} /> }/>
+                <Route path={'/reset-password'} element={<ProtectedRouteElement element={<ResetPasswordPage/>} onlyAuth={false} />}/>
+                <Route path={'/profile/*'} element={<ProtectedRouteElement element={<ProfilePage />}/>}/>
+                <Route path="*" element={<NotFound404 />} />
+                <Route
+                    path='/ingredients/:ingredientId'
+                    element={<IngredientsDetails />}
+                />
+            </Routes>
+            <ModalSwitch background={background} />
         </div>
     );
 }

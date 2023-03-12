@@ -1,7 +1,6 @@
 import {OpenBun} from "../openBun/OpenBun";
 import {ClosingBun} from "../closingBun/ClosingBun";
 import panelStyles from "./constructorPanel.module.css"
-import {dataPropTypes} from "../../utils/prop-types";
 import {useDispatch, useSelector} from "react-redux";
 import {useDrop} from "react-dnd";
 import {pickedIngredientSlice} from "../../service/reducers/pickedIngredientsSlice";
@@ -42,5 +41,3 @@ export const ConstructorPanel = () => {
             </div>
     )
 }
-
-ConstructorPanel.propTypes = dataPropTypes

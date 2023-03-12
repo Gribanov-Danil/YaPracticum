@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    margin-top: 120px;
+    margin-right: min(720px, 37.5vw);
+    margin-left: min(340px, 18vw);
+    gap: 60px;
+}
+
+.navigation_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.navigation_span {
+    color: #8585AD;
+    opacity: 0.4;
+}
+
+.nav_link {
+    padding: 20px 0;
+}
+
+.exit_btn {
+    background-color: inherit;
+    border: none;
+    text-align: inherit;
+    cursor: pointer;
+}
+

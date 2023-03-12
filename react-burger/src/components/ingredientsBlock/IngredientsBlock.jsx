@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import {TabValues} from "../../utils/constants/tabValues";
 import PropTypes from "prop-types";
 
-export const IngredientsBlock = ({refList, handleOpenModal}) => {
+export const IngredientsBlock = ({refList}) => {
     const state = useSelector(state => state.ingredientsReducer)
     const data = state.dataArray
     const bunList = data.filter((ingredient) => ingredient.type === "bun" )
@@ -18,21 +18,18 @@ export const IngredientsBlock = ({refList, handleOpenModal}) => {
                 itemList={bunList}
                 id={TabValues.BUNS}
                 ref={refList.buns}
-                handleOpenModal={handleOpenModal}
             />
             <IngredientsSection
                 sectionTitle={TabValues.SAUCES}
                 itemList={sauceList}
                 id={TabValues.SAUCES}
                 ref={refList.sauces}
-                handleOpenModal={handleOpenModal}
             />
             <IngredientsSection
                 sectionTitle={TabValues.MAINS}
                 itemList={mainList}
                 id={TabValues.MAINS}
                 ref={refList.mains}
-                handleOpenModal={handleOpenModal}
             />
         </div>
     )
@@ -44,5 +41,4 @@ IngredientsBlock.propTypes = {
         sauces: PropTypes.object.isRequired,
         mains: PropTypes.object.isRequired,
     }),
-    handleOpenModal: PropTypes.func.isRequired,
 }

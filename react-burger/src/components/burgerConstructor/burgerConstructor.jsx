@@ -1,6 +1,5 @@
 import {ConstructorPanel} from "../constructorPanel/ConstructorPanel";
 import {PlaceOrder} from "../placeOrder/PlaceOrder";
-import {dataPropTypes} from "../../utils/prop-types";
 
 export const BurgerConstructor = () => {
     return (
@@ -10,5 +9,3 @@ export const BurgerConstructor = () => {
         </div>
     )
 }
-
-BurgerConstructor.propTypes = dataPropTypes
