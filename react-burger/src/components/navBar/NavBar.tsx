@@ -1,10 +1,10 @@
 import headerClasses from "../appHeader/header.module.css";
 import {BurgerIcon, ListIcon, Logo, ProfileIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import React from "react";
+import React, {FC} from "react";
 import {NavBarItem} from "../navBarItem/NavBarItem";
 
 
-export const NavBar = () => {
+export const NavBar: FC = () => {
     return (
         <nav className={headerClasses.navbar}>
             <NavBarItem

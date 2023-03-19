@@ -1,5 +1,5 @@
 import {Button, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import {IconfyText} from "../iconfyText/IconfyText";
+import {IconifyText} from "../iconfyText/IconifyText";
 import placeOrderStyles from "./placeOrder.module.css"
 import {Modal} from "../modal/Modal";
 import {useCallback, useMemo, useState} from "react";
@@ -47,7 +47,7 @@ export const PlaceOrder = () => {
 
     return (
         <div className={placeOrderStyles.placeOrder}>
-            <IconfyText
+            <IconifyText
                 text={orderAmount.toString()}
                 textClass={"text_type_digits-medium"}
                 iconLocation={"right"}

@@ -1,6 +1,14 @@
-import PropTypes from "prop-types";
+import {FC, ReactElement} from "react";
 
-export const IconfyText = ({text, textClass, iconLocation,gapInPx, icon}) => {
+interface IIconifyText {
+    text: string
+    textClass: string
+    iconLocation: string
+    gapInPx: number
+    icon: ReactElement
+}
+
+export const IconifyText: FC<IIconifyText> = ({text, textClass, iconLocation, gapInPx, icon}) => {
     let outputComponent
     const textBlock =  <p className={`text ${textClass}`}>{text}</p>
     if (iconLocation === "right")
@@ -20,12 +28,4 @@ export const IconfyText = ({text, textClass, iconLocation,gapInPx, icon}) => {
           {outputComponent}
       </>
   )
-}
-
-IconfyText.propTypes = {
-    text: PropTypes.string.isRequired,
-    textClass: PropTypes.string.isRequired,
-    iconLocation: PropTypes.string.isRequired,
-    gapInPx: PropTypes.number.isRequired,
-    icon: PropTypes.element.isRequired
 }

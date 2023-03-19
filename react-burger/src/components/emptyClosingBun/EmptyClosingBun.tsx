@@ -1,14 +1,14 @@
 import styles from "./emptyClosingBun.module.css"
-import PropTypes from "prop-types";
+import {FC} from "react";
 
-export const EmptyClosingBun = ({text}) => {
+interface IEmptyClosingBun {
+    text: string
+}
+
+export const EmptyClosingBun: FC<IEmptyClosingBun> = ({text}) => {
     return (
         <div className={`ml-8 ${styles.no_bottom_bun}`}>
             {text}
         </div>
     )
-}
-
-EmptyClosingBun.propTypes = {
-    text: PropTypes.string.isRequired,
 }
