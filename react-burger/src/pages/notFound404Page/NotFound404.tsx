@@ -1,10 +1,11 @@
 import {useNavigate} from "react-router-dom";
 import {Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './404styles.module.css'
+import {FC} from "react";
 
-export const NotFound404 = () => {
+export const NotFound404: FC = () => {
     const navigate = useNavigate()
-    const onClick = () => navigate('/', { replace: true })
+    const onClick = () => navigate('/')
     return (
             <div className={`${styles.container} mt-20`}>
                 <div className={styles.content}>

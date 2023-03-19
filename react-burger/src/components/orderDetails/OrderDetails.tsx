@@ -1,9 +1,24 @@
 import styles from "./orderDetails.module.css"
 import {useSelector} from "react-redux";
+import {FC} from "react";
 
-export const OrderDetails = () => {
-    const getState = (state) => state.orderDetailsReducer
-    const state = useSelector(getState)
+type TOrderDetailsState = {
+    id: string;
+    status: {
+        isError: boolean;
+        isLoading: boolean;
+    };
+}
+
+export const OrderDetails: FC = () => {
+    // TODO разобрать state: any
+    const getState = (state: any) => {
+        console.log(state)
+        return state.orderDetailsReducer
+    }
+
+    const state: TOrderDetailsState = useSelector(getState)
+    // console.log(state)
     const orderNumberStr = String(state.id).padStart(5, '0');
     return (
         <>

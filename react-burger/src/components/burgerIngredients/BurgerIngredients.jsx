@@ -2,7 +2,6 @@ import {IngredientsTab} from "../ingredientsTab/IngredientsTab";
 import {IngredientsBlock} from "../ingredientsBlock/IngredientsBlock";
 import {useEffect, useRef, useState} from "react";
 import {TabValues} from "../../utils/constants/tabValues";
-import {useSelector} from "react-redux";
 
 export const BurgerIngredients = () => {
     const [currentTab, setCurrentTab] = useState(TabValues.BUNS);
@@ -20,10 +19,6 @@ export const BurgerIngredients = () => {
         { value: TabValues.SAUCES, title: TabValues.SAUCES, ref: saucesRef},
         { value: TabValues.MAINS, title: TabValues.MAINS, ref: mainRef},
     ];
-
-    const getState = (state) => state.ingredientDetailsReducer
-    const state = useSelector(getState)
-    const ingredients = state.dataArray
 
     let visibleHeaders = {};
     const handleObserve = (entries) => {
@@ -50,7 +45,7 @@ export const BurgerIngredients = () => {
         [bunsRef, saucesRef, mainRef].forEach((section) =>
             sectionObserver.observe(section.current)
         );
-    }, [ingredients]);
+    }, []);
 
     return (
         <div className="mt-10 mb-10 mr-10">

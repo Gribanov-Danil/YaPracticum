@@ -1,22 +1,36 @@
 import {Counter, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import constructorItemStyles from "./ingredientItem.module.css"
-import PropTypes from "prop-types";
 import {memo, useEffect, useState} from "react";
-import {dataElementWithCustomFieldPropTypes} from "../../utils/prop-types";
 import {useSelector} from "react-redux";
 import {useDrag} from "react-dnd";
 import {Link, useLocation} from "react-router-dom";
+import {IIngredient, IIngredientObj} from "../../utils/interfaces";
 
-export const IngredientItem = memo(function IngredientItem ({ingredient, index, collectionLength})  {
+interface IIngredientItem {
+    index: number
+    collectionLength: number
+    ingredient: IIngredient
+}
 
-    const [ingredientCount, setIngredientCount] = useState(0)
-    const state = useSelector(state => state.pickedIngredientsReducer)
+type TPickedIngredientState = {
+    pickedIngredient: IIngredientObj[];
+    pickedBun: IIngredient;
+}
+
+export const IngredientItem = memo<IIngredientItem>(function IngredientItem ({ingredient, index, collectionLength})  {
+
+    const [ingredientCount, setIngredientCount] = useState<number>(0)
+    // TODO разобрать state: any
+    const getState = (state: any) => state.pickedIngredientsReducer
+    const state: TPickedIngredientState = useSelector(getState)
 
     const pickedIngredient = state.pickedIngredient
     let pickedBun = state.pickedBun
-    pickedBun = Object.keys(pickedBun).length !== 0? [pickedBun]: []
-    let data = [...pickedBun, ...pickedBun]
-    pickedIngredient.map((ingredientObj) => data.push(ingredientObj.ingredient))
+    let data: IIngredient[] = []
+    if (Object.keys(pickedBun).length !== 0) {
+        data = [pickedBun, pickedBun]
+    }
+    pickedIngredient.map((ingredientObj: IIngredientObj) => data.push(ingredientObj.ingredient))
     useEffect(() => {
         setIngredientCount(data.filter((item) => item._id === ingredient._id).length)
     }, )
@@ -26,7 +40,7 @@ export const IngredientItem = memo(function IngredientItem ({ingredient, index, 
         item: ingredient
     });
 
-    let lastPairClass
+    let lastPairClass: string
     if (collectionLength % 2 === 0)
         lastPairClass = index === collectionLength - 2 || index === collectionLength - 1? "" : "mb-8"
     else
@@ -53,9 +67,3 @@ export const IngredientItem = memo(function IngredientItem ({ingredient, index, 
         </Link>
     )
 })
-
-IngredientItem.propTypes = {
-    index: PropTypes.number.isRequired,
-    collectionLength: PropTypes.number.isRequired,
-    ingredient:  PropTypes.shape(dataElementWithCustomFieldPropTypes("ingredient"))
-}

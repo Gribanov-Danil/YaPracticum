@@ -1,16 +1,23 @@
 import modalStyles from "./modal.module.css"
-import {useEffect} from "react";
+import {FC, ReactNode, useEffect} from "react";
 import {createPortal} from "react-dom";
 import {ModalOverlay} from "../modalOverlay/ModalOverlay";
 import ingredientsDetailsStyles from "../ingredientDetails/ingredientsDetails.module.css";
 import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
 import {useLocation} from "react-router-dom";
 
-export const Modal = ({active, onClick, children, title}) => {
+interface IModal {
+    onClick: () => void
+    active?: boolean
+    children?: ReactNode
+    title?: string
+}
+
+export const Modal: FC<IModal> = ({active, onClick, children, title}) => {
     const location = useLocation()
+    // TODO разобрать e: any
     useEffect(() => {
-        const closeOnEscapeKey = e => e.key === "Escape" ? onClick() : null;
+        const closeOnEscapeKey = (e: any) => e.key === "Escape" ? onClick() : null;
         document.body.addEventListener("keydown", closeOnEscapeKey);
         return () => {
             document.body.removeEventListener("keydown", closeOnEscapeKey);
@@ -34,10 +41,4 @@ export const Modal = ({active, onClick, children, title}) => {
         )
         , document.body
     )
-}
-
-Modal.propTypes = {
-    active: PropTypes.bool,
-    onClick: PropTypes.func.isRequired,
-    title: PropTypes.string
 }

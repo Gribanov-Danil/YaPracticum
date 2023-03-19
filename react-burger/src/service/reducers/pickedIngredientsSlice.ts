@@ -1,8 +1,18 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {IIngredient, IIngredientObj} from "../../utils/interfaces";
 
-const initialState = {
+
+type SliceState = {
+    pickedIngredient: IIngredientObj[]
+    pickedBun: IIngredient
+} | {
+    pickedIngredient: { id: string; ingredient: {}}[]
+    pickedBun: {}
+}
+
+const initialState: SliceState = {
     pickedIngredient: [{
-        id: 0,
+        id: '',
         ingredient: {}
     }],
     pickedBun: {}
@@ -33,7 +43,7 @@ export const pickedIngredientSlice = createSlice({
         },
         deleteDraggableIngredient: (state, action) => {
           state.pickedIngredient = [
-              ...state.pickedIngredient.filter((ingredientObj) => ingredientObj.id !== action.payload.pickedIngredient.id)
+              ...state.pickedIngredient.filter((ingredientObj) => ingredientObj.id !== action.payload.ingredientObj.id)
           ]
         },
         setDraggableIngredient: (state, action) => {
