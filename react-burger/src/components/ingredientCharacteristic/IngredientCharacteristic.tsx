@@ -1,16 +1,16 @@
 import characteristicStyles from "./ingredientCharacteristic.module.css";
-import PropTypes from "prop-types";
+import {FC} from "react";
 
-export const IngredientCharacteristic = ({title, characteristic}) => {
+interface IIngredientCharacteristic {
+    title: string
+    characteristic: number
+}
+
+export const IngredientCharacteristic: FC<IIngredientCharacteristic> = ({title, characteristic}) => {
     return (
         <div className={characteristicStyles.characteristic}>
             <p className="text text_type_main-default text_color_inactive mb-2">{title}</p>
             <p className="text text_type_digits-default text_color_inactive">{characteristic}</p>
         </div>
     )
-}
-
-IngredientCharacteristic.propTypes = {
-    title: PropTypes.string.isRequired,
-    characteristic: PropTypes.number.isRequired
 }
