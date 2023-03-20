@@ -4,10 +4,20 @@ import {HTML5Backend} from "react-dnd-html5-backend";
 import {BurgerIngredients} from "../../components/burgerIngredients/BurgerIngredients";
 import {BurgerConstructor} from "../../components/burgerConstructor/burgerConstructor";
 import {useSelector} from "react-redux";
+import {FC} from "react";
+import {IIngredient} from "../../utils/interfaces";
 
-export const ConstructorPage = () => {
-    const getState = (state) => state.ingredientsReducer
-    const state = useSelector(getState)
+type TConstructorPage = {
+    dataArray: IIngredient[]
+    status: {
+        isError: boolean;
+        isLoading: boolean;
+    };
+}
+
+export const ConstructorPage: FC = () => {
+    const getState = (state: any) => state.ingredientsReducer
+    const state: TConstructorPage = useSelector(getState)
     return (
             <main className={pageStyle.page}>
                 {state.status.isError &&  <h1 className={"text text_type_main-large"}>Произошла ошибка при загрузке данных</h1>}

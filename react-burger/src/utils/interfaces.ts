@@ -18,3 +18,13 @@ export interface IIngredientObj {
     id: string
     ingredient: IIngredient
 }
+
+export interface IUser {
+    email: string
+    name: string
+}
+
+export interface IStatus {
+    isLoading: boolean
+    isError: boolean
+}

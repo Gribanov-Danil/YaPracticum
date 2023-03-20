@@ -1,7 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {IIngredient, IStatus} from "../../utils/interfaces";
 
+type SliceState = {
+    dataArray: IIngredient[]
+    status: IStatus
+}
 
-const initialState = {
+const initialState: SliceState = {
     dataArray: [],
     status: {
         isLoading: false,

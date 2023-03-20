@@ -1,11 +1,19 @@
-import {useEffect, useRef, useState} from "react";
+import {FC, useEffect, useRef, useState} from "react";
 import {Button, EmailInput, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useDispatch, useSelector} from "react-redux";
 import {patchAuthUser} from "../../utils/authUserResponse";
 
-export const ProfileDataPage = () => {
-    const { user } = useSelector(state => state.userDataReducer)
-    const initialStateForm = {
+interface IProfileDataPageState {
+    name: string
+    email: string
+    password: string
+}
+
+export const ProfileDataPage: FC = () => {
+    // TODO разобрать state: any
+    const getState = (state: any) => state.userDataReducer
+    const { user } = useSelector(getState)
+    const initialStateForm: IProfileDataPageState = {
         name: user.name,
         email: user.email,
         password: ''
@@ -14,16 +22,18 @@ export const ProfileDataPage = () => {
 
     const [isEditFieldVisible, setIsEditFieldVisible] = useState(false)
 
-    const inputRef = useRef(null)
+    const inputRef = useRef<HTMLInputElement>(null)
     useEffect(() => {
         setIsEditFieldVisible(JSON.stringify(initialStateForm) !== JSON.stringify(form))
-    }, [form.name, form.password, form.login, initialStateForm])
+    }, [form.name, form.password, initialStateForm])
 
     const dispatch = useDispatch()
-
-    const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value.trim() })
+    // TODO разобрать e: any
+    const onChange = (e: any) => setForm({ ...form, [e.target.name]: e.target.value.trim() })
 
     const applyChanges = async () => {
+        // TODO разобраться ts-ignore
+        // @ts-ignore
         let res = await dispatch(patchAuthUser(form.name, form.email, form.password))
         if (!res) {
             setIsEditFieldVisible(false)

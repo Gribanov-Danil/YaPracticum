@@ -1,8 +1,15 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {setCookie} from "../cookies/setCookie";
+import { IStatus, IUser} from "../../utils/interfaces";
 
+type SliceState = {
+    user: IUser
+    accessToken: string
+    refreshToken: string
+    status: IStatus
+}
 
-const initialState = {
+const initialState: SliceState = {
     user: {
         email: '',
         name: ''
@@ -12,7 +19,6 @@ const initialState = {
     status: {
         isLoading: false,
         isError: false,
-        error: ""
     },
 }
 
@@ -29,7 +35,6 @@ export const userDataSlice = createSlice({
             setCookie('refreshToken', action.payload.data.refreshToken)
             state.status.isLoading = false
             state.status.isError = false
-            state.status.error = ""
         },
         fetchingData: (state) => {
             state.status.isLoading = true

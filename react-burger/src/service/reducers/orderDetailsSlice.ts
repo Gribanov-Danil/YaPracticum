@@ -1,6 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {IStatus} from "../../utils/interfaces";
 
-const initialState = {
+type SliceState = {
+    id: string
+    status: IStatus
+}
+
+const initialState: SliceState = {
     id: '',
     status: {
         isError: false,
