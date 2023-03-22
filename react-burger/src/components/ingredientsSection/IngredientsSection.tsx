@@ -2,17 +2,28 @@ import constructorStyle from "../ingredientsBlock/ingredientsBlock.module.css";
 import {IngredientItem} from "../ingredientItem/IngredientItem";
 import uuid from 'react-uuid';
 import {forwardRef, memo} from "react";
+import {IIngredient} from "../../utils/interfaces";
 
+interface IIngredientsSection {
+    sectionTitle: string
+    itemList: IIngredient[]
+    id: string
+}
 
-export const IngredientsSection = memo(forwardRef(({sectionTitle, itemList, id}, ref) => {
+export const IngredientsSection = memo<IIngredientsSection>(forwardRef(({sectionTitle, itemList, id}, ref) => {
+    // TODO разобраться ts-ignore
     return (
         <section className={constructorStyle.section}>
             <div className="mb-6">
-                <p className="text text_type_main-medium" id={id} ref={ref}>
+                <p
+                    className="text text_type_main-medium"
+                    id={id}
+                    // @ts-ignore
+                    ref={ref}
+                >
                     {sectionTitle}
                 </p>
             </div>
-
                 <div className={constructorStyle.type_container}>
                     {itemList.map((item, index) => (
                         <IngredientItem
@@ -20,9 +31,6 @@ export const IngredientsSection = memo(forwardRef(({sectionTitle, itemList, id},
                             index={index}
                             ingredient={item}
                             collectionLength={itemList.length}
-                            src={item.image}
-                            price={item.price}
-                            name={item.name}
                         />
                     ))}
                 </div>

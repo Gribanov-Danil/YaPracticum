@@ -1,12 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {IIngredient, IStatus} from "../../utils/interfaces";
 
-type SliceState = {
+export type IngredientsSliceState = {
     dataArray: IIngredient[]
     status: IStatus
 }
 
-const initialState: SliceState = {
+const initialState: IngredientsSliceState = {
     dataArray: [],
     status: {
         isLoading: false,
