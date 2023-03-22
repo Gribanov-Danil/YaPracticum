@@ -6,16 +6,20 @@ import {pickedIngredientSlice} from "../../service/reducers/pickedIngredientsSli
 import {useDispatch} from "react-redux";
 import styles from "./draggableIngredientsBlock.module.css"
 import uuid from "react-uuid";
-import {ingredientObjectPropTypes} from "../../utils/prop-types";
+import {IIngredientObj} from "../../utils/interfaces";
 
+interface IDraggableIngredientsBlock {
+    pickedIngredients: IIngredientObj[]
+}
 
-export const DraggableIngredientsBlock = memo(function DraggableIngredientsBlock({pickedIngredients}) {
+export const DraggableIngredientsBlock = memo<IDraggableIngredientsBlock>(function DraggableIngredientsBlock({pickedIngredients}) {
     const {updatePickedIngredient} = pickedIngredientSlice.actions
     const dispatch = useDispatch()
-    const update = (newIngredientList) => dispatch(updatePickedIngredient(newIngredientList))
-
-  return (
+    const update = (newIngredientList: any) => dispatch(updatePickedIngredient(newIngredientList))
+    return (
       <Reorder.Group
+          // TODO разобраться ts-ignore
+          // @ts-ignore
           axys={"y"}
           onReorder={(newIngredientList) => update(newIngredientList)}
           values={pickedIngredients}
@@ -33,5 +37,3 @@ export const DraggableIngredientsBlock = memo(function DraggableIngredientsBlock
       </Reorder.Group>
   )
 })
-
-DraggableIngredientsBlock.propTypes = ingredientObjectPropTypes

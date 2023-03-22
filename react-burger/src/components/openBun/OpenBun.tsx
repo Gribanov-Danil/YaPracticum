@@ -1,7 +1,12 @@
 import {ConstructorElement} from "@ya.praktikum/react-developer-burger-ui-components";
-import {dataElementWithCustomFieldPropTypes} from "../../utils/prop-types";
+import {IIngredient} from "../../utils/interfaces";
+import {FC} from "react";
 
-export const OpenBun = ({bun}) => {
+interface IOpenBun {
+    bun: IIngredient
+}
+
+export const OpenBun: FC<IOpenBun> = ({bun}) => {
     return (
         <div className="ml-8">
             <ConstructorElement
@@ -14,5 +19,3 @@ export const OpenBun = ({bun}) => {
         </div>
     )
 }
-
-OpenBun.propTypes = dataElementWithCustomFieldPropTypes("bun")

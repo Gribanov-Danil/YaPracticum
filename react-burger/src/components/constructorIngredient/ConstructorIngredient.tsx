@@ -4,10 +4,15 @@ import {pickedIngredientSlice} from "../../service/reducers/pickedIngredientsSli
 import {useDispatch} from "react-redux";
 import {memo} from "react";
 import {Reorder} from "framer-motion";
-import { ingredientObjectWithCustomFieldPropTypes} from "../../utils/prop-types";
+import {IIngredientObj} from "../../utils/interfaces";
+
+interface IConstructorIngredient {
+    ingredientObj: IIngredientObj
+}
 
 // Элемент, имеющий днд
-export const ConstructorIngredient = memo(function ConstructorIngredient ({ingredientObj}) {
+export const ConstructorIngredient = memo<IConstructorIngredient>(function ConstructorIngredient ({ingredientObj}) {
+    // TODO типизировать акшен и диспатч
     const {deleteDraggableIngredient} = pickedIngredientSlice.actions
     const dispatch = useDispatch()
     const handleClose = () => {
@@ -26,5 +31,3 @@ export const ConstructorIngredient = memo(function ConstructorIngredient ({ingre
         </Reorder.Item>
     )
 })
-
-ConstructorIngredient.propTypes = ingredientObjectWithCustomFieldPropTypes
