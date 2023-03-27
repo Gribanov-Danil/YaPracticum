@@ -11,9 +11,9 @@ export const postRefreshUserData = () => async (dispatch:  Dispatch<AnyAction>) 
     try {
         const response = await AxiosRequestInstance.post(URL_UPDATE_TOKEN, {
             token: getCookie('refreshToken')
-        });
-        const data = response.data;
-        dispatch(updateTokens({data}))
+        })
+        const data = response.data
+        dispatch(updateTokens({accessToken: data.accessToken, refreshToken: data.refreshToken}))
     } catch (e) {
         dispatch(fetchDataError())
     }

@@ -25,7 +25,7 @@ export const SignInPage = () => {
         let isSuccess = await dispatch(postAuth(emailValue, passwordValue))
         // TODO ts-ignore
         // @ts-ignore
-        unwrapResult(isSuccess)
+        // unwrapResult(isSuccess)
         if (isSuccess) {
             navigate('/', { replace: true })
         }

@@ -17,7 +17,6 @@ export const postAxiosOrder = (ingredientsIdsList: string[]) => async (dispatch:
                 timeout: 1000 * 30,
             });
         const {order} = response.data;
-        console.log(order)
         dispatch(updateId(order.number))
         return order
     } catch (e) {

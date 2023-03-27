@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {setCookie} from "../cookies/setCookie";
 import { IStatus, IUser} from "../../utils/interfaces";
 
@@ -26,13 +26,13 @@ export const userDataSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        setFetchDataSuccess: (state, action) => {
-            state.user.email = action.payload.data.user.email
-            state.user.name = action.payload.data.user.name
-            state.accessToken = action.payload.data.accessToken
-            setCookie('token', action.payload.data.accessToken.split('Bearer ')[1])
-            state.refreshToken = action.payload.data.refreshToken
-            setCookie('refreshToken', action.payload.data.refreshToken)
+        setFetchDataSuccess: (state, action:PayloadAction<TUserDataState>) => {
+            state.user.email = action.payload.user.email
+            state.user.name = action.payload.user.name
+            state.accessToken = action.payload.accessToken
+            setCookie('token', action.payload.accessToken.split('Bearer ')[1])
+            state.refreshToken = action.payload.refreshToken
+            setCookie('refreshToken', action.payload.refreshToken)
             state.status.isLoading = false
             state.status.isError = false
         },
@@ -43,13 +43,13 @@ export const userDataSlice = createSlice({
             state.status.isError = true
             state.status.isLoading = false
         },
-        updateTokens: (state, action) => {
-            setCookie('token', action.payload.data.accessToken.split('Bearer ')[1])
-            setCookie('refreshToken', action.payload.data.refreshToken)
+        updateTokens: (state, action: PayloadAction<{accessToken: string, refreshToken: string}>) => {
+            setCookie('token', action.payload.accessToken.split('Bearer ')[1])
+            setCookie('refreshToken', action.payload.refreshToken)
         },
-        updateUser: (state, action) => {
-            state.user.email = action.payload.data.user.email
-            state.user.name = action.payload.data.user.name
+        updateUser: (state, action: PayloadAction<IUser>) => {
+            state.user.email = action.payload.email
+            state.user.name = action.payload.name
         },
         logoutUser: (state) => {
             state.accessToken = ""

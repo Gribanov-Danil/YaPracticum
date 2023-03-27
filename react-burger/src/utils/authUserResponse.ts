@@ -17,7 +17,7 @@ export const getAuthUser = () => async (dispatch: Dispatch<AnyAction>) => {
             }
         })
         const data = response.data
-        dispatch(updateUser({data}))
+        dispatch(updateUser(data.user))
         return data;
     } catch (e) {
         try {
@@ -53,7 +53,7 @@ export const patchAuthUser = (name: string, email: string, password: string) => 
             }
         })
         const data = response.data
-        dispatch(updateUser({data}))
+        dispatch(updateUser(data.user))
         return response.data
     } catch (e) {
         dispatch(fetchDataError())

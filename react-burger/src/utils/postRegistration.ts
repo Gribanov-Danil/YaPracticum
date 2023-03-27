@@ -14,7 +14,7 @@ export const postRegistration = (email: string, password: string, name: string) 
                 name: name
             });
         const data = response.data;
-        dispatch(setFetchDataSuccess({data}))
+        dispatch(setFetchDataSuccess(data))
     } catch (e) {
         dispatch(fetchDataError())
     }

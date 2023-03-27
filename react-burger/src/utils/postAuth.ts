@@ -14,7 +14,7 @@ export const postAuth = (email: string, password: string) => async (dispatch: Di
         })
         const data = response.data
         const success = data.success
-        dispatch(setFetchDataSuccess({data}))
+        dispatch(setFetchDataSuccess(data))
         return success
     } catch (e) {
         dispatch(fetchDataError())
