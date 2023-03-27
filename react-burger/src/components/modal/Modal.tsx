@@ -15,9 +15,8 @@ interface IModal {
 
 export const Modal: FC<IModal> = ({active, onClick, children, title}) => {
     const location = useLocation()
-    // TODO разобрать e: any
     useEffect(() => {
-        const closeOnEscapeKey = (e: any) => e.key === "Escape" ? onClick() : null;
+        const closeOnEscapeKey = (e: KeyboardEvent) => e.key === "Escape" ? onClick() : null
         document.body.addEventListener("keydown", closeOnEscapeKey);
         return () => {
             document.body.removeEventListener("keydown", closeOnEscapeKey);
