@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {IIngredient, IIngredientObj} from "../../utils/interfaces";
 
 
@@ -19,14 +19,14 @@ export const pickedIngredientSlice = createSlice({
     name: "pickedIngredient",
     initialState,
     reducers: {
-        setFirstIngredient: (state, action) => {
+        setFirstIngredient: (state, action: PayloadAction<IIngredientObj>) => {
             state.pickedIngredient = [{
                 id: action.payload.id,
                 ingredient: action.payload.ingredient
             }
             ]
         },
-        setPickedIngredient: (state, action) => {
+        setPickedIngredient: (state, action: PayloadAction<IIngredientObj>) => {
             state.pickedIngredient = [...state.pickedIngredient,
                 ...[
                     {
@@ -35,18 +35,15 @@ export const pickedIngredientSlice = createSlice({
                     }]
             ]
         },
-        setPickedBun: (state, action) => {
-            state.pickedBun = {...action.payload.pickedIngredient}
+        setPickedBun: (state, action: PayloadAction<IIngredient>) => {
+            state.pickedBun = action.payload
         },
-        deleteDraggableIngredient: (state, action) => {
+        deleteDraggableIngredient: (state, action: PayloadAction<IIngredientObj>) => {
           state.pickedIngredient = [
-              ...state.pickedIngredient.filter((ingredientObj) => ingredientObj.id !== action.payload.ingredientObj.id)
+              ...state.pickedIngredient.filter((ingredientObj) => ingredientObj.id !== action.payload.id)
           ]
         },
-        setDraggableIngredient: (state, action) => {
-          state.pickedIngredient = [...state.pickedIngredient, action.payload.pickedIngredient]
-        },
-        updatePickedIngredient: (state, action) => {
+        updatePickedIngredient: (state, action:PayloadAction<IIngredientObj[]>) => {
             state.pickedIngredient = [...action.payload]
         }
     }

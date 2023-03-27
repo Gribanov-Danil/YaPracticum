@@ -24,7 +24,7 @@ export const ConstructorPanel: FC = () => {
         accept: "ingredientItem",
         drop(ingredient: IIngredient) {
             if (ingredient.type === "bun")
-                dispatch(setPickedBun({pickedIngredient: ingredient}))
+                dispatch(setPickedBun(ingredient))
             else
                 if (pickedIngredient.length === 0 || Object.keys(pickedIngredient[0].ingredient).length === 0)
                     dispatch(setFirstIngredient({ingredient: ingredient, id: uuid()}))

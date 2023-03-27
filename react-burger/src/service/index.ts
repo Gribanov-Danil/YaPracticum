@@ -1,7 +1,7 @@
 import {combineReducers} from "redux";
 import ingredientsReducer from "./reducers/ingredientsSlice";
 import {configureStore} from "@reduxjs/toolkit";
-import pickedIngredientsReducer from "./reducers/pickedIngredientsSlice.ts"
+import pickedIngredientsReducer from "./reducers/pickedIngredientsSlice"
 import orderDetailsReducer from "./reducers/orderDetailsSlice"
 import userDataReducer from "./reducers/userDataSlice";
 

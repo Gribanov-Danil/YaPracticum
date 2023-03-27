@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {IStatus} from "../../utils/interfaces";
 
 export type TOrderDetailsState = {
@@ -26,7 +26,7 @@ export const orderDetailsSlice = createSlice({
             state.status.isLoading = false
             state = initialState
         },
-        updateId:(state, action) => {
+        updateId:(state, action: PayloadAction<any>) => {
             state.id = action.payload.id
             state.status.isError = false
             state.status.isLoading = false

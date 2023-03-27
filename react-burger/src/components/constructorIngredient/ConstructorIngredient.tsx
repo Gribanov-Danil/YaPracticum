@@ -16,7 +16,7 @@ export const ConstructorIngredient = memo<IConstructorIngredient>(function Const
     const {deleteDraggableIngredient} = pickedIngredientSlice.actions
     const dispatch = useDispatch()
     const handleClose = () => {
-        dispatch(deleteDraggableIngredient({ingredientObj: ingredientObj}))
+        dispatch(deleteDraggableIngredient(ingredientObj))
     }
 
     return (

@@ -15,7 +15,7 @@ interface IDraggableIngredientsBlock {
 export const DraggableIngredientsBlock = memo<IDraggableIngredientsBlock>(function DraggableIngredientsBlock({pickedIngredients}) {
     const {updatePickedIngredient} = pickedIngredientSlice.actions
     const dispatch = useDispatch()
-    const update = (newIngredientList: any) => dispatch(updatePickedIngredient(newIngredientList))
+    const update = (newIngredientList: IIngredientObj[]) => dispatch(updatePickedIngredient(newIngredientList))
     return (
       <Reorder.Group
           // TODO разобраться ts-ignore
