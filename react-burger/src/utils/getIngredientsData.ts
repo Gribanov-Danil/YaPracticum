@@ -9,7 +9,7 @@ export const getIngredientsData = () => async (dispatch: Dispatch<AnyAction>) =>
     try {
         const response = await AxiosRequestInstance.get(URL_INGREDIENTS)
         const data = response.data
-        dispatch(setFetchDataSuccess({ dataArray: data.data }))
+        dispatch(setFetchDataSuccess(data.data))
     } catch (e) {
         dispatch(fetchDataError())
     }

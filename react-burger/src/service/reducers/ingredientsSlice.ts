@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {IIngredient, IStatus} from "../../utils/interfaces";
 
 export type IngredientsSliceState = {
@@ -18,8 +18,8 @@ export const ingredientsSlice = createSlice({
     name: "ingredients",
     initialState,
     reducers: {
-        setFetchDataSuccess: (state, action) => {
-            state.dataArray = action.payload.dataArray
+        setFetchDataSuccess: (state, action:PayloadAction<IIngredient[]>) => {
+            state.dataArray = action.payload
             state.status.isLoading = false
             state.status.isError = false
         },
