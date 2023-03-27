@@ -1,19 +1,28 @@
 import { Navigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import {FC, ReactElement, useEffect, useState} from 'react';
 import {getAuthUser} from "../../utils/authUserResponse";
 import {useDispatch, useSelector} from "react-redux";
 import {unwrapResult} from "@reduxjs/toolkit";
-import PropTypes from "prop-types";
+import {GetStateManager} from "../../utils/getStateManager";
 
-export const ProtectedRouteElement = ({element, onlyAuth = true}) => {
+interface IProtectedRouteElement {
+    element: ReactElement
+    onlyAuth?: boolean
+}
+
+export const ProtectedRouteElement: FC<IProtectedRouteElement> = ({element, onlyAuth = true}) => {
     const [isUserLoaded, setUserLoaded] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
-    const { user } = useSelector(state => state.userDataReducer)
+    const { user } = useSelector(GetStateManager.GetUserData())
     let dispatch = useDispatch()
     const init = async () => {
+        // TODO ts-ignore
+        // @ts-ignore
         let res = await dispatch(getAuthUser());
         if (res && res.success) {
-                await unwrapResult(res)
+            // TODO ts-ignore
+                // @ts-ignore
+            await unwrapResult(res)
                 setIsSuccess(true)
         }
         setUserLoaded(true);
@@ -26,16 +35,10 @@ export const ProtectedRouteElement = ({element, onlyAuth = true}) => {
         return null
     }
 
-
     if (!onlyAuth) {
         return user.email !== ''? <Navigate to={'/'} replace />:element
     }
     else {
         return isSuccess ? element : <Navigate to="/login"/>;
     }
-}
-
-ProtectedRouteElement.propTypes = {
-    element: PropTypes.element.isRequired,
-    onlyAuth: PropTypes.bool
 }

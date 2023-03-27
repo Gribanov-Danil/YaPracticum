@@ -1,7 +1,7 @@
 import styles from '../pagesStyles.module.css'
 import {Button, EmailInput, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import { useNavigate} from "react-router-dom";
-import {useState} from "react";
+import {ChangeEvent, useState} from "react";
 import {postAuth} from "../../utils/postAuth";
 import {useDispatch} from "react-redux";
 import {unwrapResult} from "@reduxjs/toolkit";
@@ -12,14 +12,19 @@ export const SignInPage = () => {
     const onResetPasswordClick = () => navigate('/forgot-password', { replace: true })
 
     const [emailValue, setEmailValue] = useState('')
-    const onEmailChange = e => setEmailValue(e.target.value)
+
+    const onEmailChange = (e: ChangeEvent<HTMLInputElement>) => setEmailValue(e.target.value)
 
     const [passwordValue, setPasswordValue] = useState('')
-    const onPasswordChange = e => setPasswordValue(e.target.value)
+    const onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => setPasswordValue(e.target.value)
 
     const dispatch = useDispatch()
     const onLoginClick = async () => {
+        // TODO ts-ignore
+        // @ts-ignore
         let isSuccess = await dispatch(postAuth(emailValue, passwordValue))
+        // TODO ts-ignore
+        // @ts-ignore
         unwrapResult(isSuccess)
         if (isSuccess) {
             navigate('/', { replace: true })

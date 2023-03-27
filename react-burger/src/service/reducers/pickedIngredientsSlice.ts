@@ -2,20 +2,17 @@ import {createSlice} from "@reduxjs/toolkit";
 import {IIngredient, IIngredientObj} from "../../utils/interfaces";
 
 
-type SliceState = {
+export type PickedIngredientSliceState = {
     pickedIngredient: IIngredientObj[]
     pickedBun: IIngredient
-} | {
-    pickedIngredient: { id: string; ingredient: {}}[]
-    pickedBun: {}
 }
 
-const initialState: SliceState = {
+const initialState: PickedIngredientSliceState = {
     pickedIngredient: [{
         id: '',
-        ingredient: {}
+        ingredient: {} as IIngredient
     }],
-    pickedBun: {}
+    pickedBun: {} as IIngredient
 }
 
 export const pickedIngredientSlice = createSlice({

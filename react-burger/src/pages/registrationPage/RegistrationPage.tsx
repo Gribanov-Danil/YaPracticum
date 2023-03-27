@@ -1,7 +1,7 @@
 import styles from "../pagesStyles.module.css"
 import {Button, EmailInput, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useNavigate} from "react-router-dom";
-import {useRef, useState} from "react";
+import {ChangeEvent, useRef, useState} from "react";
 import {postRegistration} from "../../utils/postRegistration";
 import {useDispatch} from "react-redux";
 
@@ -13,13 +13,15 @@ export const RegistrationPage = () => {
     const inputRef = useRef(null)
 
     const [emailValue, setEmailValue] = useState('')
-    const onEmailChange = e => setEmailValue(e.target.value)
+    const onEmailChange = (e: ChangeEvent<HTMLInputElement>) => setEmailValue(e.target.value)
 
     const [passwordValue, setPasswordValue] = useState('')
-    const onPasswordChange = e => setPasswordValue(e.target.value)
+    const onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => setPasswordValue(e.target.value)
 
     const dispatch = useDispatch()
     const onRegistrationClick = async () => {
+        // TODO ts-ignore
+        // @ts-ignore
         dispatch(postRegistration(emailValue, passwordValue, inputValue))
     }
     return (

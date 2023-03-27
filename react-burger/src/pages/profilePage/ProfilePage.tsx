@@ -3,7 +3,7 @@ import {NavLink, Route, Routes, useNavigate} from "react-router-dom";
 import {ProfileDataPage} from "../profileDataPage/ProfileDataPage";
 import {UserOrdersPage} from "../userOrdersPage/UserOrdersPage";
 import {useDispatch} from "react-redux";
-import {ProtectedRouteElement} from "../../components/protectedRouteElement/ProtectedRouteElement";
+import {ProtectedRouteElement} from "../../hocs/protectedRouteElement/ProtectedRouteElement";
 import {postLogout} from "../../utils/postLogoutUser";
 import {getCookie} from "../../service/cookies/getCookie";
 import {unwrapResult} from "@reduxjs/toolkit";
@@ -13,7 +13,11 @@ export const ProfilePage = () => {
     const navigate = useNavigate()
 
     const onExitClick = async () => {
+        // TODO ts-ignore
+        // @ts-ignore
         let response = await dispatch(postLogout(getCookie('refreshToken')))
+        // TODO ts-ignore
+        // @ts-ignore
         unwrapResult(response)
         if (response.success) {
             navigate('/login', { replace: true })

@@ -3,10 +3,11 @@ import {AxiosRequestInstance} from "./constants/axiosInstance";
 import {userDataSlice} from "../service/reducers/userDataSlice";
 import {getCookie} from "../service/cookies/getCookie";
 import {postRefreshUserData} from "./postRefreshUserData";
+import {AnyAction, Dispatch} from "redux";
 
 const {fetchingData, updateUser, fetchDataError} = userDataSlice.actions
 
-export const getAuthUser = () => async (dispatch) => {
+export const getAuthUser = () => async (dispatch: Dispatch<AnyAction>) => {
     dispatch(fetchingData())
     try {
         const response = await AxiosRequestInstance.get(URL_AUTH_USER, {
@@ -20,6 +21,8 @@ export const getAuthUser = () => async (dispatch) => {
         return data;
     } catch (e) {
         try {
+            // TODO ts-ignore
+            // @ts-ignore
             await dispatch(postRefreshUserData())
             const response = await AxiosRequestInstance.get(URL_AUTH_USER, {
                 headers: {
@@ -35,7 +38,7 @@ export const getAuthUser = () => async (dispatch) => {
     }
 }
 
-export const patchAuthUser = (name, email, password) => async (dispatch) => {
+export const patchAuthUser = (name: string, email: string, password: string) => async (dispatch: Dispatch<AnyAction>) => {
     try {
         const response = await AxiosRequestInstance.patch(URL_AUTH_USER,
             {

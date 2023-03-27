@@ -1,7 +1,7 @@
 import styles from "../pagesStyles.module.css";
 import {Button, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import {Navigate, useLocation, useNavigate} from "react-router-dom";
-import {useRef, useState} from "react";
+import {ChangeEvent, useRef, useState} from "react";
 import {postResetPassword} from "../../utils/postResetPassword";
 import {useDispatch} from "react-redux";
 
@@ -10,13 +10,15 @@ export const ResetPasswordPage = () => {
     const navigate = useNavigate();
     const onLoginClick = () => navigate('/login', { replace: true })
     const [newPasswordValue, setNewPasswordValue] = useState('')
-    const onPasswordChange = e => setNewPasswordValue(e.target.value)
+    const onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => setNewPasswordValue(e.target.value)
     const [tokenValue, setTokenValue] = useState('')
-    const onTokenChange = e => setTokenValue(e.target.value)
+    const onTokenChange = (e: ChangeEvent<HTMLInputElement>) => setTokenValue(e.target.value)
     const inputRef = useRef(null)
 
     const dispatch = useDispatch()
     const onSaveClick = async () => {
+        // TODO ts-ignore
+        // @ts-ignore
         let res = await dispatch(postResetPassword(newPasswordValue, tokenValue))
         if (res && res.success) {
             navigate('/login', { replace: true })

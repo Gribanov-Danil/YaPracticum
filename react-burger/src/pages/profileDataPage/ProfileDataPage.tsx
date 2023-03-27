@@ -1,7 +1,8 @@
-import {FC, useEffect, useRef, useState} from "react";
+import {ChangeEvent, FC, useEffect, useRef, useState} from "react";
 import {Button, EmailInput, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useDispatch, useSelector} from "react-redux";
 import {patchAuthUser} from "../../utils/authUserResponse";
+import {GetStateManager} from "../../utils/getStateManager";
 
 interface IProfileDataPageState {
     name: string
@@ -10,9 +11,7 @@ interface IProfileDataPageState {
 }
 
 export const ProfileDataPage: FC = () => {
-    // TODO разобрать state: any
-    const getState = (state: any) => state.userDataReducer
-    const { user } = useSelector(getState)
+    const { user } = useSelector(GetStateManager.GetUserData())
     const initialStateForm: IProfileDataPageState = {
         name: user.name,
         email: user.email,
@@ -28,8 +27,7 @@ export const ProfileDataPage: FC = () => {
     }, [form.name, form.password, initialStateForm])
 
     const dispatch = useDispatch()
-    // TODO разобрать e: any
-    const onChange = (e: any) => setForm({ ...form, [e.target.name]: e.target.value.trim() })
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => setForm({ ...form, [e.target.name]: e.target.value.trim() })
 
     const applyChanges = async () => {
         // TODO разобраться ts-ignore

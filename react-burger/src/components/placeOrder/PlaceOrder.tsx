@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {orderDetailsSlice} from "../../service/reducers/orderDetailsSlice";
 import {postAxiosOrder} from "../../utils/postAxiosOrder";
 import {useNavigate} from "react-router-dom";
+import {GetStateManager} from "../../utils/getStateManager";
 
 
 export const PlaceOrder = () => {
@@ -18,24 +19,26 @@ export const PlaceOrder = () => {
         setModalVisible(false)
     }, [])
 
-    const state = useSelector(state => state.pickedIngredientsReducer)
+    const state = useSelector(GetStateManager.GetPickedIngredients())
     const {deleteId} = orderDetailsSlice.actions
     const pickedIngredient = state.pickedIngredient
-    let pickedBun = state.pickedBun
 
-    pickedBun = Object.keys(pickedBun).length !== 0? [pickedBun]: []
-    let orderAmount = [...pickedBun, ...pickedBun]
-    pickedIngredient.map((ingredientObj) => orderAmount.push(ingredientObj.ingredient))
-    let ingredients = orderAmount
+    let pickedBun = Object.keys(state.pickedBun).length !== 0? [state.pickedBun]: []
+    let orderItems = [...pickedBun, ...pickedBun]
+    pickedIngredient.map((ingredientObj) => orderItems.push(ingredientObj.ingredient))
+    let ingredients = orderItems
     const ingredientsIdsList = useMemo(() =>
         ingredients.map(ingredient => ingredient._id),
         [ingredients])
-    orderAmount = orderAmount.reduce((amount, currentItem) => amount + currentItem.price, 0)
+    let orderAmount = orderItems.reduce((amount, currentItem) => amount + currentItem.price, 0)
     orderAmount = orderAmount || 0
 
     const navigate = useNavigate()
-    const { user } = useSelector(state => state.userDataReducer)
+
+    const { user } = useSelector(GetStateManager.GetUserData())
     const handleToggleModal = useCallback(async () => {
+        // Todo: ts-ignore
+        // @ts-ignore
         dispatch(postAxiosOrder(ingredientsIdsList))
         if (user.email !== '') {
             setModalVisible(true)

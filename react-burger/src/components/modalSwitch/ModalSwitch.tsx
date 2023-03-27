@@ -1,14 +1,17 @@
-import {Route, Routes, useNavigate} from "react-router-dom";
+import {Location, Route, Routes, useNavigate} from "react-router-dom";
 import {Modal} from "../modal/Modal";
 import {IngredientsDetails} from "../ingredientDetails/IngredientsDetails";
+import {FC} from "react";
 
+interface IModalSwitch {
+    background: Location
+}
 
-export const ModalSwitch = ({ background }) => {
+export const ModalSwitch:FC<IModalSwitch> = ({ background }) => {
     const navigate = useNavigate();
     const handleCloseModal = () => {
         navigate(-1)
     }
-
     return (
         <>
             {background && (

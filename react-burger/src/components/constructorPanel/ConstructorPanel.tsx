@@ -3,14 +3,17 @@ import {ClosingBun} from "../closingBun/ClosingBun";
 import panelStyles from "./constructorPanel.module.css"
 import {useDispatch, useSelector} from "react-redux";
 import {useDrop} from "react-dnd";
-import {pickedIngredientSlice} from "../../service/reducers/pickedIngredientsSlice";
+import {pickedIngredientSlice, PickedIngredientSliceState} from "../../service/reducers/pickedIngredientsSlice";
 import {DraggableIngredientsBlock} from "../draggableIngredientsBlock/DraggableIngredientsBlock";
 import uuid from "react-uuid";
 import {EmptyOpenBun} from "../emptyOpenBun/EmptyOpenBun";
 import {EmptyClosingBun} from "../emptyClosingBun/EmptyClosingBun";
+import {IIngredient} from "../../utils/interfaces";
+import {FC} from "react";
+import {GetStateManager} from "../../utils/getStateManager";
 
-export const ConstructorPanel = () => {
-    const state = useSelector(state => state.pickedIngredientsReducer)
+export const ConstructorPanel: FC = () => {
+    const state: PickedIngredientSliceState = useSelector(GetStateManager.GetPickedIngredients())
     const pickedIngredient = state.pickedIngredient
     const pickedBun = state.pickedBun
 
@@ -19,7 +22,7 @@ export const ConstructorPanel = () => {
 
     const [, dropTarget] = useDrop({
         accept: "ingredientItem",
-        drop(ingredient) {
+        drop(ingredient: IIngredient) {
             if (ingredient.type === "bun")
                 dispatch(setPickedBun({pickedIngredient: ingredient}))
             else

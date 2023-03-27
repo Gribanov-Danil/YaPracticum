@@ -2,14 +2,14 @@ import {createSlice} from "@reduxjs/toolkit";
 import {setCookie} from "../cookies/setCookie";
 import { IStatus, IUser} from "../../utils/interfaces";
 
-type SliceState = {
+export type TUserDataState = {
     user: IUser
     accessToken: string
     refreshToken: string
     status: IStatus
 }
 
-const initialState: SliceState = {
+const initialState: TUserDataState = {
     user: {
         email: '',
         name: ''

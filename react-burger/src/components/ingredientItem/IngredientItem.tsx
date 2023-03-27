@@ -5,6 +5,7 @@ import {useSelector} from "react-redux";
 import {useDrag} from "react-dnd";
 import {Link, useLocation} from "react-router-dom";
 import {IIngredient, IIngredientObj} from "../../utils/interfaces";
+import {GetStateManager} from "../../utils/getStateManager";
 
 interface IIngredientItem {
     index: number
@@ -20,9 +21,7 @@ type TPickedIngredientState = {
 export const IngredientItem = memo<IIngredientItem>(function IngredientItem ({ingredient, index, collectionLength})  {
 
     const [ingredientCount, setIngredientCount] = useState<number>(0)
-    // TODO разобрать state: any
-    const getState = (state: any) => state.pickedIngredientsReducer
-    const state: TPickedIngredientState = useSelector(getState)
+    const state: TPickedIngredientState = useSelector(GetStateManager.GetPickedIngredients())
 
     const pickedIngredient = state.pickedIngredient
     let pickedBun = state.pickedBun

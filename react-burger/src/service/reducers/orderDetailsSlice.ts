@@ -1,12 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {IStatus} from "../../utils/interfaces";
 
-type SliceState = {
+export type TOrderDetailsState = {
     id: string
     status: IStatus
 }
 
-const initialState: SliceState = {
+const initialState: TOrderDetailsState = {
     id: '',
     status: {
         isError: false,
