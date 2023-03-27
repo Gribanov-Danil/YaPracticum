@@ -1,11 +1,10 @@
 import {AxiosRequestInstance, URL_ORDER} from "./constants/axiosInstance";
-import {orderDetailsSlice} from "../service/reducers/orderDetailsSlice";
+import {fetchDataError, fetchDataProcessing, updateId} from "../service/reducers/orderDetailsSlice";
 import {getCookie} from "../service/cookies/getCookie";
-import {AnyAction, Dispatch} from "redux";
+import {AppDispatch} from "../service";
 
-const {fetchDataProcessing, updateId, fetchDataError} = orderDetailsSlice.actions
 
-export const postAxiosOrder = (ingredientsIdsList: string[]) => async (dispatch: Dispatch<AnyAction>) => {
+export const postAxiosOrder = (ingredientsIdsList: string[]) => async (dispatch: AppDispatch) => {
     dispatch(fetchDataProcessing())
     try {
         const response = await AxiosRequestInstance.post(URL_ORDER, {ingredients: ingredientsIdsList},

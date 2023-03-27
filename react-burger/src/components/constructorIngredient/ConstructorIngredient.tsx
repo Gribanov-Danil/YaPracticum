@@ -1,6 +1,6 @@
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import panelStyles from "../constructorPanel/constructorPanel.module.css";
-import {pickedIngredientSlice} from "../../service/reducers/pickedIngredientsSlice";
+import {deleteDraggableIngredient} from "../../service/reducers/pickedIngredientsSlice";
 import {useDispatch} from "react-redux";
 import {memo} from "react";
 import {Reorder} from "framer-motion";
@@ -13,7 +13,6 @@ interface IConstructorIngredient {
 // Элемент, имеющий днд
 export const ConstructorIngredient = memo<IConstructorIngredient>(function ConstructorIngredient ({ingredientObj}) {
     // TODO типизировать акшен и диспатч
-    const {deleteDraggableIngredient} = pickedIngredientSlice.actions
     const dispatch = useDispatch()
     const handleClose = () => {
         dispatch(deleteDraggableIngredient(ingredientObj))

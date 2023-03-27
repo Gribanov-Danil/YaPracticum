@@ -1,9 +1,8 @@
 import { Navigate } from 'react-router-dom';
 import {FC, ReactElement, useEffect, useState} from 'react';
 import {getAuthUser} from "../../utils/authUserResponse";
-import {useDispatch, useSelector} from "react-redux";
 import {unwrapResult} from "@reduxjs/toolkit";
-import {GetStateManager} from "../../utils/getStateManager";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 
 interface IProtectedRouteElement {
     element: ReactElement
@@ -13,15 +12,11 @@ interface IProtectedRouteElement {
 export const ProtectedRouteElement: FC<IProtectedRouteElement> = ({element, onlyAuth = true}) => {
     const [isUserLoaded, setUserLoaded] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
-    const { user } = useSelector(GetStateManager.GetUserData())
-    let dispatch = useDispatch()
+    const { user } = useAppSelector(state => state.userDataReducer)
+    let dispatch = useAppDispatch()
     const init = async () => {
-        // TODO ts-ignore
-        // @ts-ignore
         let res = await dispatch(getAuthUser());
         if (res && res.success) {
-            // TODO ts-ignore
-                // @ts-ignore
             await unwrapResult(res)
                 setIsSuccess(true)
         }

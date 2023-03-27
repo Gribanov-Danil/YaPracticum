@@ -1,10 +1,9 @@
 import constructorStyle from "./ingredientsBlock.module.css"
 import {IngredientsSection} from "../ingredientsSection/IngredientsSection";
-import {useSelector} from "react-redux";
 import {TabValue} from "../../utils/constants/tabValue";
 import {FC, RefObject} from "react";
 import {IngredientsSliceState} from "../../service/reducers/ingredientsSlice";
-import {GetStateManager} from "../../utils/getStateManager";
+import {useAppSelector} from "../../hooks/redux";
 
 interface IIngredientsBlock {
     refList: {
@@ -15,7 +14,7 @@ interface IIngredientsBlock {
 }
 
 export const IngredientsBlock: FC<IIngredientsBlock> = ({refList}) => {
-    const state: IngredientsSliceState = useSelector(GetStateManager.GetIngredients())
+    const state: IngredientsSliceState = useAppSelector(state => state.ingredientsReducer)
     const data = state.dataArray
     const bunList = data.filter((ingredient) => ingredient.type === "bun" )
     const mainList = data.filter((ingredient) => ingredient.type === "main" )

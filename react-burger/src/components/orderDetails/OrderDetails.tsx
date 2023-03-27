@@ -1,10 +1,9 @@
 import styles from "./orderDetails.module.css"
 import {FC} from "react";
-import {GetStateManager} from "../../utils/getStateManager";
-import {useSelector} from "react-redux";
+import {useAppSelector} from "../../hooks/redux";
 
 export const OrderDetails: FC = () => {
-    const state = useSelector(GetStateManager.GetOrderDetails())
+    const state = useAppSelector(state => state.orderDetailsReducer)
     const orderNumberStr = String(state.id).padStart(5, '0');
     return (
         <>
@@ -26,3 +25,4 @@ export const OrderDetails: FC = () => {
         </>
     )
 }
+

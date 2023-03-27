@@ -3,7 +3,7 @@ import {Button, Input, PasswordInput} from "@ya.praktikum/react-developer-burger
 import {Navigate, useLocation, useNavigate} from "react-router-dom";
 import {ChangeEvent, useRef, useState} from "react";
 import {postResetPassword} from "../../utils/postResetPassword";
-import {useDispatch} from "react-redux";
+import {useAppDispatch} from "../../hooks/redux";
 
 /* /reset-password */
 export const ResetPasswordPage = () => {
@@ -15,10 +15,8 @@ export const ResetPasswordPage = () => {
     const onTokenChange = (e: ChangeEvent<HTMLInputElement>) => setTokenValue(e.target.value)
     const inputRef = useRef(null)
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const onSaveClick = async () => {
-        // TODO ts-ignore
-        // @ts-ignore
         let res = await dispatch(postResetPassword(newPasswordValue, tokenValue))
         if (res && res.success) {
             navigate('/login', { replace: true })

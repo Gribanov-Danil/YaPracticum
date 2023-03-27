@@ -3,8 +3,7 @@ import {Button, EmailInput, PasswordInput} from "@ya.praktikum/react-developer-b
 import { useNavigate} from "react-router-dom";
 import {ChangeEvent, useState} from "react";
 import {postAuth} from "../../utils/postAuth";
-import {useDispatch} from "react-redux";
-import {unwrapResult} from "@reduxjs/toolkit";
+import {useAppDispatch} from "../../hooks/redux";
 
 export const SignInPage = () => {
     const navigate = useNavigate();
@@ -18,13 +17,11 @@ export const SignInPage = () => {
     const [passwordValue, setPasswordValue] = useState('')
     const onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => setPasswordValue(e.target.value)
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const onLoginClick = async () => {
-        // TODO ts-ignore
-        // @ts-ignore
+
         let isSuccess = await dispatch(postAuth(emailValue, passwordValue))
-        // TODO ts-ignore
-        // @ts-ignore
+
         // unwrapResult(isSuccess)
         if (isSuccess) {
             navigate('/', { replace: true })

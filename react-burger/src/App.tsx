@@ -1,7 +1,6 @@
 import './App.css';
 import {ConstructorPage} from "./pages/constructorPage/ConstructorPage";
 import {useEffect} from "react";
-import {useDispatch} from "react-redux";
 import {AppHeader} from "./components/appHeader/AppHeader";
 import {Location, Route, Routes, useLocation} from "react-router-dom";
 import {SignInPage} from "./pages/sign-inPage/Sign-inPage";
@@ -16,19 +15,19 @@ import {unwrapResult} from "@reduxjs/toolkit";
 import {ModalSwitch} from "./components/modalSwitch/ModalSwitch";
 import {IngredientsDetails} from "./components/ingredientDetails/IngredientsDetails";
 import {getIngredientsData} from "./utils/getIngredientsData";
+import {useAppDispatch} from "./hooks/redux";
 
 function App() {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     useEffect( () => {
-        // TODO разобраться ts-ignore
-        // @ts-ignore
         dispatch(getIngredientsData())
     }, [])
 
     const init = async () => {
+
+        let res = dispatch(getAuthUser());
         // TODO разобраться ts-ignore
         // @ts-ignore
-        let res = dispatch(getAuthUser());
         if (res && res.success) {
             // TODO разобраться ts-ignore
             // @ts-ignore

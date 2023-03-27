@@ -2,26 +2,25 @@ import panelStyles from "../constructorPanel/constructorPanel.module.css";
 import {ConstructorIngredient} from "../constructorIngredient/ConstructorIngredient";
 import {memo} from "react";
 import {Reorder} from "framer-motion";
-import {pickedIngredientSlice} from "../../service/reducers/pickedIngredientsSlice";
-import {useDispatch} from "react-redux";
+import {updatePickedIngredient} from "../../service/reducers/pickedIngredientsSlice";
 import styles from "./draggableIngredientsBlock.module.css"
 import uuid from "react-uuid";
 import {IIngredientObj} from "../../utils/interfaces";
+import {useAppDispatch} from "../../hooks/redux";
 
 interface IDraggableIngredientsBlock {
     pickedIngredients: IIngredientObj[]
 }
 
 export const DraggableIngredientsBlock = memo<IDraggableIngredientsBlock>(function DraggableIngredientsBlock({pickedIngredients}) {
-    const {updatePickedIngredient} = pickedIngredientSlice.actions
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const update = (newIngredientList: IIngredientObj[]) => dispatch(updatePickedIngredient(newIngredientList))
     return (
       <Reorder.Group
-          // TODO разобраться ts-ignore
+          // TODO разобраться ts-ignore и в типизации framer-motion
           // @ts-ignore
           axys={"y"}
-          onReorder={(newIngredientList) => update(newIngredientList)}
+          onReorder={(newIngredientList:IIngredientObj[]) => update(newIngredientList)}
           values={pickedIngredients}
           className={panelStyles.constructor_block}
       >

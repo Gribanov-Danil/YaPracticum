@@ -1,23 +1,22 @@
 import {OpenBun} from "../openBun/OpenBun";
 import {ClosingBun} from "../closingBun/ClosingBun";
 import panelStyles from "./constructorPanel.module.css"
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {useDrop} from "react-dnd";
-import {pickedIngredientSlice, PickedIngredientSliceState} from "../../service/reducers/pickedIngredientsSlice";
+import {setFirstIngredient, setPickedBun, setPickedIngredient} from "../../service/reducers/pickedIngredientsSlice";
 import {DraggableIngredientsBlock} from "../draggableIngredientsBlock/DraggableIngredientsBlock";
 import uuid from "react-uuid";
 import {EmptyOpenBun} from "../emptyOpenBun/EmptyOpenBun";
 import {EmptyClosingBun} from "../emptyClosingBun/EmptyClosingBun";
 import {IIngredient} from "../../utils/interfaces";
 import {FC} from "react";
-import {GetStateManager} from "../../utils/getStateManager";
+import {useAppSelector} from "../../hooks/redux";
 
 export const ConstructorPanel: FC = () => {
-    const state: PickedIngredientSliceState = useSelector(GetStateManager.GetPickedIngredients())
+    const state = useAppSelector(state => state.pickedIngredientsReducer)
     const pickedIngredient = state.pickedIngredient
     const pickedBun = state.pickedBun
 
-    const {setPickedIngredient, setPickedBun, setFirstIngredient} = pickedIngredientSlice.actions
     const dispatch = useDispatch()
 
     const [, dropTarget] = useDrop({

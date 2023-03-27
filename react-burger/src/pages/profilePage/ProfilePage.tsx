@@ -2,22 +2,22 @@ import profileStyles from './profilePage.module.css'
 import {NavLink, Route, Routes, useNavigate} from "react-router-dom";
 import {ProfileDataPage} from "../profileDataPage/ProfileDataPage";
 import {UserOrdersPage} from "../userOrdersPage/UserOrdersPage";
-import {useDispatch} from "react-redux";
 import {ProtectedRouteElement} from "../../hocs/protectedRouteElement/ProtectedRouteElement";
 import {postLogout} from "../../utils/postLogoutUser";
 import {getCookie} from "../../service/cookies/getCookie";
 import {unwrapResult} from "@reduxjs/toolkit";
+import {useAppDispatch} from "../../hooks/redux";
 
 export const ProfilePage = () => {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const navigate = useNavigate()
 
     const onExitClick = async () => {
-        // TODO ts-ignore
-        // @ts-ignore
-        let response = await dispatch(postLogout(getCookie('refreshToken')))
-        // TODO ts-ignore
-        // @ts-ignore
+        let response
+        let refreshToken = getCookie('refreshToken')
+        if (refreshToken) {
+            response = await dispatch(postLogout(refreshToken))
+        }
         unwrapResult(response)
         if (response.success) {
             navigate('/login', { replace: true })

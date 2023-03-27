@@ -49,4 +49,4 @@ export const pickedIngredientSlice = createSlice({
     }
 })
 
-export default pickedIngredientSlice.reducer
+export const {setFirstIngredient, setPickedIngredient, setPickedBun, deleteDraggableIngredient, updatePickedIngredient} = pickedIngredientSlice.actions

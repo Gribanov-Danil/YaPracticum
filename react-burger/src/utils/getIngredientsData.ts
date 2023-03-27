@@ -1,10 +1,14 @@
 import {AxiosRequestInstance, URL_INGREDIENTS} from "./constants/axiosInstance";
-import {ingredientsSlice} from "../service/reducers/ingredientsSlice";
-import {AnyAction, Dispatch} from "redux";
+import {
+    fetchDataError,
+    fetchingData,
+    setFetchDataSuccess
+} from "../service/reducers/ingredientsSlice";
+import {AppDispatch} from "../service";
 
-const {setFetchDataSuccess, fetchingData, fetchDataError} = ingredientsSlice.actions
 
-export const getIngredientsData = () => async (dispatch: Dispatch<AnyAction>) => {
+
+export const getIngredientsData = () => async (dispatch: AppDispatch) => {
     dispatch(fetchingData())
     try {
         const response = await AxiosRequestInstance.get(URL_INGREDIENTS)

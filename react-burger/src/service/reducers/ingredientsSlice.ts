@@ -34,4 +34,4 @@ export const ingredientsSlice = createSlice({
     }
 })
 
-export default ingredientsSlice.reducer
+export const {setFetchDataSuccess, fetchingData, fetchDataError} = ingredientsSlice.actions

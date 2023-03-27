@@ -1,11 +1,10 @@
 import {Counter, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import constructorItemStyles from "./ingredientItem.module.css"
 import {memo, useEffect, useState} from "react";
-import {useSelector} from "react-redux";
 import {useDrag} from "react-dnd";
 import {Link, useLocation} from "react-router-dom";
 import {IIngredient, IIngredientObj} from "../../utils/interfaces";
-import {GetStateManager} from "../../utils/getStateManager";
+import {useAppSelector} from "../../hooks/redux";
 
 interface IIngredientItem {
     index: number
@@ -21,7 +20,7 @@ type TPickedIngredientState = {
 export const IngredientItem = memo<IIngredientItem>(function IngredientItem ({ingredient, index, collectionLength})  {
 
     const [ingredientCount, setIngredientCount] = useState<number>(0)
-    const state: TPickedIngredientState = useSelector(GetStateManager.GetPickedIngredients())
+    const state: TPickedIngredientState = useAppSelector(state => state.pickedIngredientsReducer)
 
     const pickedIngredient = state.pickedIngredient
     let pickedBun = state.pickedBun

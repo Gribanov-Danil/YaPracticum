@@ -37,4 +37,4 @@ export const orderDetailsSlice = createSlice({
     }
 })
 
-export default orderDetailsSlice.reducer
+export const {fetchDataProcessing, fetchDataError, updateId, deleteId} = orderDetailsSlice.actions

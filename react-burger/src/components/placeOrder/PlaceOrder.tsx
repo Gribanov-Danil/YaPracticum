@@ -4,23 +4,21 @@ import placeOrderStyles from "./placeOrder.module.css"
 import {Modal} from "../modal/Modal";
 import {useCallback, useMemo, useState} from "react";
 import {OrderDetails} from "../orderDetails/OrderDetails";
-import {useDispatch, useSelector} from "react-redux";
-import {orderDetailsSlice} from "../../service/reducers/orderDetailsSlice";
+import {deleteId} from "../../service/reducers/orderDetailsSlice";
 import {postAxiosOrder} from "../../utils/postAxiosOrder";
 import {useNavigate} from "react-router-dom";
-import {GetStateManager} from "../../utils/getStateManager";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 
 
 export const PlaceOrder = () => {
     const [isModalVisible, setModalVisible] = useState(false)
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const handleCloseModal = useCallback( () => {
         dispatch(deleteId())
         setModalVisible(false)
     }, [])
 
-    const state = useSelector(GetStateManager.GetPickedIngredients())
-    const {deleteId} = orderDetailsSlice.actions
+    const state = useAppSelector(state => state.pickedIngredientsReducer)
     const pickedIngredient = state.pickedIngredient
 
     let pickedBun = Object.keys(state.pickedBun).length !== 0? [state.pickedBun]: []
@@ -35,10 +33,8 @@ export const PlaceOrder = () => {
 
     const navigate = useNavigate()
 
-    const { user } = useSelector(GetStateManager.GetUserData())
+    const { user } = useAppSelector(state => state.userDataReducer)
     const handleToggleModal = useCallback(async () => {
-        // Todo: ts-ignore
-        // @ts-ignore
         dispatch(postAxiosOrder(ingredientsIdsList))
         if (user.email !== '') {
             setModalVisible(true)

@@ -1,8 +1,7 @@
 import {ChangeEvent, FC, useEffect, useRef, useState} from "react";
 import {Button, EmailInput, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useDispatch, useSelector} from "react-redux";
 import {patchAuthUser} from "../../utils/authUserResponse";
-import {GetStateManager} from "../../utils/getStateManager";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 
 interface IProfileDataPageState {
     name: string
@@ -11,7 +10,7 @@ interface IProfileDataPageState {
 }
 
 export const ProfileDataPage: FC = () => {
-    const { user } = useSelector(GetStateManager.GetUserData())
+    const { user } = useAppSelector(state => state.userDataReducer)
     const initialStateForm: IProfileDataPageState = {
         name: user.name,
         email: user.email,
@@ -26,12 +25,10 @@ export const ProfileDataPage: FC = () => {
         setIsEditFieldVisible(JSON.stringify(initialStateForm) !== JSON.stringify(form))
     }, [form.name, form.password, initialStateForm])
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const onChange = (e: ChangeEvent<HTMLInputElement>) => setForm({ ...form, [e.target.name]: e.target.value.trim() })
 
     const applyChanges = async () => {
-        // TODO разобраться ts-ignore
-        // @ts-ignore
         let res = await dispatch(patchAuthUser(form.name, form.email, form.password))
         if (!res) {
             setIsEditFieldVisible(false)

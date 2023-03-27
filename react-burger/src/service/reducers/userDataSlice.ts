@@ -61,4 +61,4 @@ export const userDataSlice = createSlice({
     }
 })
 
-export default userDataSlice.reducer
+export const {setFetchDataSuccess, fetchingData, fetchDataError, updateTokens, updateUser, logoutUser} = userDataSlice.actions

@@ -1,11 +1,10 @@
 import {URL_REGISTRATION} from "./constants/axiosInstance";
 import {AxiosRequestInstance} from "./constants/axiosInstance";
-import {userDataSlice} from "../service/reducers/userDataSlice";
-import {AnyAction, Dispatch} from "redux";
+import {fetchDataError, fetchingData, setFetchDataSuccess} from "../service/reducers/userDataSlice";
+import {AppDispatch} from "../service";
 
-const {setFetchDataSuccess, fetchingData, fetchDataError} = userDataSlice.actions
 
-export const postRegistration = (email: string, password: string, name: string) => async (dispatch: Dispatch<AnyAction>) => {
+export const postRegistration = (email: string, password: string, name: string) => async (dispatch: AppDispatch) => {
     dispatch(fetchingData())
     try {
         const response = await AxiosRequestInstance.post(URL_REGISTRATION, {

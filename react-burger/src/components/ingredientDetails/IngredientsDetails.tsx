@@ -1,14 +1,13 @@
 import styles from "./ingredientsDetails.module.css"
 import {IngredientCharacteristic} from "../ingredientCharacteristic/IngredientCharacteristic";
-import {useSelector} from "react-redux";
 import {useLocation, useParams} from "react-router-dom";
 import {FC} from "react";
-import {GetStateManager} from "../../utils/getStateManager";
+import {useAppSelector} from "../../hooks/redux";
 
 export const IngredientsDetails: FC = () => {
     const location = useLocation()
     const { ingredientId } = useParams()
-    const { dataArray, status } = useSelector(GetStateManager.GetIngredients())
+    const { dataArray, status } = useAppSelector(state => state.ingredientsReducer)
     const data = dataArray.filter((el) => el._id === ingredientId)[0]
     return (
         <>
