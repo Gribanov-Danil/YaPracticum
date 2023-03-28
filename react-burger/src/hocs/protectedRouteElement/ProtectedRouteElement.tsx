@@ -15,10 +15,12 @@ export const ProtectedRouteElement: FC<IProtectedRouteElement> = ({element, only
     const { user } = useAppSelector(state => state.userDataReducer)
     let dispatch = useAppDispatch()
     const init = async () => {
-        let res = await dispatch(getAuthUser());
+        // let res = await dispatch(getAuthUser());
+        let payload = await dispatch(getAuthUser())
+        let res = unwrapResult(payload)
+
         if (res && res.success) {
-            await unwrapResult(res)
-                setIsSuccess(true)
+            setIsSuccess(true)
         }
         setUserLoaded(true);
     };

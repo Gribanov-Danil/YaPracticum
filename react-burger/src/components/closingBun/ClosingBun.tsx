@@ -1,9 +1,9 @@
 import {ConstructorElement} from "@ya.praktikum/react-developer-burger-ui-components";
 import {FC} from "react";
-import {IIngredient} from "../../utils/interfaces";
+import {TIngredient} from "../../utils/models/ingredient-types/types";
 
 interface IClosingBun {
-    bun: IIngredient
+    bun: TIngredient
 }
 
 export const ClosingBun:FC<IClosingBun> = ({bun}) => {

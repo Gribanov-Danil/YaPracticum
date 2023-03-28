@@ -1,7 +1,7 @@
 import {URL_REGISTRATION} from "./constants/axiosInstance";
 import {AxiosRequestInstance} from "./constants/axiosInstance";
 import {fetchDataError, fetchingData, setFetchDataSuccess} from "../service/reducers/userDataSlice";
-import {AppDispatch} from "../service";
+import {AppDispatch} from "../service/store";
 
 
 export const postRegistration = (email: string, password: string, name: string) => async (dispatch: AppDispatch) => {

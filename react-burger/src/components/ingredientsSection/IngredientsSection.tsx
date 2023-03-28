@@ -2,11 +2,11 @@ import constructorStyle from "../ingredientsBlock/ingredientsBlock.module.css";
 import {IngredientItem} from "../ingredientItem/IngredientItem";
 import uuid from 'react-uuid';
 import {forwardRef} from "react";
-import {IIngredient} from "../../utils/interfaces";
+import {TIngredient} from "../../utils/models/ingredient-types/types";
 
 interface IIngredientsSection {
     sectionTitle: string
-    itemList: IIngredient[]
+    itemList: TIngredient[]
     id: string
 }
 

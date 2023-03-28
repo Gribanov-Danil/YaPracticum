@@ -1,7 +1,7 @@
 import {AxiosRequestInstance, URL_ORDER} from "./constants/axiosInstance";
 import {fetchDataError, fetchDataProcessing, updateId} from "../service/reducers/orderDetailsSlice";
 import {getCookie} from "../service/cookies/getCookie";
-import {AppDispatch} from "../service";
+import {AppDispatch} from "../service/store";
 
 
 export const postAxiosOrder = (ingredientsIdsList: string[]) => async (dispatch: AppDispatch) => {

@@ -4,19 +4,16 @@ import {deleteDraggableIngredient} from "../../service/reducers/pickedIngredient
 import {useDispatch} from "react-redux";
 import {memo} from "react";
 import {Reorder} from "framer-motion";
-import {IIngredientObj} from "../../utils/interfaces";
+import {TIngredientObj} from "../../utils/models/ingredient-types/types";
 
 interface IConstructorIngredient {
-    ingredientObj: IIngredientObj
+    ingredientObj: TIngredientObj
 }
 
 // Элемент, имеющий днд
 export const ConstructorIngredient = memo<IConstructorIngredient>(function ConstructorIngredient ({ingredientObj}) {
-    // TODO типизировать акшен и диспатч
     const dispatch = useDispatch()
-    const handleClose = () => {
-        dispatch(deleteDraggableIngredient(ingredientObj))
-    }
+    const handleClose = () => dispatch(deleteDraggableIngredient(ingredientObj))
 
     return (
         <Reorder.Item value={ingredientObj} className={panelStyles.ingredient}>

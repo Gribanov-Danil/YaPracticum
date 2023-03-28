@@ -1,7 +1,7 @@
 import {URL_LOGIN} from "./constants/axiosInstance";
 import {AxiosRequestInstance} from "./constants/axiosInstance";
 import {fetchDataError, fetchingData, setFetchDataSuccess} from "../service/reducers/userDataSlice";
-import {AppDispatch} from "../service";
+import {AppDispatch} from "../service/store";
 
 
 export const postAuth = (email: string, password: string) => async (dispatch: AppDispatch) => {

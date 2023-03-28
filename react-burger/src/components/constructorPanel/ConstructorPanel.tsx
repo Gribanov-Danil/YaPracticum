@@ -8,9 +8,9 @@ import {DraggableIngredientsBlock} from "../draggableIngredientsBlock/DraggableI
 import uuid from "react-uuid";
 import {EmptyOpenBun} from "../emptyOpenBun/EmptyOpenBun";
 import {EmptyClosingBun} from "../emptyClosingBun/EmptyClosingBun";
-import {IIngredient} from "../../utils/interfaces";
 import {FC} from "react";
 import {useAppSelector} from "../../hooks/redux";
+import {TIngredient} from "../../utils/models/ingredient-types/types";
 
 export const ConstructorPanel: FC = () => {
     const state = useAppSelector(state => state.pickedIngredientsReducer)
@@ -21,7 +21,7 @@ export const ConstructorPanel: FC = () => {
 
     const [, dropTarget] = useDrop({
         accept: "ingredientItem",
-        drop(ingredient: IIngredient) {
+        drop(ingredient: TIngredient) {
             if (ingredient.type === "bun")
                 dispatch(setPickedBun(ingredient))
             else

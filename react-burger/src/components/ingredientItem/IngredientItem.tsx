@@ -3,18 +3,18 @@ import constructorItemStyles from "./ingredientItem.module.css"
 import {memo, useEffect, useState} from "react";
 import {useDrag} from "react-dnd";
 import {Link, useLocation} from "react-router-dom";
-import {IIngredient, IIngredientObj} from "../../utils/interfaces";
 import {useAppSelector} from "../../hooks/redux";
+import {TIngredient, TIngredientObj} from "../../utils/models/ingredient-types/types";
 
 interface IIngredientItem {
     index: number
     collectionLength: number
-    ingredient: IIngredient
+    ingredient: TIngredient
 }
 
 type TPickedIngredientState = {
-    pickedIngredient: IIngredientObj[];
-    pickedBun: IIngredient;
+    pickedIngredient: TIngredientObj[];
+    pickedBun: TIngredient;
 }
 
 export const IngredientItem = memo<IIngredientItem>(function IngredientItem ({ingredient, index, collectionLength})  {
@@ -24,11 +24,11 @@ export const IngredientItem = memo<IIngredientItem>(function IngredientItem ({in
 
     const pickedIngredient = state.pickedIngredient
     let pickedBun = state.pickedBun
-    let data: IIngredient[] = []
+    let data: TIngredient[] = []
     if (Object.keys(pickedBun).length !== 0) {
         data = [pickedBun, pickedBun]
     }
-    pickedIngredient.map((ingredientObj: IIngredientObj) => data.push(ingredientObj.ingredient))
+    pickedIngredient.map((ingredientObj: TIngredientObj) => data.push(ingredientObj.ingredient))
     useEffect(() => {
         setIngredientCount(data.filter((item) => item._id === ingredient._id).length)
     }, )

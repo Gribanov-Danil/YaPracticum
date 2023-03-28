@@ -1,12 +1,13 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {setCookie} from "../cookies/setCookie";
-import { IStatus, IUser} from "../../utils/interfaces";
+import {TStatus, TUser} from "../../utils/models/redux-types/types";
+import {getAuthUser} from "../../utils/authUserResponse";
 
 export type TUserDataState = {
-    user: IUser
+    user: TUser
     accessToken: string
     refreshToken: string
-    status: IStatus
+    status: TStatus
 }
 
 const initialState: TUserDataState = {
@@ -47,7 +48,7 @@ export const userDataSlice = createSlice({
             setCookie('token', action.payload.accessToken.split('Bearer ')[1])
             setCookie('refreshToken', action.payload.refreshToken)
         },
-        updateUser: (state, action: PayloadAction<IUser>) => {
+        updateUser: (state, action: PayloadAction<TUser>) => {
             state.user.email = action.payload.email
             state.user.name = action.payload.name
         },
@@ -58,6 +59,16 @@ export const userDataSlice = createSlice({
             setCookie('refreshToken', "", {expires: 1})
             state.user = initialState.user
         },
+    },
+    extraReducers: {
+        [getAuthUser.pending.type]: (state) => {
+            state.status.isLoading = true
+        },
+        [getAuthUser.rejected.type]: (state) => {
+            state.status.isError = true
+            state.status.isLoading = false
+        },
+
     }
 })
 

@@ -1,5 +1,4 @@
-
-export interface IIngredient {
+export type TIngredient = {
     _id: string,
     name: string,
     type: string,
@@ -14,17 +13,7 @@ export interface IIngredient {
     __v: number,
 }
 
-export interface IIngredientObj {
+export type TIngredientObj = {
     id: string
-    ingredient: IIngredient
-}
-
-export interface IUser {
-    email: string
-    name: string
-}
-
-export interface IStatus {
-    isLoading: boolean
-    isError: boolean
+    ingredient: TIngredient
 }

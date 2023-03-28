@@ -1,9 +1,9 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IStatus} from "../../utils/interfaces";
+import {TStatus} from "../../utils/models/redux-types/types";
 
 export type TOrderDetailsState = {
     id: number | undefined
-    status: IStatus
+    status: TStatus
 }
 
 const initialState: TOrderDetailsState = {

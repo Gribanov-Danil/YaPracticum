@@ -1,32 +1,32 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IIngredient, IIngredientObj} from "../../utils/interfaces";
+import {TIngredient, TIngredientObj} from "../../utils/models/ingredient-types/types";
 
 
 export type PickedIngredientSliceState = {
-    pickedIngredient: IIngredientObj[]
-    pickedBun: IIngredient
+    pickedIngredient: TIngredientObj[]
+    pickedBun: TIngredient
 }
 
 const initialState: PickedIngredientSliceState = {
     pickedIngredient: [{
         id: '',
-        ingredient: {} as IIngredient
+        ingredient: {} as TIngredient
     }],
-    pickedBun: {} as IIngredient
+    pickedBun: {} as TIngredient
 }
 
 export const pickedIngredientSlice = createSlice({
     name: "pickedIngredient",
     initialState,
     reducers: {
-        setFirstIngredient: (state, action: PayloadAction<IIngredientObj>) => {
+        setFirstIngredient: (state, action: PayloadAction<TIngredientObj>) => {
             state.pickedIngredient = [{
                 id: action.payload.id,
                 ingredient: action.payload.ingredient
             }
             ]
         },
-        setPickedIngredient: (state, action: PayloadAction<IIngredientObj>) => {
+        setPickedIngredient: (state, action: PayloadAction<TIngredientObj>) => {
             state.pickedIngredient = [...state.pickedIngredient,
                 ...[
                     {
@@ -35,15 +35,15 @@ export const pickedIngredientSlice = createSlice({
                     }]
             ]
         },
-        setPickedBun: (state, action: PayloadAction<IIngredient>) => {
+        setPickedBun: (state, action: PayloadAction<TIngredient>) => {
             state.pickedBun = action.payload
         },
-        deleteDraggableIngredient: (state, action: PayloadAction<IIngredientObj>) => {
+        deleteDraggableIngredient: (state, action: PayloadAction<TIngredientObj>) => {
           state.pickedIngredient = [
               ...state.pickedIngredient.filter((ingredientObj) => ingredientObj.id !== action.payload.id)
           ]
         },
-        updatePickedIngredient: (state, action:PayloadAction<IIngredientObj[]>) => {
+        updatePickedIngredient: (state, action:PayloadAction<TIngredientObj[]>) => {
             state.pickedIngredient = [...action.payload]
         }
     }

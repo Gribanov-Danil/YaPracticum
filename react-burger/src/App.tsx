@@ -11,7 +11,6 @@ import {ProfilePage} from "./pages/profilePage/ProfilePage";
 import {ProtectedRouteElement} from "./hocs/protectedRouteElement/ProtectedRouteElement";
 import {NotFound404} from "./pages/notFound404Page/NotFound404";
 import {getAuthUser} from "./utils/authUserResponse";
-import {unwrapResult} from "@reduxjs/toolkit";
 import {ModalSwitch} from "./components/modalSwitch/ModalSwitch";
 import {IngredientsDetails} from "./components/ingredientDetails/IngredientsDetails";
 import {getIngredientsData} from "./utils/getIngredientsData";
@@ -24,15 +23,7 @@ function App() {
     }, [])
 
     const init = async () => {
-
-        let res = dispatch(getAuthUser());
-        // TODO разобраться ts-ignore
-        // @ts-ignore
-        if (res && res.success) {
-            // TODO разобраться ts-ignore
-            // @ts-ignore
-            await unwrapResult(res)
-        }
+        await dispatch(getAuthUser());
     }
     useEffect(() => {
         init()

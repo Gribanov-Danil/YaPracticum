@@ -1,7 +1,7 @@
 import {URL_FORGOT_PASSWORD} from "./constants/axiosInstance";
 import {AxiosRequestInstance} from "./constants/axiosInstance";
 import {fetchDataError} from "../service/reducers/userDataSlice";
-import {AppDispatch} from "../service";
+import {AppDispatch} from "../service/store";
 
 
 export const postForgotPassword = (userEmail: string) => async (dispatch: AppDispatch)  => {
