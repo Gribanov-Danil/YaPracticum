@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios from "axios"
 
 export const AxiosRequestInstance = axios.create({
-    baseURL: 'https://norma.nomoreparties.space/api/',
-    timeout: 5000,
-    headers: { Accept: 'application/json' }
+  baseURL: "https://norma.nomoreparties.space/api/",
+  timeout: 5000,
+  headers: { Accept: "application/json" },
 })
 
 export const URL_ORDER = "/orders"
@@ -15,4 +15,3 @@ export const URL_LOGOUT = "/auth/logout"
 export const URL_UPDATE_TOKEN = "/auth/token"
 export const URL_AUTH_USER = "/auth/user"
 export const URL_INGREDIENTS = "/ingredients"
-
