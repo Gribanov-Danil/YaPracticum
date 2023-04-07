@@ -22,7 +22,7 @@ export const NavBar: FC = () => {
         textClass="text_type_main-default"
         text="Лента заказов"
         icon={<ListIcon type="secondary" />}
-        linkAddress={"/wayAnyway"}
+        linkAddress={"/feed"}
       />
 
       <div style={{ marginRight: 289 }}>

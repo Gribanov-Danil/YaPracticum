@@ -1,5 +1,5 @@
 import "./App.css"
-import { ConstructorPage } from "./pages/constructorPage/ConstructorPage"
+import { ConstructorPage } from "./pages/constructor-page/ConstructorPage"
 import { useEffect } from "react"
 import { AppHeader } from "./components/appHeader/AppHeader"
 import { Location, Route, Routes, useLocation } from "react-router-dom"
@@ -15,6 +15,7 @@ import { ModalSwitch } from "./components/modalSwitch/ModalSwitch"
 import { IngredientsDetails } from "./components/ingredientDetails/IngredientsDetails"
 import { getIngredientsData } from "./utils/getIngredientsData"
 import { useAppDispatch } from "./hooks/redux"
+import { FeedPage } from "./pages/feed-page/feed-page"
 
 function App() {
   const dispatch = useAppDispatch()
@@ -49,6 +50,7 @@ function App() {
           path={"/forgot-password"}
           element={<ProtectedRouteElement element={<ForgotPasswordPage />} onlyAuth={false} />}
         />
+        <Route path={"/feed"} element={<FeedPage />} />
         <Route
           path={"/reset-password"}
           element={<ProtectedRouteElement element={<ResetPasswordPage />} onlyAuth={false} />}

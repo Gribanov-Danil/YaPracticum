@@ -1,0 +1,29 @@
+.card {
+    width: 584px;
+    background-color: #1C1C21;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04), 0 0 2px rgba(0, 0, 0, 0.06), 0 0 1px rgba(0, 0, 0, 0.04);
+    border-radius: 40px;
+}
+
+.card_content {
+    padding: 24px;
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ingredients {
+    display: flex;
+    flex-direction: row-reverse;
+    width: fit-content;
+    color: white;
+}

@@ -1,0 +1,16 @@
+.content {
+    margin: 40px 340px 0;
+}
+
+.container {
+    display: flex;
+    gap: 60px;
+}
+
+.feed {
+    max-width: 608px;
+}
+
+.infographic {
+    max-width: 580px;
+}

@@ -3,7 +3,7 @@ import { FC, ReactElement } from "react"
 interface IIconifyText {
   text: string
   textClass: string
-  iconLocation: string
+  iconLocation: "right" | "left"
   gapInPx: number
   icon: ReactElement
 }

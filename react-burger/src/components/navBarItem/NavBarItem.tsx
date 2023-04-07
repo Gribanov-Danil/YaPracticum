@@ -18,7 +18,7 @@ export const NavBarItem: FC<INavBarItem> = ({ textClass, text, icon, linkAddress
           <IconifyText
             text={text}
             textClass={`${textClass} ${isActive ? "" : "text_color_inactive"}`}
-            iconLocation="Left"
+            iconLocation="left"
             gapInPx={8}
             icon={isActive ? cloneElement(icon, { type: "primary" }) : icon}
           />
