@@ -5,6 +5,10 @@
     border-radius: 40px;
 }
 
+.card:not(:last-child) {
+    margin-bottom: 16px;
+}
+
 .card_content {
     padding: 24px;
 }

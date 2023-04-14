@@ -5,9 +5,9 @@ import {
   updateId,
 } from "../service/reducers/orderDetailsSlice"
 import { getCookie } from "../service/cookies/getCookie"
-import { AppDispatch } from "../service/store"
+import { TAppDispatch } from "../service/store"
 
-export const postAxiosOrder = (ingredientsIdsList: string[]) => async (dispatch: AppDispatch) => {
+export const postAxiosOrder = (ingredientsIdsList: string[]) => async (dispatch: TAppDispatch) => {
   dispatch(fetchDataProcessing())
   try {
     const response = await AxiosRequestInstance.post(

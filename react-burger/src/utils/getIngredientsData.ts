@@ -4,10 +4,10 @@ import {
   fetchingData,
   setFetchDataSuccess,
 } from "../service/reducers/ingredientsSlice"
-import { AppDispatch } from "../service/store"
+import { TAppDispatch } from "../service/store"
 import { TIngredientsResponse } from "./models/redux-types/types"
 
-export const getIngredientsData = () => async (dispatch: AppDispatch) => {
+export const getIngredientsData = () => async (dispatch: TAppDispatch) => {
   dispatch(fetchingData())
   try {
     const response = await AxiosRequestInstance.get<TIngredientsResponse>(URL_INGREDIENTS)

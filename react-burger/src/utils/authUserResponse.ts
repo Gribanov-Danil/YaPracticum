@@ -3,7 +3,7 @@ import { AxiosRequestInstance } from "./constants/axiosInstance"
 import { fetchDataError, updateUser } from "../service/reducers/userDataSlice"
 import { getCookie } from "../service/cookies/getCookie"
 import { postRefreshUserData } from "./postRefreshUserData"
-import { AppDispatch } from "../service/store"
+import { TAppDispatch } from "../service/store"
 import { TUserResponse } from "./models/redux-types/types"
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
@@ -35,7 +35,7 @@ export const getAuthUser = createAsyncThunk("getAuthUser", async (_, { dispatch 
 })
 
 export const patchAuthUser =
-  (name: string, email: string, password: string) => async (dispatch: AppDispatch) => {
+  (name: string, email: string, password: string) => async (dispatch: TAppDispatch) => {
     try {
       const response = await AxiosRequestInstance.patch<TUserResponse>(
         URL_AUTH_USER,

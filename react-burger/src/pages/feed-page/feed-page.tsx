@@ -1,30 +1,33 @@
 import styles from "./feed-styles.module.css"
-import { OrderCard, TOrder } from "../../components/order-card/order-card"
+import { OrderCard } from "../../components/order-card/order-card"
 import { OrdersNumberBlock } from "../../ui/orders-number-block/orders-number-block"
-
-const mockOrder: TOrder = {
-  ingredients: [
-    "60d3b41abdacab0026a733c8",
-    "60d3b41abdacab0026a733cc",
-    "60d3b41abdacab0026a733d0",
-    "60d3b41abdacab0026a733d3",
-  ],
-  name: "biba",
-  _id: "Death Star Starship Main бургер",
-  status: "done",
-  number: 34535,
-  createdAt: "2021-06-23T14:43:22.587Z",
-  updatedAt: "2021-06-23T14:43:22.603Z",
-}
+import { useAppDispatch, useAppSelector } from "../../hooks/redux"
+import { useEffect } from "react"
+import { wsDisconnect, wsStart } from "../../service/actions/websocket-actions/websocket-actions"
+import { WS_ALL } from "../../utils/constants/websocket"
+import uuid from "react-uuid"
 
 export const FeedPage = () => {
+  const dispatch = useAppDispatch()
+  const { orders } = useAppSelector((state) => state.websocketReducer)
+  const { status } = useAppSelector((state) => state.ingredientsReducer)
+
+  useEffect(() => {
+    dispatch(wsStart(WS_ALL))
+    return () => {
+      dispatch(wsDisconnect())
+    }
+  }, [dispatch])
+
   return (
     <>
       <div className={styles.content}>
         <h1 className="text text_type_main-large mb-5">Лента заказов</h1>
         <div className={styles.container}>
           <div className={styles.feed}>
-            <OrderCard order={mockOrder} />
+            {orders?.orders.map((order) => (
+              <OrderCard key={uuid()} order={order} />
+            ))}
           </div>
           <div className={styles.infographic}>
             <div className={`mb-15 ${styles.orders_info}`}>
@@ -37,11 +40,11 @@ export const FeedPage = () => {
             </div>
             <div className={`mb-15 ${styles.orders_stat}`}>
               <h4 className="text text_type_main-medium">Выполнено за всё время:</h4>
-              <span className="text text_type_digits-large">28752</span>
+              <span className="text text_type_digits-large">{orders?.total}</span>
             </div>
             <div className={styles.orders_stat}>
               <h4 className="text text_type_main-medium">Выполнено за сегодня:</h4>
-              <span className="text text_type_digits-large">138</span>
+              <span className="text text_type_digits-large">{orders?.totalToday}</span>
             </div>
           </div>
         </div>

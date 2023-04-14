@@ -1,3 +1,7 @@
+body {
+    /*overflow-y: scroll;*/
+}
+
 .content {
     margin: 40px 340px 0;
 }
@@ -8,7 +12,19 @@
 }
 
 .feed {
+    overflow-y: scroll;
     max-width: 608px;
+    max-height: 812px;
+}
+
+.feed::-webkit-scrollbar {
+    width: 8px;               /* ширина scrollbar */
+}
+.feed::-webkit-scrollbar-track {
+    background: #2F2F37;
+}
+.feed::-webkit-scrollbar-thumb {
+    background: #8585AD;
 }
 
 .infographic {

@@ -5,9 +5,9 @@ import {
   fetchingData,
   setFetchDataSuccess,
 } from "../service/reducers/userDataSlice"
-import { AppDispatch } from "../service/store"
+import { TAppDispatch } from "../service/store"
 
-export const postAuth = (email: string, password: string) => async (dispatch: AppDispatch) => {
+export const postAuth = (email: string, password: string) => async (dispatch: TAppDispatch) => {
   dispatch(fetchingData())
   try {
     const response = await AxiosRequestInstance.post(URL_LOGIN, {

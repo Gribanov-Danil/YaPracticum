@@ -5,10 +5,10 @@ import {
   fetchingData,
   setFetchDataSuccess,
 } from "../service/reducers/userDataSlice"
-import { AppDispatch } from "../service/store"
+import { TAppDispatch } from "../service/store"
 
 export const postRegistration =
-  (email: string, password: string, name: string) => async (dispatch: AppDispatch) => {
+  (email: string, password: string, name: string) => async (dispatch: TAppDispatch) => {
     dispatch(fetchingData())
     try {
       const response = await AxiosRequestInstance.post(URL_REGISTRATION, {
