@@ -1,5 +1,5 @@
 import { Button, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components"
-import { IconifyText } from "../iconfyText/IconifyText"
+import { IconifyText } from "../../ui/iconfyText/IconifyText"
 import placeOrderStyles from "./placeOrder.module.css"
 import { Modal } from "../modal/Modal"
 import { useCallback, useMemo, useState } from "react"

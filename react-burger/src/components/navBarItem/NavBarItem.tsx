@@ -1,6 +1,6 @@
 import headerClasses from "../appHeader/header.module.css"
 import React, { cloneElement, FC, ReactElement } from "react"
-import { IconifyText } from "../iconfyText/IconifyText"
+import { IconifyText } from "../../ui/iconfyText/IconifyText"
 import { NavLink } from "react-router-dom"
 
 interface INavBarItem {

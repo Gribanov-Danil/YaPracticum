@@ -1,9 +1,9 @@
 import styles from "./order-card-styles.module.css"
 import { FC } from "react"
 import { CurrencyIcon, FormattedDate } from "@ya.praktikum/react-developer-burger-ui-components"
-import { IconifyText } from "../iconfyText/IconifyText"
+import { IconifyText } from "../../ui/iconfyText/IconifyText"
 import { useAppSelector } from "../../hooks/redux"
-import { IngredientIcon } from "../ingredient-icon/ingredient-icon"
+import { IngredientIcon } from "../../ui/ingredient-icon/ingredient-icon"
 import uuid from "react-uuid"
 
 export type TOrder = {

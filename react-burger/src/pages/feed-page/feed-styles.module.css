@@ -12,5 +12,14 @@
 }
 
 .infographic {
-    max-width: 580px;
+    width: 584px;
+}
+
+.orders_info {
+    display: flex;
+    gap: 8px;
+}
+
+.completed_orders {
+    width: 280px;
 }

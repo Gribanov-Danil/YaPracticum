@@ -1,5 +1,6 @@
 import styles from "./feed-styles.module.css"
 import { OrderCard, TOrder } from "../../components/order-card/order-card"
+import { OrdersNumberBlock } from "../../ui/orders-number-block/orders-number-block"
 
 const mockOrder: TOrder = {
   ingredients: [
@@ -25,7 +26,24 @@ export const FeedPage = () => {
           <div className={styles.feed}>
             <OrderCard order={mockOrder} />
           </div>
-          <div className={styles.infographic}>kefteme</div>
+          <div className={styles.infographic}>
+            <div className={`mb-15 ${styles.orders_info}`}>
+              <div className={styles.completed_orders}>
+                <OrdersNumberBlock title={"Готовы:"} extraClass="blue_text" />
+              </div>
+              <div className={styles.completed_orders}>
+                <OrdersNumberBlock title={"В работе:"} />
+              </div>
+            </div>
+            <div className={`mb-15 ${styles.orders_stat}`}>
+              <h4 className="text text_type_main-medium">Выполнено за всё время:</h4>
+              <span className="text text_type_digits-large">28752</span>
+            </div>
+            <div className={styles.orders_stat}>
+              <h4 className="text text_type_main-medium">Выполнено за сегодня:</h4>
+              <span className="text text_type_digits-large">138</span>
+            </div>
+          </div>
         </div>
       </div>
     </>
