@@ -6,7 +6,7 @@ import { WS_ALL, WS_USER } from "../../utils/constants/websocket"
 import { TOrderItem } from "../../utils/models/websocket-types/types"
 import { TIngredient } from "../../utils/models/ingredient-types/types"
 import { CurrencyIcon, FormattedDate } from "@ya.praktikum/react-developer-burger-ui-components"
-import { IconifyText } from "../../ui/iconfyText/IconifyText"
+import { IconicText } from "../../ui/iconic-text/iconic-text"
 import styles from "./order-information.module.css"
 import uuid from "react-uuid"
 
@@ -101,7 +101,7 @@ export const OrderInformation = () => {
             <span className={"text text_type_main-default text_color_inactive"}>
               <FormattedDate date={new Date(currentOrder?.createdAt || "")} />
             </span>
-            <IconifyText
+            <IconicText
               text={`${orderAmount}`}
               textClass={""}
               iconLocation={"right"}

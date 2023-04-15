@@ -1,7 +1,7 @@
 import styles from "./order-card-styles.module.css"
 import { FC } from "react"
 import { CurrencyIcon, FormattedDate } from "@ya.praktikum/react-developer-burger-ui-components"
-import { IconifyText } from "../../ui/iconfyText/IconifyText"
+import { IconicText } from "../../ui/iconic-text/iconic-text"
 import { useAppSelector } from "../../hooks/redux"
 import { IngredientIcon } from "../../ui/ingredient-icon/ingredient-icon"
 import uuid from "react-uuid"
@@ -63,7 +63,7 @@ export const OrderCard: FC<TOrderCard> = ({ order }) => {
               })}
             </ul>
             <div className={styles.summary}>
-              <IconifyText
+              <IconicText
                 text={`${orderAmount}`}
                 textClass={"text text_type_digits-default"}
                 iconLocation={"right"}

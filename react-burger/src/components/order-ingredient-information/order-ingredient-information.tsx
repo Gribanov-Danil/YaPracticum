@@ -2,7 +2,7 @@ import React, { FC } from "react"
 import styles from "./order-ingredient-information.module.css"
 import uuid from "react-uuid"
 import { IngredientIcon } from "../../ui/ingredient-icon/ingredient-icon"
-import { IconifyText } from "../../ui/iconfyText/IconifyText"
+import { IconicText } from "../../ui/iconic-text/iconic-text"
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components"
 
 interface IOrderIngredientInformation {
@@ -22,7 +22,7 @@ export const OrderIngredientInformation: FC<IOrderIngredientInformation> = ({
     <div className={styles.container}>
       <IngredientIcon key={uuid()} src={src || ""} srcSet={src || ""} extraClass="mr-4" />
       <p className="text text_type_main-default">{name || ""}</p>
-      <IconifyText
+      <IconicText
         text={`${count} x ${price || 0}`}
         textClass={""}
         iconLocation={"right"}
