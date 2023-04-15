@@ -16,6 +16,7 @@ import { IngredientsDetails } from "./components/ingredientDetails/IngredientsDe
 import { getIngredientsData } from "./utils/getIngredientsData"
 import { useAppDispatch } from "./hooks/redux"
 import { FeedPage } from "./pages/feed-page/feed-page"
+import { OrderInformation } from "./components/order-information/order-information"
 
 function App() {
   const dispatch = useAppDispatch()
@@ -58,6 +59,7 @@ function App() {
         <Route path={"/profile/*"} element={<ProtectedRouteElement element={<ProfilePage />} />} />
         <Route path="*" element={<NotFound404 />} />
         <Route path="/ingredients/:ingredientId" element={<IngredientsDetails />} />
+        <Route path={"/feed/:id"} element={<OrderInformation />} />
       </Routes>
       <ModalSwitch background={background} />
     </div>

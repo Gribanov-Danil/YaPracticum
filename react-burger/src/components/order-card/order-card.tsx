@@ -7,6 +7,7 @@ import { IngredientIcon } from "../../ui/ingredient-icon/ingredient-icon"
 import uuid from "react-uuid"
 import { TOrderItem } from "../../utils/models/websocket-types/types"
 import { Link, useLocation } from "react-router-dom"
+import { TIngredient } from "../../utils/models/ingredient-types/types"
 
 type TOrderCard = {
   order: TOrderItem
@@ -16,16 +17,16 @@ export const OrderCard: FC<TOrderCard> = ({ order }) => {
   const state = useAppSelector((state) => state.ingredientsReducer)
   const ingredients = state.dataArray
 
-  const getIngredient = (ingredientId: string) =>
-    ingredients.find((ingredient) => ingredient._id === ingredientId)
+  const getIngredient = (ingredientId: string, ingredientsArray: TIngredient[]) =>
+    ingredientsArray.find((ingredient) => ingredient._id === ingredientId)
 
   const getIngredientImageSrc = (ingredientId: string) => {
-    const ingredient = getIngredient(ingredientId)
+    const ingredient = getIngredient(ingredientId, ingredients)
     return ingredient?.image
   }
   const location = useLocation()
   let orderAmount = order.ingredients.reduce((amount, currentItem) => {
-    let ingredient = getIngredient(currentItem)
+    let ingredient = getIngredient(currentItem, ingredients)
     if (ingredient?.price) {
       return amount + ingredient?.price
     }

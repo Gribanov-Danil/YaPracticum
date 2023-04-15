@@ -2,6 +2,7 @@ import { Location, Route, Routes, useNavigate } from "react-router-dom"
 import { Modal } from "../modal/Modal"
 import { IngredientsDetails } from "../ingredientDetails/IngredientsDetails"
 import { FC } from "react"
+import { OrderInformation } from "../order-information/order-information"
 
 interface IModalSwitch {
   background: Location
@@ -21,6 +22,22 @@ export const ModalSwitch: FC<IModalSwitch> = ({ background }) => {
             element={
               <Modal title={"Детали ингредиента"} onClick={handleCloseModal}>
                 <IngredientsDetails />
+              </Modal>
+            }
+          />
+          <Route
+            path="/feed/:id"
+            element={
+              <Modal title={"Детали ингредиента"} onClick={handleCloseModal}>
+                <OrderInformation />
+              </Modal>
+            }
+          />
+          <Route
+            path="/profile/orders/:id"
+            element={
+              <Modal title={"Детали ингредиента"} onClick={handleCloseModal}>
+                Тут будет что-то...
               </Modal>
             }
           />
