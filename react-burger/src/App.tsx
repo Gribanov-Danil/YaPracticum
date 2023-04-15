@@ -60,6 +60,10 @@ function App() {
         <Route path="*" element={<NotFound404 />} />
         <Route path="/ingredients/:ingredientId" element={<IngredientsDetails />} />
         <Route path={"/feed/:id"} element={<OrderInformation />} />
+        <Route
+          path={"/profile/orders/:id"}
+          element={<ProtectedRouteElement element={<OrderInformation />} />}
+        />
       </Routes>
       <ModalSwitch background={background} />
     </div>

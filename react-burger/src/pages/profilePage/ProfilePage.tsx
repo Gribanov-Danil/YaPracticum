@@ -1,7 +1,7 @@
 import profileStyles from "./profilePage.module.css"
 import { NavLink, Route, Routes, useNavigate } from "react-router-dom"
 import { ProfileDataPage } from "../profileDataPage/ProfileDataPage"
-import { UserOrdersPage } from "../userOrdersPage/UserOrdersPage"
+import { UserOrdersPage } from "../user-orders-page/user-orders-page"
 import { ProtectedRouteElement } from "../../hocs/protectedRouteElement/ProtectedRouteElement"
 import { postLogout } from "../../utils/postLogoutUser"
 import { getCookie } from "../../service/cookies/getCookie"

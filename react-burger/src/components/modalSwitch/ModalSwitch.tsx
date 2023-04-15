@@ -37,7 +37,7 @@ export const ModalSwitch: FC<IModalSwitch> = ({ background }) => {
             path="/profile/orders/:id"
             element={
               <Modal title={"Детали ингредиента"} onClick={handleCloseModal}>
-                Тут будет что-то...
+                <OrderInformation />
               </Modal>
             }
           />
