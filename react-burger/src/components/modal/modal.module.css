@@ -12,6 +12,7 @@
 }
 
 .modal_content {
+    position: relative;
     width: 720px;
     display: flex;
     flex-direction: column;
@@ -26,4 +27,12 @@
 
 .modal.active {
     transform: scale(1);
+}
+
+.close {
+    position: absolute;
+    top: 60px;
+    right: 40px;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
 }

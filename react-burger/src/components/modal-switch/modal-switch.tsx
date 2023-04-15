@@ -20,7 +20,7 @@ export const ModalSwitch: FC<IModalSwitch> = ({ background }) => {
           <Route
             path="/ingredients/:ingredientId"
             element={
-              <Modal title={"Детали ингредиента"} onClick={handleCloseModal}>
+              <Modal onClick={handleCloseModal}>
                 <IngredientsDetails />
               </Modal>
             }
@@ -28,7 +28,7 @@ export const ModalSwitch: FC<IModalSwitch> = ({ background }) => {
           <Route
             path="/feed/:id"
             element={
-              <Modal title={"Детали ингредиента"} onClick={handleCloseModal}>
+              <Modal onClick={handleCloseModal}>
                 <OrderInformation />
               </Modal>
             }
@@ -36,7 +36,7 @@ export const ModalSwitch: FC<IModalSwitch> = ({ background }) => {
           <Route
             path="/profile/orders/:id"
             element={
-              <Modal title={"Детали ингредиента"} onClick={handleCloseModal}>
+              <Modal onClick={handleCloseModal}>
                 <OrderInformation />
               </Modal>
             }

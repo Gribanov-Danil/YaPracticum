@@ -2,7 +2,6 @@ import modalStyles from "./modal.module.css"
 import { FC, ReactNode, useEffect } from "react"
 import { createPortal } from "react-dom"
 import { ModalOverlay } from "../modal-overlay/modal-overlay"
-import ingredientsDetailsStyles from "../ingredient-details/ingredient-details.module.css"
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components"
 import { useLocation } from "react-router-dom"
 
@@ -10,10 +9,9 @@ interface IModal {
   onClick: () => void
   active?: boolean
   children?: ReactNode
-  title?: string
 }
 
-export const Modal: FC<IModal> = ({ active, onClick, children, title }) => {
+export const Modal: FC<IModal> = ({ active, onClick, children }) => {
   const location = useLocation()
   useEffect(() => {
     const closeOnEscapeKey = (e: KeyboardEvent) => (e.key === "Escape" ? onClick() : null)
@@ -31,11 +29,8 @@ export const Modal: FC<IModal> = ({ active, onClick, children, title }) => {
   return createPortal(
     <ModalOverlay overlayClass={modalOverlayStyle} onClick={onClick}>
       <div className={modalStyles.modal_content} onClick={(e) => e.stopPropagation()}>
-        <div className={`${ingredientsDetailsStyles.header} mt-10 mr-10 mb-6 ml-10`}>
-          <p className={`text text_type_main-large`}>{title}</p>
-          <div className={ingredientsDetailsStyles.close}>
-            <CloseIcon type="primary" onClick={onClick} />
-          </div>
+        <div className={modalStyles.close}>
+          <CloseIcon type="primary" onClick={onClick} />
         </div>
         {children}
       </div>

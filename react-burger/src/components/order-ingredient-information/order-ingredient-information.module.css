@@ -1,7 +1,13 @@
 .container {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 .price {
     margin-left: auto;
+}
+
+.ingredient_info {
+    display: flex;
+    align-items: center;
 }

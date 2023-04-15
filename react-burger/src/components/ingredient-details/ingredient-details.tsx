@@ -13,6 +13,9 @@ export const IngredientsDetails: FC = () => {
     <>
       {!status.isLoading && !status.isError && (
         <>
+          <h2 className={`mt-10 ml-10 mr-10 text text_type_main-large ${styles.header}`}>
+            Детали ингредиента
+          </h2>
           <div
             className={`${styles.ingredient_image} ${!location.state ? styles.new_page_modal : ""}`}
             onClick={(e) => e.stopPropagation()}

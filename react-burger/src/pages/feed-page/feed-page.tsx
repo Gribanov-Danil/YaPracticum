@@ -6,11 +6,11 @@ import { useEffect } from "react"
 import { wsDisconnect, wsStart } from "../../service/actions/websocket-actions/websocket-actions"
 import { WS_ALL } from "../../utils/constants/websocket"
 import uuid from "react-uuid"
+import { TOrderItem } from "../../utils/models/websocket-types/types"
 
 export const FeedPage = () => {
   const dispatch = useAppDispatch()
   const { orders } = useAppSelector((state) => state.websocketReducer)
-  const { status } = useAppSelector((state) => state.ingredientsReducer)
 
   useEffect(() => {
     dispatch(wsStart(WS_ALL))
@@ -18,6 +18,10 @@ export const FeedPage = () => {
       dispatch(wsDisconnect())
     }
   }, [dispatch])
+
+  const getFilteredOrders = (orders: TOrderItem[] | undefined, status: string) => {
+    return orders ? orders.filter((order) => order.status === status).slice(0, 10) : []
+  }
 
   return (
     <>
@@ -32,10 +36,17 @@ export const FeedPage = () => {
           <div className={styles.infographic}>
             <div className={`mb-15 ${styles.orders_info}`}>
               <div className={styles.completed_orders}>
-                <OrdersNumberBlock title={"Готовы:"} extraClass="blue_text" />
+                <OrdersNumberBlock
+                  title={"Готовы:"}
+                  orders={getFilteredOrders(orders?.orders, "done")}
+                  extraClass="blue_text"
+                />
               </div>
               <div className={styles.completed_orders}>
-                <OrdersNumberBlock title={"В работе:"} />
+                <OrdersNumberBlock
+                  orders={getFilteredOrders(orders?.orders, "pending")}
+                  title={"В работе:"}
+                />
               </div>
             </div>
             <div className={`mb-15 ${styles.orders_stat}`}>

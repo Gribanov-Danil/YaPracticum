@@ -20,11 +20,16 @@ export const OrderIngredientInformation: FC<IOrderIngredientInformation> = ({
 }) => {
   return (
     <div className={styles.container}>
-      <IngredientIcon key={uuid()} src={src || ""} srcSet={src || ""} extraClass="mr-4" />
-      <p className="text text_type_main-default">{name || ""}</p>
+      <div className={styles.ingredient_info}>
+        <div>
+          <IngredientIcon key={uuid()} src={src || ""} srcSet={src || ""} extraClass="mr-4" />
+        </div>
+
+        <p className="text text_type_main-default">{name || ""}</p>
+      </div>
       <IconicText
         text={`${count} x ${price || 0}`}
-        textClass={""}
+        textClass={"text text_type_digits-default"}
         iconLocation={"right"}
         gapInPx={8}
         icon={<CurrencyIcon type="primary" />}

@@ -1,9 +1,3 @@
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
 .text_block {
     display: flex;
     flex-direction: column;
@@ -27,8 +21,4 @@
 .characteristic {
     display: flex;
     flex-direction: column;
-}
-
-.close:hover {
-    cursor: pointer;
 }

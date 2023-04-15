@@ -70,21 +70,21 @@ export const OrderInformation = () => {
   return (
     <>
       {background && (
-        <p className={` text text_type_digits-default mb-4 mt-2`}>
+        <p className={`text text_type_digits-default mb-10 mt-10 mr-10 ml-10`}>
           {currentOrder && `#${currentOrder?.number.toString().padStart(6, "0") || "00000"}`}
         </p>
       )}
-      <div className={background ? styles.bodyModal : styles.bodyPage}>
-        <center>
+      <div className={`ml-10 mr-10 mb-10 ${background ? styles.bodyModal : styles.bodyPage}`}>
+        <div>
           {!background && (
             <p className={"text text_type_digits-default mb-10"}>
               {currentOrder && `#${currentOrder?.number || "00000"}`}
             </p>
           )}
-        </center>
+        </div>
         <>
-          <p className={`text text_type_main-medium mt-5`}>{currentOrder?.name || "Unknown"}</p>
-          <p className={`${styles.status} text text_type_main-default mt-4`}>Выполнен</p>
+          <p className={`text text_type_main-medium mb-3`}>{currentOrder?.name || "Error"}</p>
+          <p className={`${styles.status} mb-15 text text_type_main-default`}>Выполнен</p>
           <p className="text text_type_main-medium mb-6">Состав:</p>
           <div className={styles.ingredients}>
             {processedOrder.map((ingredient) => (
@@ -103,7 +103,7 @@ export const OrderInformation = () => {
             </span>
             <IconicText
               text={`${orderAmount}`}
-              textClass={""}
+              textClass={"text text_type_digits-default"}
               iconLocation={"right"}
               gapInPx={8}
               icon={<CurrencyIcon type="primary" />}

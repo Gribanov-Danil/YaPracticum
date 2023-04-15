@@ -1,32 +1,30 @@
 import styles from "./orders-number-block.module.css"
 import { FC } from "react"
+import { TOrderItem } from "../../utils/models/websocket-types/types"
+import uuid from "react-uuid"
 
 interface IOrdersNumberBlock {
   title: string
+  orders: TOrderItem[]
   extraClass?: string
 }
 
-export const OrdersNumberBlock: FC<IOrdersNumberBlock> = ({ title, extraClass }) => {
+export const OrdersNumberBlock: FC<IOrdersNumberBlock> = ({ title, extraClass, orders }) => {
   return (
     <>
       <h4 className="mb-6 text text_type_main-medium">{title}</h4>
-      <div className={styles.orders_block}>
-        <p className={`text text_type_digits-default mb-2 ${styles.extraclass} ${extraClass}`}>
-          034533
-        </p>
-        <p className={`text text_type_digits-default mb-2 ${styles.extraclass} ${extraClass}`}>
-          034533
-        </p>
-        <p className={`text text_type_digits-default mb-2 ${styles.extraclass} ${extraClass}`}>
-          034533
-        </p>
-        <p className={`text text_type_digits-default mb-2 ${styles.extraclass} ${extraClass}`}>
-          034533
-        </p>
-        <p className={`text text_type_digits-default mb-2 ${styles.extraclass} ${extraClass}`}>
-          034533
-        </p>
-      </div>
+      <ul className={styles.orders_block}>
+        {orders.map((order) => {
+          return (
+            <li
+              key={uuid()}
+              className={`text text_type_digits-default ${styles.order_number} ${extraClass}`}
+            >
+              {order.number}
+            </li>
+          )
+        })}
+      </ul>
     </>
   )
 }

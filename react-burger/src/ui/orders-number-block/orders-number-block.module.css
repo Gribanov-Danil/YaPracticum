@@ -1,0 +1,10 @@
+.orders_block {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 155px;
+}
+
+.order_number:not(:nth-child(5n)) {
+    margin-bottom: 8px;
+}
