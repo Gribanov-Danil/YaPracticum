@@ -1,6 +1,6 @@
 .orders {
     overflow-y: scroll;
-    max-height: 916px;
+    max-height: 730px;
 }
 
 .orders::-webkit-scrollbar {

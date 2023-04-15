@@ -1,7 +1,7 @@
 .container {
     display: flex;
     margin-top: 120px;
-    margin-right: min(720px, 37.5vw);
+    margin-right: min(720px, 36vw);
     margin-left: min(340px, 18vw);
     gap: 60px;
 }

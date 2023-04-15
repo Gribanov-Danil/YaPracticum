@@ -20,7 +20,7 @@ export const UserOrdersPage = () => {
   if (!wsConnected) return null
   else
     return (
-      <div className={`${styles.orders} mt-10`}>
+      <div className={`${styles.orders}`}>
         {orders?.orders?.length
           ? orders.orders
               .map((order: TOrderItem) => <OrderCard order={order} key={order._id} />)
