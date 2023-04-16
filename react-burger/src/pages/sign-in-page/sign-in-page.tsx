@@ -4,7 +4,7 @@ import {
   EmailInput,
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { postAuth } from "../../utils/postAuth"
 import { useAppDispatch } from "../../hooks/redux"
 import { useForm } from "../../hooks/use-form"
@@ -23,12 +23,14 @@ export const SignInPage = () => {
   const { values, handleChange } = useForm(initialStateForm)
   const onRegistrationClick = () => navigate("/register", { replace: true })
   const onResetPasswordClick = () => navigate("/forgot-password", { replace: true })
+  const location = useLocation()
 
   const dispatch = useAppDispatch()
   const onLoginClick = async () => {
     let isSuccess = await dispatch(postAuth(values.email, values.password))
+    const from = location.state?.from || "/"
     if (isSuccess) {
-      navigate("/", { replace: true })
+      navigate(from, { replace: true })
     }
   }
   return (

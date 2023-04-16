@@ -9,16 +9,13 @@ interface IProtectedRouteElement {
 
 export const ProtectedRoute: FC<IProtectedRouteElement> = ({ children, anonymous = false }) => {
   const isLoggedIn = !!useAppSelector((store) => store.userDataReducer.user.email)
-
   const location = useLocation()
   const from = location.state?.from || "/"
   if (anonymous && isLoggedIn) {
     return <Navigate to={from} />
   }
-
   if (!anonymous && !isLoggedIn) {
     return <Navigate to="/login" state={{ from: location }} />
   }
-
   return children
 }
