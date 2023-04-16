@@ -8,7 +8,7 @@ import { RegistrationPage } from "./pages/registration-page/registration-page"
 import { ForgotPasswordPage } from "./pages/forgot-password-page/forgot-password-page"
 import { ResetPasswordPage } from "./pages/reset-password-page/reset-password-page"
 import { ProfilePage } from "./pages/profile-page/profile-page"
-import { ProtectedRouteElement } from "./hocs/protected-route-element/protected-route-element"
+import { ProtectedRoute } from "./hocs/protected-route-element/protected-route-element"
 import { NotFound404 } from "./pages/not-found-404-page/not-found-404-page"
 import { getAuthUser } from "./utils/authUserResponse"
 import { ModalSwitch } from "./components/modal-switch/modal-switch"
@@ -41,28 +41,28 @@ function App() {
         <Route path={"/"} element={<ConstructorPage />} />
         <Route
           path={"/login"}
-          element={<ProtectedRouteElement element={<SignInPage />} onlyAuth={false} />}
+          element={<ProtectedRoute children={<SignInPage />} anonymous={true} />}
         />
         <Route
           path={"/register"}
-          element={<ProtectedRouteElement element={<RegistrationPage />} onlyAuth={false} />}
+          element={<ProtectedRoute children={<RegistrationPage />} anonymous={true} />}
         />
         <Route
           path={"/forgot-password"}
-          element={<ProtectedRouteElement element={<ForgotPasswordPage />} onlyAuth={false} />}
+          element={<ProtectedRoute children={<ForgotPasswordPage />} anonymous={true} />}
         />
         <Route path={"/feed"} element={<FeedPage />} />
         <Route
           path={"/reset-password"}
-          element={<ProtectedRouteElement element={<ResetPasswordPage />} onlyAuth={false} />}
+          element={<ProtectedRoute children={<ResetPasswordPage />} anonymous={true} />}
         />
-        <Route path={"/profile/*"} element={<ProtectedRouteElement element={<ProfilePage />} />} />
+        <Route path={"/profile/*"} element={<ProtectedRoute children={<ProfilePage />} />} />
         <Route path="*" element={<NotFound404 />} />
         <Route path="/ingredients/:ingredientId" element={<IngredientsDetails />} />
         <Route path={"/feed/:id"} element={<OrderInformation />} />
         <Route
           path={"/profile/orders/:id"}
-          element={<ProtectedRouteElement element={<OrderInformation />} />}
+          element={<ProtectedRoute children={<OrderInformation />} />}
         />
       </Routes>
       <ModalSwitch background={background} />

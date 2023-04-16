@@ -1,40 +1,24 @@
-import { Navigate } from "react-router-dom"
-import { FC, ReactElement, useEffect, useState } from "react"
-import { getAuthUser } from "../../utils/authUserResponse"
-import { unwrapResult } from "@reduxjs/toolkit"
-import { useAppDispatch, useAppSelector } from "../../hooks/redux"
+import { Navigate, useLocation } from "react-router-dom"
+import { FC, ReactElement } from "react"
+import { useAppSelector } from "../../hooks/redux"
 
 interface IProtectedRouteElement {
-  element: ReactElement
-  onlyAuth?: boolean
+  children: ReactElement
+  anonymous?: boolean
 }
 
-export const ProtectedRouteElement: FC<IProtectedRouteElement> = ({ element, onlyAuth = true }) => {
-  const [isUserLoaded, setUserLoaded] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
-  const { user } = useAppSelector((state) => state.userDataReducer)
-  let dispatch = useAppDispatch()
-  const init = async () => {
-    // let res = await dispatch(getAuthUser());
-    let payload = await dispatch(getAuthUser())
-    let res = unwrapResult(payload)
+export const ProtectedRoute: FC<IProtectedRouteElement> = ({ children, anonymous = false }) => {
+  const isLoggedIn = !!useAppSelector((store) => store.userDataReducer.user.email)
 
-    if (res && res.success) {
-      setIsSuccess(true)
-    }
-    setUserLoaded(true)
-  }
-  useEffect(() => {
-    init()
-  }, [])
-
-  if (!isUserLoaded) {
-    return null
+  const location = useLocation()
+  const from = location.state?.from || "/"
+  if (anonymous && isLoggedIn) {
+    return <Navigate to={from} />
   }
 
-  if (!onlyAuth) {
-    return user.email !== "" ? <Navigate to={"/"} replace /> : element
-  } else {
-    return isSuccess ? element : <Navigate to="/login" />
+  if (!anonymous && !isLoggedIn) {
+    return <Navigate to="/login" state={{ from: location }} />
   }
+
+  return children
 }

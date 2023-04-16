@@ -2,7 +2,7 @@ import profileStyles from "./profile-page.module.css"
 import { NavLink, Route, Routes, useNavigate } from "react-router-dom"
 import { ProfileDataPage } from "../profile-data-page/profile-data-page"
 import { UserOrdersPage } from "../user-orders-page/user-orders-page"
-import { ProtectedRouteElement } from "../../hocs/protected-route-element/protected-route-element"
+import { ProtectedRoute } from "../../hocs/protected-route-element/protected-route-element"
 import { postLogout } from "../../utils/postLogoutUser"
 import { getCookie } from "../../service/cookies/getCookie"
 import { unwrapResult } from "@reduxjs/toolkit"
@@ -60,8 +60,8 @@ export const ProfilePage = () => {
       </div>
       <div>
         <Routes>
-          <Route path={"/"} element={<ProtectedRouteElement element={<ProfileDataPage />} />} />
-          <Route path={"orders"} element={<ProtectedRouteElement element={<UserOrdersPage />} />} />
+          <Route path={"/"} element={<ProtectedRoute children={<ProfileDataPage />} />} />
+          <Route path={"orders"} element={<ProtectedRoute children={<UserOrdersPage />} />} />
         </Routes>
       </div>
     </div>
