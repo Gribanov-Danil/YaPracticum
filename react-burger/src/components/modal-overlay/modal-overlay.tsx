@@ -1,5 +1,4 @@
 import { FC, ReactNode } from "react"
-import { createPortal } from "react-dom"
 
 interface IModalOverlay {
   onClick: () => void
@@ -8,10 +7,9 @@ interface IModalOverlay {
 }
 
 export const ModalOverlay: FC<IModalOverlay> = ({ children, overlayClass, onClick }) => {
-  return createPortal(
+  return (
     <div className={overlayClass} onClick={() => onClick()}>
       {children}
-    </div>,
-    document.body,
+    </div>
   )
 }

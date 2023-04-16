@@ -11,6 +11,8 @@ interface IModal {
   children?: ReactNode
 }
 
+const portal = document.getElementById("react-modals") as Element
+
 export const Modal: FC<IModal> = ({ active, onClick, children }) => {
   const location = useLocation()
   useEffect(() => {
@@ -35,6 +37,6 @@ export const Modal: FC<IModal> = ({ active, onClick, children }) => {
         {children}
       </div>
     </ModalOverlay>,
-    document.body,
+    portal,
   )
 }
