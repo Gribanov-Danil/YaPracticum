@@ -6,64 +6,78 @@ import {
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components"
 import { useNavigate } from "react-router-dom"
-import { ChangeEvent, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import { postRegistration } from "../../utils/postRegistration"
 import { useAppDispatch } from "../../hooks/redux"
+import { useForm } from "../../hooks/use-form"
+
+interface IRegistrationPageForm {
+  name: string
+  email: string
+  password: string
+}
 
 export const RegistrationPage = () => {
   const navigate = useNavigate()
   const onLoginClick = () => navigate("/login", { replace: true })
+  const initialStateForm: IRegistrationPageForm = {
+    name: "",
+    email: "",
+    password: "",
+  }
+  const { values, handleChange } = useForm(initialStateForm)
 
-  const [inputValue, setInputValue] = useState("")
-  const inputRef = useRef(null)
-
-  const [emailValue, setEmailValue] = useState("")
-  const onEmailChange = (e: ChangeEvent<HTMLInputElement>) => setEmailValue(e.target.value)
-
-  const [passwordValue, setPasswordValue] = useState("")
-  const onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => setPasswordValue(e.target.value)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const dispatch = useAppDispatch()
   const onRegistrationClick = async () => {
-    dispatch(postRegistration(emailValue, passwordValue, inputValue))
+    dispatch(postRegistration(values.email, values.password, values.name))
   }
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [])
   return (
     <main className={styles.page}>
       <div className={styles.registration_container}>
-        <h1 className={`text text_type_main-medium mb-6`}>Регистрация</h1>
-        <Input
-          type={"text"}
-          placeholder={"Имя"}
-          onChange={(e) => setInputValue(e.target.value)}
-          value={inputValue}
-          name={"name"}
-          error={false}
-          ref={inputRef}
-          errorText={"Ошибка"}
-          size={"default"}
-          extraClass={`mb-6`}
-        />
-        <EmailInput
-          onChange={onEmailChange}
-          value={emailValue}
-          name={"email"}
-          extraClass={`mb-6`}
-        />
-        <PasswordInput
-          onChange={onPasswordChange}
-          value={passwordValue}
-          name={"password"}
-          extraClass={`mb-6`}
-        />
-        <Button
-          onClick={onRegistrationClick}
-          htmlType="button"
-          type="primary"
-          size="medium"
-          extraClass={`mb-20`}
-        >
-          Зарегистрироваться
-        </Button>
+        <form onSubmit={onRegistrationClick}>
+          <h1 className={`text text_type_main-medium mb-6`}>Регистрация</h1>
+          <Input
+            type={"text"}
+            placeholder={"Имя"}
+            onChange={handleChange}
+            value={values.name}
+            name={"name"}
+            error={false}
+            ref={inputRef}
+            errorText={"Ошибка"}
+            size={"default"}
+            extraClass={`mb-6`}
+          />
+          <EmailInput
+            onChange={handleChange}
+            value={values.email}
+            name={"email"}
+            extraClass={`mb-6`}
+          />
+          <PasswordInput
+            onChange={handleChange}
+            value={values.password}
+            name={"password"}
+            extraClass={`mb-6`}
+          />
+          <Button
+            onClick={onRegistrationClick}
+            htmlType="button"
+            type="primary"
+            size="medium"
+            extraClass={`mb-20`}
+          >
+            Зарегистрироваться
+          </Button>
+        </form>
+
         <div className={styles.registration_text_block}>
           <div className={styles.text_item}>
             <span

@@ -62,6 +62,9 @@ ul {
 
 .main_background {
   background-color: #131316;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .blue_text {

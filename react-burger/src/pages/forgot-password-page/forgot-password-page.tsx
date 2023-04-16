@@ -1,20 +1,21 @@
 import styles from "../pagesStyles.module.css"
 import { Button, EmailInput } from "@ya.praktikum/react-developer-burger-ui-components"
 import { useNavigate } from "react-router-dom"
-import { ChangeEvent, FC, useState } from "react"
+import { FC } from "react"
 import { postForgotPassword } from "../../utils/postForgorPassword"
 import { useAppDispatch } from "../../hooks/redux"
+import { useForm } from "../../hooks/use-form"
 
 /* /forgot-password */
 export const ForgotPasswordPage: FC = () => {
   const navigate = useNavigate()
   const onLoginClick = () => navigate("/login", { replace: true })
-  const [emailValue, setEmailValue] = useState("")
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => setEmailValue(e.target.value)
+  const { values, handleChange } = useForm<{ email: string }>({ email: "" })
+
   let SaveClickErrorMessage = () => <></>
   const dispatch = useAppDispatch()
-  const onSaveClick = async () => {
-    let response = await dispatch(postForgotPassword(emailValue))
+  const onSubmit = async () => {
+    let response = await dispatch(postForgotPassword(values.email))
     if (response && response.success) {
       navigate("/reset-password", { replace: true })
     } else {
@@ -26,24 +27,27 @@ export const ForgotPasswordPage: FC = () => {
   return (
     <main className={styles.page}>
       <div className={styles.registration_container}>
-        <h1 className={`text text_type_main-medium mb-6`}>Восстановление пароля</h1>
-        <EmailInput
-          onChange={onChange}
-          value={emailValue}
-          name={"email"}
-          extraClass={`mb-6`}
-          placeholder={`Укажите e-mail`}
-        />
-        <SaveClickErrorMessage />
-        <Button
-          onClick={onSaveClick}
-          htmlType="button"
-          type="primary"
-          size="medium"
-          extraClass={`mb-20`}
-        >
-          Восстановить
-        </Button>
+        <form onSubmit={onSubmit}>
+          <h1 className={`text text_type_main-medium mb-6`}>Восстановление пароля</h1>
+          <EmailInput
+            onChange={handleChange}
+            value={values.email}
+            name={"email"}
+            extraClass={`mb-6`}
+            placeholder={`Укажите e-mail`}
+          />
+          <SaveClickErrorMessage />
+          <Button
+            onClick={onSubmit}
+            htmlType="button"
+            type="primary"
+            size="medium"
+            extraClass={`mb-20`}
+          >
+            Восстановить
+          </Button>
+        </form>
+
         <div className={styles.registration_text_block}>
           <div className={styles.text_item}>
             <span

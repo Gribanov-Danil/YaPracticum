@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useEffect, useRef, useState } from "react"
+import { FC, useEffect, useRef, useState } from "react"
 import {
   Button,
   EmailInput,
@@ -7,8 +7,9 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components"
 import { patchAuthUser } from "../../utils/authUserResponse"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
+import { useForm } from "../../hooks/use-form"
 
-interface IProfileDataPageState {
+interface IProfileDataPageForm {
   name: string
   email: string
   password: string
@@ -16,39 +17,38 @@ interface IProfileDataPageState {
 
 export const ProfileDataPage: FC = () => {
   const { user } = useAppSelector((state) => state.userDataReducer)
-  const initialStateForm: IProfileDataPageState = {
+
+  const initialStateForm: IProfileDataPageForm = {
     name: user.name,
     email: user.email,
     password: "",
   }
-  const [form, setForm] = useState(initialStateForm)
+  const { values, handleChange, setValues } = useForm(initialStateForm)
 
   const [isEditFieldVisible, setIsEditFieldVisible] = useState(false)
 
   const inputRef = useRef<HTMLInputElement>(null)
   useEffect(() => {
-    setIsEditFieldVisible(JSON.stringify(initialStateForm) !== JSON.stringify(form))
-  }, [form.name, form.password, initialStateForm])
+    setIsEditFieldVisible(JSON.stringify(initialStateForm) !== JSON.stringify(values))
+  }, [values.name, values.password, initialStateForm])
 
   const dispatch = useAppDispatch()
-  const onChange = (e: ChangeEvent<HTMLInputElement>) =>
-    setForm({ ...form, [e.target.name]: e.target.value.trim() })
 
   const applyChanges = async () => {
-    let res = await dispatch(patchAuthUser(form.name, form.email, form.password))
+    let res = await dispatch(patchAuthUser(values.name, values.email, values.password))
     if (!res) {
       setIsEditFieldVisible(false)
-      setForm(initialStateForm)
+      setValues(initialStateForm)
     }
   }
 
   return (
-    <>
+    <form onSubmit={applyChanges}>
       <Input
         type={"text"}
         placeholder={`Имя`}
-        onChange={onChange}
-        value={form.name}
+        onChange={handleChange}
+        value={values.name}
         name={"name"}
         error={false}
         ref={inputRef}
@@ -58,23 +58,23 @@ export const ProfileDataPage: FC = () => {
         icon={`EditIcon`}
       />
       <EmailInput
-        onChange={onChange}
-        value={form.email}
+        onChange={handleChange}
+        value={values.email}
         name={"email"}
         isIcon={true}
         extraClass={`mb-6`}
         placeholder={`Логин`}
       />
       <PasswordInput
-        onChange={onChange}
-        value={form.password}
+        onChange={handleChange}
+        value={values.password}
         name={"password"}
         icon={`EditIcon`}
       />
       {isEditFieldVisible && (
         <div className={` mt-6`}>
           <Button
-            onClick={() => setForm(initialStateForm)}
+            onClick={() => setValues(initialStateForm)}
             htmlType="button"
             type="secondary"
             size="medium"
@@ -86,6 +86,6 @@ export const ProfileDataPage: FC = () => {
           </Button>
         </div>
       )}
-    </>
+    </form>
   )
 }

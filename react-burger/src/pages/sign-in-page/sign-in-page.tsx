@@ -5,26 +5,28 @@ import {
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components"
 import { useNavigate } from "react-router-dom"
-import { ChangeEvent, useState } from "react"
 import { postAuth } from "../../utils/postAuth"
 import { useAppDispatch } from "../../hooks/redux"
+import { useForm } from "../../hooks/use-form"
+
+interface IResetPasswordPageForm {
+  email: string
+  password: string
+}
 
 export const SignInPage = () => {
   const navigate = useNavigate()
+  const initialStateForm: IResetPasswordPageForm = {
+    email: "",
+    password: "",
+  }
+  const { values, handleChange } = useForm(initialStateForm)
   const onRegistrationClick = () => navigate("/register", { replace: true })
   const onResetPasswordClick = () => navigate("/forgot-password", { replace: true })
 
-  const [emailValue, setEmailValue] = useState("")
-
-  const onEmailChange = (e: ChangeEvent<HTMLInputElement>) => setEmailValue(e.target.value)
-
-  const [passwordValue, setPasswordValue] = useState("")
-  const onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => setPasswordValue(e.target.value)
-
   const dispatch = useAppDispatch()
   const onLoginClick = async () => {
-    let isSuccess = await dispatch(postAuth(emailValue, passwordValue))
-
+    let isSuccess = await dispatch(postAuth(values.email, values.password))
     if (isSuccess) {
       navigate("/", { replace: true })
     }
@@ -32,28 +34,30 @@ export const SignInPage = () => {
   return (
     <main className={styles.page}>
       <div className={styles.registration_container}>
-        <h1 className={`text text_type_main-medium mb-6`}>Вход</h1>
-        <EmailInput
-          onChange={onEmailChange}
-          value={emailValue}
-          name={"email"}
-          extraClass={`mb-6`}
-        />
-        <PasswordInput
-          onChange={onPasswordChange}
-          value={passwordValue}
-          name={"password"}
-          extraClass={`mb-6`}
-        />
-        <Button
-          onClick={onLoginClick}
-          htmlType="button"
-          type="primary"
-          size="medium"
-          extraClass={`mb-20`}
-        >
-          Войти
-        </Button>
+        <form onSubmit={onLoginClick}>
+          <h1 className={`text text_type_main-medium mb-6`}>Вход</h1>
+          <EmailInput
+            onChange={handleChange}
+            value={values.email}
+            name={"email"}
+            extraClass={`mb-6`}
+          />
+          <PasswordInput
+            onChange={handleChange}
+            value={values.password}
+            name={"password"}
+            extraClass={`mb-6`}
+          />
+          <Button
+            onClick={onLoginClick}
+            htmlType="button"
+            type="primary"
+            size="medium"
+            extraClass={`mb-20`}
+          >
+            Войти
+          </Button>
+        </form>
         <div className={styles.registration_text_block}>
           <div className={styles.text_item}>
             <span
