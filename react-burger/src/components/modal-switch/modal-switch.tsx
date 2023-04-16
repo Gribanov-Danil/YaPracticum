@@ -10,9 +10,8 @@ interface IModalSwitch {
 
 export const ModalSwitch: FC<IModalSwitch> = ({ background }) => {
   const navigate = useNavigate()
-  const handleCloseModal = () => {
-    navigate(-1)
-  }
+  const handleCloseModal = () => navigate(-1)
+
   return (
     <>
       {background && (

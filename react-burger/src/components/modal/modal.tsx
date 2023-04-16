@@ -3,18 +3,15 @@ import { FC, ReactNode, useEffect } from "react"
 import { createPortal } from "react-dom"
 import { ModalOverlay } from "../modal-overlay/modal-overlay"
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components"
-import { useLocation } from "react-router-dom"
 
 interface IModal {
   onClick: () => void
-  active?: boolean
   children?: ReactNode
 }
 
-const portal = document.getElementById("react-modals") as Element
+const portal = document.getElementById("react-modals") as HTMLDivElement
 
-export const Modal: FC<IModal> = ({ active, onClick, children }) => {
-  const location = useLocation()
+export const Modal: FC<IModal> = ({ onClick, children }) => {
   useEffect(() => {
     const closeOnEscapeKey = (e: KeyboardEvent) => (e.key === "Escape" ? onClick() : null)
     document.body.addEventListener("keydown", closeOnEscapeKey)
@@ -23,13 +20,8 @@ export const Modal: FC<IModal> = ({ active, onClick, children }) => {
     }
   }, [onClick])
 
-  const modalOverlayStyle =
-    location.pathname !== `/` || active
-      ? `${modalStyles.modal} ${modalStyles.active}`
-      : modalStyles.modal
-
   return createPortal(
-    <ModalOverlay overlayClass={modalOverlayStyle} onClick={onClick}>
+    <ModalOverlay onClick={onClick}>
       <div className={modalStyles.modal_content} onClick={(e) => e.stopPropagation()}>
         <div className={modalStyles.close}>
           <CloseIcon type="primary" onClick={onClick} />

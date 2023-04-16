@@ -1,14 +1,14 @@
 import { FC, ReactNode } from "react"
+import styles from "./overlay.module.css"
 
 interface IModalOverlay {
   onClick: () => void
-  overlayClass: string
   children?: ReactNode
 }
 
-export const ModalOverlay: FC<IModalOverlay> = ({ children, overlayClass, onClick }) => {
+export const ModalOverlay: FC<IModalOverlay> = ({ children, onClick }) => {
   return (
-    <div className={overlayClass} onClick={() => onClick()}>
+    <div className={styles.overlay} onClick={() => onClick()}>
       {children}
     </div>
   )

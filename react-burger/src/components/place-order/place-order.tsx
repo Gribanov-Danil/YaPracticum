@@ -55,9 +55,11 @@ export const PlaceOrder = () => {
       <Button htmlType="button" type="primary" size="medium" onClick={handleToggleModal}>
         Оформить заказ
       </Button>
-      <Modal active={isModalVisible} onClick={handleCloseModal}>
-        <OrderDetails />
-      </Modal>
+      {isModalVisible && (
+        <Modal onClick={handleCloseModal}>
+          <OrderDetails />
+        </Modal>
+      )}
     </div>
   )
 }

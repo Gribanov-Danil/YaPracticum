@@ -6,16 +6,23 @@ import { useAppSelector } from "../../hooks/redux"
 
 export const IngredientsDetails: FC = () => {
   const location = useLocation()
+  const background = location.state?.background
   const { ingredientId } = useParams()
   const { dataArray, status } = useAppSelector((state) => state.ingredientsReducer)
   const data = dataArray.filter((el) => el._id === ingredientId)[0]
+
   return (
     <>
+      {background && (
+        <p className={`mt-10 ml-10 mr-10 text text_type_main-large`}>{"Детали ингредиента"}</p>
+      )}
       {!status.isLoading && !status.isError && (
-        <>
-          <h2 className={`mt-10 ml-10 mr-10 text text_type_main-large ${styles.header}`}>
-            Детали ингредиента
-          </h2>
+        <div className={styles.container}>
+          {!background && (
+            <h2 className={`mt-30 ml-10 mr-10 text text_type_main-large ${styles.header}`}>
+              Детали ингредиента
+            </h2>
+          )}
           <div
             className={`${styles.ingredient_image} ${!location.state ? styles.new_page_modal : ""}`}
             onClick={(e) => e.stopPropagation()}
@@ -34,7 +41,7 @@ export const IngredientsDetails: FC = () => {
               />
             </div>
           </div>
-        </>
+        </div>
       )}
     </>
   )
