@@ -1,10 +1,10 @@
 import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components"
 import panelStyles from "../constructor-panel/constructor-panel.module.css"
 import { deleteDraggableIngredient } from "../../service/reducers/pickedIngredientsSlice"
-import { useDispatch } from "react-redux"
 import { memo } from "react"
 import { Reorder } from "framer-motion"
 import { TIngredientObj } from "../../utils/models/ingredient-types/types"
+import { useAppDispatch } from "../../hooks/redux"
 
 interface IConstructorIngredient {
   ingredientObj: TIngredientObj
@@ -14,7 +14,7 @@ interface IConstructorIngredient {
 export const ConstructorIngredient = memo<IConstructorIngredient>(function ConstructorIngredient({
   ingredientObj,
 }) {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const handleClose = () => dispatch(deleteDraggableIngredient(ingredientObj))
 
   return (

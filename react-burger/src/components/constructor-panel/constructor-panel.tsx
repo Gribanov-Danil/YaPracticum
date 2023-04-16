@@ -1,7 +1,6 @@
 import { OpenBun } from "../../ui/open-bun/open-bun"
 import { ClosingBun } from "../../ui/closing-bun/closing-bun"
 import panelStyles from "./constructor-panel.module.css"
-import { useDispatch } from "react-redux"
 import { useDrop } from "react-dnd"
 import {
   setFirstIngredient,
@@ -13,7 +12,7 @@ import uuid from "react-uuid"
 import { EmptyOpenBun } from "../../ui/empty-open-bun/empty-open-bun"
 import { EmptyClosingBun } from "../../ui/empty-closing-bun/empty-closing-bun"
 import { FC } from "react"
-import { useAppSelector } from "../../hooks/redux"
+import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { TIngredient } from "../../utils/models/ingredient-types/types"
 
 export const ConstructorPanel: FC = () => {
@@ -21,7 +20,7 @@ export const ConstructorPanel: FC = () => {
   const pickedIngredient = state.pickedIngredient
   const pickedBun = state.pickedBun
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const [, dropTarget] = useDrop({
     accept: "ingredientItem",
