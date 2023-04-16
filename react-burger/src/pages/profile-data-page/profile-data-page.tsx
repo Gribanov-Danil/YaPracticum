@@ -8,6 +8,7 @@ import {
 import { patchAuthUser } from "../../utils/authUserResponse"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { useForm } from "../../hooks/use-form"
+import styles from "../pagesStyles.module.css"
 
 interface IProfileDataPageForm {
   name: string
@@ -43,7 +44,7 @@ export const ProfileDataPage: FC = () => {
   }
 
   return (
-    <form onSubmit={applyChanges}>
+    <form onSubmit={applyChanges} className={styles.form}>
       <Input
         type={"text"}
         placeholder={`Имя`}

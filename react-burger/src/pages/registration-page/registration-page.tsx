@@ -41,7 +41,7 @@ export const RegistrationPage = () => {
   return (
     <main className={styles.page}>
       <div className={styles.registration_container}>
-        <form onSubmit={onRegistrationClick}>
+        <form onSubmit={onRegistrationClick} className={styles.form}>
           <h1 className={`text text_type_main-medium mb-6`}>Регистрация</h1>
           <Input
             type={"text"}

@@ -36,7 +36,7 @@ export const SignInPage = () => {
   return (
     <main className={styles.page}>
       <div className={styles.registration_container}>
-        <form onSubmit={onLoginClick}>
+        <form onSubmit={onLoginClick} className={styles.form}>
           <h1 className={`text text_type_main-medium mb-6`}>Вход</h1>
           <EmailInput
             onChange={handleChange}

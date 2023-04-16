@@ -42,7 +42,7 @@ export const ResetPasswordPage = () => {
   return (
     <main className={styles.page}>
       <div className={styles.registration_container}>
-        <form onSubmit={onSaveClick}>
+        <form onSubmit={onSaveClick} className={styles.form}>
           <h1 className={`text text_type_main-medium mb-6`}>Восстановление пароля</h1>
           <PasswordInput
             onChange={handleChange}

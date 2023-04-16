@@ -27,7 +27,7 @@ export const ForgotPasswordPage: FC = () => {
   return (
     <main className={styles.page}>
       <div className={styles.registration_container}>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className={styles.form}>
           <h1 className={`text text_type_main-medium mb-6`}>Восстановление пароля</h1>
           <EmailInput
             onChange={handleChange}
