@@ -5,7 +5,6 @@ import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { useEffect } from "react"
 import { wsDisconnect, wsStart } from "../../service/actions/websocket-actions/websocket-actions"
 import { WS_ALL } from "../../utils/constants/websocket"
-import uuid from "react-uuid"
 import { TOrderItem } from "../../utils/models/websocket-types/types"
 
 export const FeedPage = () => {
@@ -30,7 +29,7 @@ export const FeedPage = () => {
         <div className={styles.container}>
           <div className={styles.feed}>
             {orders?.orders.map((order) => (
-              <OrderCard key={uuid()} order={order} />
+              <OrderCard key={order._id} order={order} />
             ))}
           </div>
           <div className={styles.infographic}>

@@ -4,7 +4,6 @@ import { memo } from "react"
 import { Reorder } from "framer-motion"
 import { updatePickedIngredient } from "../../service/reducers/pickedIngredientsSlice"
 import styles from "./draggable-ingredients-block.module.css"
-import uuid from "react-uuid"
 import { useAppDispatch } from "../../hooks/redux"
 import { TIngredientObj } from "../../utils/models/ingredient-types/types"
 
@@ -30,7 +29,7 @@ export const DraggableIngredientsBlock = memo<IDraggableIngredientsBlock>(
           Object.keys(ingredientObj.ingredient).length !== 0 ? (
             <ConstructorIngredient key={ingredientObj.id} ingredientObj={ingredientObj} />
           ) : (
-            <div key={uuid()} className={`ml-8 ${styles.no_ingredient}`}>
+            <div key={ingredientObj.id} className={`ml-8 ${styles.no_ingredient}`}>
               И не забудтье добавить начинку
             </div>
           ),

@@ -4,7 +4,6 @@ import { CurrencyIcon, FormattedDate } from "@ya.praktikum/react-developer-burge
 import { IconicText } from "../../ui/iconic-text/iconic-text"
 import { useAppSelector } from "../../hooks/redux"
 import { IngredientIcon } from "../../ui/ingredient-icon/ingredient-icon"
-import uuid from "react-uuid"
 import { TOrderItem } from "../../utils/models/websocket-types/types"
 import { Link, useLocation } from "react-router-dom"
 import { TIngredient } from "../../utils/models/ingredient-types/types"
@@ -52,7 +51,7 @@ export const OrderCard: FC<TOrderCard> = ({ order }) => {
                 if (src) {
                   return (
                     <IngredientIcon
-                      key={uuid()}
+                      key={index}
                       src={src}
                       srcSet={src}
                       overflow={index - 6}

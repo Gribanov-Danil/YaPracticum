@@ -8,7 +8,6 @@ import { TIngredient } from "../../utils/models/ingredient-types/types"
 import { CurrencyIcon, FormattedDate } from "@ya.praktikum/react-developer-burger-ui-components"
 import { IconicText } from "../../ui/iconic-text/iconic-text"
 import styles from "./order-information.module.css"
-import uuid from "react-uuid"
 
 import { OrderIngredientInformation } from "../order-ingredient-information/order-ingredient-information"
 
@@ -44,7 +43,7 @@ export const OrderInformation = () => {
     return Object.entries(counted)
   }
 
-  const processedOrder = useMemo<[TIngredient, number][]>(
+  const processedOrders = useMemo<[TIngredient, number][]>(
     () =>
       currentOrder
         ? processOrder(currentOrder?.ingredients).map(
@@ -87,14 +86,8 @@ export const OrderInformation = () => {
           <p className={`${styles.status} mb-15 text text_type_main-default`}>Выполнен</p>
           <p className="text text_type_main-medium mb-6">Состав:</p>
           <div className={styles.ingredients}>
-            {processedOrder.map((ingredient) => (
-              <OrderIngredientInformation
-                key={uuid()}
-                src={ingredient[0].image_mobile}
-                count={ingredient[1]}
-                name={ingredient[0].name}
-                price={ingredient[0].price}
-              />
+            {processedOrders.map((processedOrder, index) => (
+              <OrderIngredientInformation key={index} processedOrder={processedOrder} />
             ))}
           </div>
           <div className={`${styles.footer} mt-10`}>

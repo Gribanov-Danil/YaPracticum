@@ -1,6 +1,5 @@
 import constructorStyle from "../ingredients-block/ingredients-block.module.css"
 import { IngredientItem } from "../ingredient-item/ingredient-item"
-import uuid from "react-uuid"
 import { forwardRef } from "react"
 import { TIngredient } from "../../utils/models/ingredient-types/types"
 
@@ -22,7 +21,7 @@ export const IngredientsSection = forwardRef<HTMLParagraphElement, IIngredientsS
         <div className={constructorStyle.type_container}>
           {itemList.map((item, index) => (
             <IngredientItem
-              key={uuid()}
+              key={index}
               index={index}
               ingredient={item}
               collectionLength={itemList.length}

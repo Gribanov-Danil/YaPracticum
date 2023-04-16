@@ -1,7 +1,6 @@
 import styles from "./orders-number-block.module.css"
 import { FC } from "react"
 import { TOrderItem } from "../../utils/models/websocket-types/types"
-import uuid from "react-uuid"
 
 interface IOrdersNumberBlock {
   title: string
@@ -17,7 +16,7 @@ export const OrdersNumberBlock: FC<IOrdersNumberBlock> = ({ title, extraClass, o
         {orders.map((order) => {
           return (
             <li
-              key={uuid()}
+              key={order._id}
               className={`text text_type_digits-default ${styles.order_number} ${extraClass}`}
             >
               {order.number}

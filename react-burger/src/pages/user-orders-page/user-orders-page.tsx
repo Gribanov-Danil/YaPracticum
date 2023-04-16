@@ -1,7 +1,6 @@
 import { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { wsDisconnect, wsStart } from "../../service/actions/websocket-actions/websocket-actions"
-import { TOrderItem } from "../../utils/models/websocket-types/types"
 import { OrderCard } from "../../components/order-card/order-card"
 import styles from "./user-orders-page.module.css"
 import { getCookie } from "../../service/cookies/getCookie"
@@ -22,9 +21,7 @@ export const UserOrdersPage = () => {
     return (
       <div className={`${styles.orders}`}>
         {orders?.orders?.length
-          ? orders.orders
-              .map((order: TOrderItem) => <OrderCard order={order} key={order._id} />)
-              .reverse()
+          ? orders.orders.map((order) => <OrderCard order={order} key={order._id} />).reverse()
           : null}
       </div>
     )
