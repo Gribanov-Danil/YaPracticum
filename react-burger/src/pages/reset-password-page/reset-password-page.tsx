@@ -21,6 +21,11 @@ export const ResetPasswordPage = () => {
   const { values, handleChange } = useForm(initialStateForm)
   const onLoginClick = () => navigate("/login", { replace: true })
   const inputRef = useRef<HTMLInputElement>(null)
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [])
 
   const dispatch = useAppDispatch()
   const onSaveClick = async () => {
@@ -33,11 +38,7 @@ export const ResetPasswordPage = () => {
   if (location.key === "default") {
     return <Navigate to={"/"} replace />
   }
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus()
-    }
-  }, [])
+
   return (
     <main className={styles.page}>
       <div className={styles.registration_container}>
