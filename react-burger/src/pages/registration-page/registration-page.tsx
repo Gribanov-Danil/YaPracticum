@@ -6,7 +6,7 @@ import {
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components"
 import { useNavigate } from "react-router-dom"
-import { useEffect, useRef } from "react"
+import { FormEvent, useEffect, useRef } from "react"
 import { postRegistration } from "../../utils/postRegistration"
 import { useAppDispatch } from "../../hooks/redux"
 import { useForm } from "../../hooks/use-form"
@@ -30,7 +30,8 @@ export const RegistrationPage = () => {
   const inputRef = useRef<HTMLInputElement>(null)
 
   const dispatch = useAppDispatch()
-  const onRegistrationClick = async () => {
+  const onRegistrationClick = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     dispatch(postRegistration(values.email, values.password, values.name))
   }
   useEffect(() => {
@@ -67,13 +68,7 @@ export const RegistrationPage = () => {
             name={"password"}
             extraClass={`mb-6`}
           />
-          <Button
-            onClick={onRegistrationClick}
-            htmlType="button"
-            type="primary"
-            size="medium"
-            extraClass={`mb-20`}
-          >
+          <Button htmlType="submit" type="primary" size="medium" extraClass={`mb-20`}>
             Зарегистрироваться
           </Button>
         </form>

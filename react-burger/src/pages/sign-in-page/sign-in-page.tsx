@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { postAuth } from "../../utils/postAuth"
 import { useAppDispatch } from "../../hooks/redux"
 import { useForm } from "../../hooks/use-form"
+import { FormEvent } from "react"
 
 interface IResetPasswordPageForm {
   email: string
@@ -26,7 +27,8 @@ export const SignInPage = () => {
   const location = useLocation()
 
   const dispatch = useAppDispatch()
-  const onLoginClick = async () => {
+  const onLoginClick = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     let isSuccess = await dispatch(postAuth(values.email, values.password))
     const from = location.state?.from || "/"
     if (isSuccess) {
@@ -50,13 +52,7 @@ export const SignInPage = () => {
             name={"password"}
             extraClass={`mb-6`}
           />
-          <Button
-            onClick={onLoginClick}
-            htmlType="button"
-            type="primary"
-            size="medium"
-            extraClass={`mb-20`}
-          >
+          <Button htmlType="submit" type="primary" size="medium" extraClass={`mb-20`}>
             Войти
           </Button>
         </form>

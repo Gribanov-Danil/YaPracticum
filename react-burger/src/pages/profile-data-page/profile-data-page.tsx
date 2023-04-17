@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from "react"
+import { FC, FormEvent, useEffect, useRef, useState } from "react"
 import {
   Button,
   EmailInput,
@@ -35,7 +35,8 @@ export const ProfileDataPage: FC = () => {
 
   const dispatch = useAppDispatch()
 
-  const applyChanges = async () => {
+  const applyChanges = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     let res = await dispatch(patchAuthUser(values.name, values.email, values.password))
     if (!res) {
       setIsEditFieldVisible(false)
@@ -82,7 +83,7 @@ export const ProfileDataPage: FC = () => {
           >
             Отмена
           </Button>
-          <Button onClick={applyChanges} htmlType="button" type="primary" size="medium">
+          <Button htmlType="submit" type="primary" size="medium">
             Сохранить
           </Button>
         </div>

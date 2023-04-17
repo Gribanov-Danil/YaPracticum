@@ -1,7 +1,7 @@
 import styles from "../pagesStyles.module.css"
 import { Button, EmailInput } from "@ya.praktikum/react-developer-burger-ui-components"
 import { useNavigate } from "react-router-dom"
-import { FC } from "react"
+import { FC, FormEvent } from "react"
 import { postForgotPassword } from "../../utils/postForgorPassword"
 import { useAppDispatch } from "../../hooks/redux"
 import { useForm } from "../../hooks/use-form"
@@ -14,7 +14,8 @@ export const ForgotPasswordPage: FC = () => {
 
   let SaveClickErrorMessage = () => <></>
   const dispatch = useAppDispatch()
-  const onSubmit = async () => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     let response = await dispatch(postForgotPassword(values.email))
     if (response && response.success) {
       navigate("/reset-password", { replace: true })
@@ -37,13 +38,7 @@ export const ForgotPasswordPage: FC = () => {
             placeholder={`Укажите e-mail`}
           />
           <SaveClickErrorMessage />
-          <Button
-            onClick={onSubmit}
-            htmlType="button"
-            type="primary"
-            size="medium"
-            extraClass={`mb-20`}
-          >
+          <Button htmlType="submit" type="primary" size="medium" extraClass={`mb-20`}>
             Восстановить
           </Button>
         </form>

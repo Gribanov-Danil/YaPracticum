@@ -1,7 +1,7 @@
 import styles from "../pagesStyles.module.css"
 import { Button, Input, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components"
 import { Navigate, useLocation, useNavigate } from "react-router-dom"
-import { useEffect, useRef } from "react"
+import { FormEvent, useEffect, useRef } from "react"
 import { postResetPassword } from "../../utils/postResetPassword"
 import { useAppDispatch } from "../../hooks/redux"
 import { useForm } from "../../hooks/use-form"
@@ -28,7 +28,8 @@ export const ResetPasswordPage = () => {
   }, [])
 
   const dispatch = useAppDispatch()
-  const onSaveClick = async () => {
+  const onSaveClick = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     let res = await dispatch(postResetPassword(values.password, values.token))
     if (res && res.success) {
       navigate("/login", { replace: true })
@@ -63,13 +64,7 @@ export const ResetPasswordPage = () => {
             size={"default"}
             extraClass={`mb-6`}
           />
-          <Button
-            onClick={onSaveClick}
-            htmlType="button"
-            type="primary"
-            size="medium"
-            extraClass={`mb-20`}
-          >
+          <Button htmlType="submit" type="primary" size="medium" extraClass={`mb-20`}>
             Сохранить
           </Button>
         </form>
