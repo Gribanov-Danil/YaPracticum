@@ -48,16 +48,45 @@ export const OrderCard: FC<TOrderCard> = ({ order }) => {
             <ul className={styles.ingredients}>
               {order.ingredients.map((ingredient, index) => {
                 const src = getIngredientImageSrc(ingredient)
-                if (src) {
-                  return (
-                    <IngredientIcon
-                      key={index}
-                      src={src}
-                      srcSet={src}
-                      overflow={index - 6}
-                      extraClass="items_picture"
-                    />
-                  )
+                if (src && index < 6) {
+                  if (index === 0) {
+                    if (order.ingredients.length >= 6) {
+                      return (
+                        <IngredientIcon
+                          key={index}
+                          src={src}
+                          srcSet={src}
+                          extraClass="items_picture"
+                        >
+                          <div
+                            className={`${styles.container} ${styles.picture} ${styles.overflow}`}
+                          >
+                            <div className={`${styles.overflow_text} text text_type_main-default`}>
+                              {`+${order.ingredients.length - 6}`}
+                            </div>
+                          </div>
+                        </IngredientIcon>
+                      )
+                    } else {
+                      return (
+                        <IngredientIcon
+                          key={index}
+                          src={src}
+                          srcSet={src}
+                          extraClass="items_picture"
+                        />
+                      )
+                    }
+                  } else {
+                    return (
+                      <IngredientIcon
+                        key={index}
+                        src={src}
+                        srcSet={src}
+                        extraClass="items_picture"
+                      />
+                    )
+                  }
                 }
               })}
             </ul>

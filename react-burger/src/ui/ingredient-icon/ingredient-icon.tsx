@@ -1,21 +1,21 @@
 import clsx from "clsx"
-import { FC } from "react"
+import { FC, ReactNode } from "react"
 import styles from "./ingredient-icon-styles.module.css"
 
 interface IngredientIconProps {
   srcSet: string
   src: string
   alt?: string
-  overflow?: number
   extraClass?: string
+  children?: ReactNode
 }
 
 export const IngredientIcon: FC<IngredientIconProps> = ({
   srcSet,
   src,
   alt = "ingredient",
-  overflow = 0,
   extraClass,
+  children,
 }) => {
   return (
     <div className={clsx(styles.container, extraClass, styles.items_picture)}>
@@ -24,11 +24,7 @@ export const IngredientIcon: FC<IngredientIconProps> = ({
           <source srcSet={srcSet} />
           <img src={src} alt={alt} width="112" height="56" />
         </picture>
-        {overflow > 0 && (
-          <div className={clsx(styles.container, styles.picture, styles.overflow)}>
-            <div className={clsx(styles.picture, "text text_type_main-small")}>+{overflow}</div>
-          </div>
-        )}
+        {children}
       </div>
     </div>
   )
