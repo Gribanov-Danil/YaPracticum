@@ -60,15 +60,19 @@ export const userDataSlice = createSlice({
       state.user = initialState.user
     },
   },
-
-  extraReducers: {
-    [getAuthUser.pending.type]: (state) => {
-      state.status.isLoading = true
-    },
-    [getAuthUser.rejected.type]: (state) => {
-      state.status.isError = true
-      state.status.isLoading = false
-    },
+  extraReducers(builder) {
+    builder
+      .addCase(getAuthUser.pending, (state) => {
+        state.status.isLoading = true
+      })
+      .addCase(getAuthUser.rejected, (state) => {
+        state.status.isError = true
+        state.status.isLoading = false
+      })
+      .addCase(getAuthUser.fulfilled, (state) => {
+        state.status.isError = false
+        state.status.isLoading = false
+      })
   },
 })
 

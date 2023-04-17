@@ -41,28 +41,28 @@ function App() {
         <Route path={"/"} element={<ConstructorPage />} />
         <Route
           path={"/login"}
-          element={<ProtectedRoute children={<SignInPage />} anonymous={true} />}
+          element={<ProtectedRoute element={<SignInPage />} onlyAuth={false} />}
         />
         <Route
           path={"/register"}
-          element={<ProtectedRoute children={<RegistrationPage />} anonymous={true} />}
+          element={<ProtectedRoute element={<RegistrationPage />} onlyAuth={false} />}
         />
         <Route
           path={"/forgot-password"}
-          element={<ProtectedRoute children={<ForgotPasswordPage />} anonymous={true} />}
+          element={<ProtectedRoute element={<ForgotPasswordPage />} onlyAuth={false} />}
         />
         <Route path={"/feed"} element={<FeedPage />} />
         <Route
           path={"/reset-password"}
-          element={<ProtectedRoute children={<ResetPasswordPage />} anonymous={true} />}
+          element={<ProtectedRoute element={<ResetPasswordPage />} onlyAuth={false} />}
         />
-        <Route path={"/profile/*"} element={<ProtectedRoute children={<ProfilePage />} />} />
+        <Route path={"/profile/*"} element={<ProtectedRoute element={<ProfilePage />} />} />
         <Route path="*" element={<NotFound404 />} />
         <Route path="/ingredients/:ingredientId" element={<IngredientsDetails />} />
         <Route path={"/feed/:id"} element={<OrderInformation />} />
         <Route
           path={"/profile/orders/:id"}
-          element={<ProtectedRoute children={<OrderInformation />} />}
+          element={<ProtectedRoute element={<OrderInformation />} />}
         />
       </Routes>
       <ModalSwitch background={background} />
@@ -71,3 +71,58 @@ function App() {
 }
 
 export default App
+
+// function App() {
+//   const dispatch = useAppDispatch()
+//   useEffect(() => {
+//     dispatch(getIngredientsData())
+//     dispatch(getAuthUser())
+//   }, [])
+//
+//   const isLoading = useAppSelector((state) => state.userDataReducer).status.isLoading
+//   const location = useLocation()
+//   const background: Location = location.state && location.state.background
+//
+//   return (
+//     <div className={styles.main_background}>
+//       <AppHeader />
+//       {!isLoading ? (
+//         <>
+//           <Routes location={background || location}>
+//             <Route path={"/"} element={<ConstructorPage />} />
+//             <Route
+//               path={"/login"}
+//               element={<ProtectedRoute element={<SignInPage />} onlyAuth={false} />}
+//             />
+//             <Route
+//               path={"/register"}
+//               element={<ProtectedRoute element={<RegistrationPage />} onlyAuth={false} />}
+//             />
+//             <Route
+//               path={"/forgot-password"}
+//               element={<ProtectedRoute element={<ForgotPasswordPage />} onlyAuth={false} />}
+//             />
+//             <Route path={"/feed"} element={<FeedPage />} />
+//             <Route
+//               path={"/reset-password"}
+//               element={<ProtectedRoute element={<ResetPasswordPage />} onlyAuth={false} />}
+//             />
+//             <Route path={"/profile/*"} element={<ProtectedRoute element={<ProfilePage />} />} />
+//             <Route path="*" element={<NotFound404 />} />
+//             <Route path="/ingredients/:ingredientId" element={<IngredientsDetails />} />
+//             <Route path={"/feed/:id"} element={<OrderInformation />} />
+//             <Route
+//               path={"/profile/orders/:id"}
+//               element={<ProtectedRoute element={<OrderInformation />} />}
+//             />
+//           </Routes>
+//           <ModalSwitch background={background} />
+//         </>
+//       ) : (
+//         <h2>Загрузка</h2>
+//       )}
+//     </div>
+//   )
+// }
+//
+// export default App

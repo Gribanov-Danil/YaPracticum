@@ -60,8 +60,8 @@ export const ProfilePage = () => {
       </div>
       <div>
         <Routes>
-          <Route path={"/"} element={<ProtectedRoute children={<ProfileDataPage />} />} />
-          <Route path={"orders"} element={<ProtectedRoute children={<UserOrdersPage />} />} />
+          <Route path={"/"} element={<ProtectedRoute element={<ProfileDataPage />} />} />
+          <Route path={"orders"} element={<ProtectedRoute element={<UserOrdersPage />} />} />
         </Routes>
       </div>
     </div>
