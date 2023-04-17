@@ -7,6 +7,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components"
 import React, { FC } from "react"
 import { NavBarItem } from "../nav-barItem/nav-barItem"
+import { NavLink } from "react-router-dom"
 
 export const NavBar: FC = () => {
   return (
@@ -26,7 +27,9 @@ export const NavBar: FC = () => {
       />
 
       <div style={{ marginRight: 289 }}>
-        <Logo />
+        <NavLink to={"/"}>
+          <Logo />
+        </NavLink>
       </div>
 
       <NavBarItem
