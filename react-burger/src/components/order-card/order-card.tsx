@@ -49,34 +49,16 @@ export const OrderCard: FC<TOrderCard> = ({ order }) => {
               {order.ingredients.map((ingredient, index) => {
                 const src = getIngredientImageSrc(ingredient)
                 if (src && index < 6) {
-                  if (index === 0) {
-                    if (order.ingredients.length >= 6) {
-                      return (
-                        <IngredientIcon
-                          key={index}
-                          src={src}
-                          srcSet={src}
-                          extraClass="items_picture"
-                        >
-                          <div
-                            className={`${styles.container} ${styles.picture} ${styles.overflow}`}
-                          >
-                            <div className={`${styles.overflow_text} text text_type_main-default`}>
-                              {`+${order.ingredients.length - 6}`}
-                            </div>
+                  if (index === 0 && order.ingredients.length >= 6) {
+                    return (
+                      <IngredientIcon key={index} src={src} srcSet={src} extraClass="items_picture">
+                        <div className={`${styles.container} ${styles.picture} ${styles.overflow}`}>
+                          <div className={`${styles.overflow_text} text text_type_main-default`}>
+                            {`+${order.ingredients.length - 6}`}
                           </div>
-                        </IngredientIcon>
-                      )
-                    } else {
-                      return (
-                        <IngredientIcon
-                          key={index}
-                          src={src}
-                          srcSet={src}
-                          extraClass="items_picture"
-                        />
-                      )
-                    }
+                        </div>
+                      </IngredientIcon>
+                    )
                   } else {
                     return (
                       <IngredientIcon
