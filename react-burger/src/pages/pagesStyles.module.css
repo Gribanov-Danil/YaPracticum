@@ -33,3 +33,9 @@
 .registration_btn {
     padding: 0;
 }
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

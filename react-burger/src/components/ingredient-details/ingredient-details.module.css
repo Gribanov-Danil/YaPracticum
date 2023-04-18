@@ -1,0 +1,30 @@
+.text_block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ingredient_image {
+    margin: 0 auto 16px auto;
+    max-width: 480px;
+}
+
+.new_page_modal {
+    margin-top: 120px;
+}
+
+.characteristic_block {
+    display: flex;
+    gap: 20px;
+}
+
+.characteristic {
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -1,0 +1,21 @@
+.image_container {
+    margin: 0 auto 60px;
+    width: 120px;
+    height: 120px;
+}
+
+.order_number {
+    margin: 120px auto 32px;
+}
+
+.order_description {
+    margin: 0 auto 60px;
+}
+
+.ready_order {
+    margin: 0 auto 8px;
+}
+
+.wait_order {
+    margin: 0 auto 120px;
+}

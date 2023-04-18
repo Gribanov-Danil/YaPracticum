@@ -1,6 +1,5 @@
 export enum TabValue {
-    BUNS = "Булки",
-    SAUCES = "Соусы",
-    MAINS = "Начинки"
+  BUNS = "Булки",
+  SAUCES = "Соусы",
+  MAINS = "Начинки",
 }
-

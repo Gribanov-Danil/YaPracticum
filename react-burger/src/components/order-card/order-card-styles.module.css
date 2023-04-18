@@ -1,0 +1,64 @@
+.card {
+    width: 584px;
+    background-color: #1C1C21;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04), 0 0 2px rgba(0, 0, 0, 0.06), 0 0 1px rgba(0, 0, 0, 0.04);
+    border-radius: 40px;
+}
+
+.card:not(:last-child) {
+    margin-bottom: 16px;
+}
+
+.card_content {
+    padding: 24px;
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ingredients {
+    display: flex;
+    flex-direction: row-reverse;
+    width: fit-content;
+    position: relative;
+    color: white;
+}
+
+.container {
+    width: 64px;
+    height: 64px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    border: 2px solid transparent;
+    box-sizing: border-box;
+    background: linear-gradient(#1c1c21, #1c1c21)
+    content-box,
+    linear-gradient(#4c4cff, #801ab2) border-box;
+}
+
+.picture {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.overflow {
+    background: rgba(0, 0, 0, 0.6) content-box;
+}
+
+.items_picture:not(:last-child) {
+    margin-left: -16px;
+}

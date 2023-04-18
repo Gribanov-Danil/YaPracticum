@@ -1,4 +1,6 @@
-html { overflow-y: hidden; }
+html::-webkit-scrollbar {
+  width: 0;
+}
 
 body {
   margin: 0;
