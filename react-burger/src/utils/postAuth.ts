@@ -4,7 +4,7 @@ import {
   fetchDataError,
   fetchingData,
   setFetchDataSuccess,
-} from "../service/reducers/userDataSlice"
+} from "../service/reducers/user-data-slice/user-data-slice"
 import { TAppDispatch } from "../service/store"
 
 export const postAuth = (email: string, password: string) => async (dispatch: TAppDispatch) => {

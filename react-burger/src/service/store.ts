@@ -1,10 +1,16 @@
 import { combineReducers } from "redux"
-import { ingredientsSlice } from "./reducers/ingredientsSlice"
+import { ingredientsSlice } from "./reducers/ingredients-slice/ingredients-slice"
 import { configureStore } from "@reduxjs/toolkit"
-import { pickedIngredientSlice } from "./reducers/pickedIngredientsSlice"
-import { orderDetailsSlice } from "./reducers/orderDetailsSlice"
-import { userDataSlice } from "./reducers/userDataSlice"
-import { websocketSlice, wsClose, wsError, wsMessage, wsSuccess } from "./reducers/websocket-slice"
+import { pickedIngredientSlice } from "./reducers/picked-ingredients-slice/picked-ingredients-slice"
+import { orderDetailsSlice } from "./reducers/order-details-slice/order-details-slice"
+import { userDataSlice } from "./reducers/user-data-slice/user-data-slice"
+import {
+  websocketSlice,
+  wsClose,
+  wsError,
+  wsMessage,
+  wsSuccess,
+} from "./reducers/websocket-slice/websocket-slice"
 import { wsDisconnect, wsSendMessage, wsStart } from "./actions/websocket-actions/websocket-actions"
 import { websocketMiddleware } from "./middleware/websocket-middleware"
 

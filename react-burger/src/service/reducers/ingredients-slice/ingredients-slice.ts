@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { TIngredient } from "../../utils/models/ingredient-types/types"
-import { TStatus } from "../../utils/models/redux-types/types"
+import { TIngredient } from "../../../utils/models/ingredient-types/types"
+import { TStatus } from "../../../utils/models/redux-types/types"
 
 export type IngredientsSliceState = {
   dataArray: TIngredient[]

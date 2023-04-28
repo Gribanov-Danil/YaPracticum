@@ -3,7 +3,7 @@ import {
   fetchDataError,
   fetchingData,
   setFetchDataSuccess,
-} from "../service/reducers/ingredientsSlice"
+} from "../service/reducers/ingredients-slice/ingredients-slice"
 import { TAppDispatch } from "../service/store"
 import { TIngredientsResponse } from "./models/redux-types/types"
 

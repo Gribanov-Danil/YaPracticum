@@ -6,7 +6,7 @@ import {
   setFirstIngredient,
   setPickedBun,
   setPickedIngredient,
-} from "../../service/reducers/pickedIngredientsSlice"
+} from "../../service/reducers/picked-ingredients-slice/picked-ingredients-slice"
 import { DraggableIngredientsBlock } from "../draggable-ingredients-block/draggable-ingredients-block"
 import uuid from "react-uuid"
 import { EmptyOpenBun } from "../../ui/empty-open-bun/empty-open-bun"

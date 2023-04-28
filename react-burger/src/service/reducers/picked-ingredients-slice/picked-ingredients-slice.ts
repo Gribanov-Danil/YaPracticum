@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { TIngredient, TIngredientObj } from "../../utils/models/ingredient-types/types"
+import { TIngredient, TIngredientObj } from "../../../utils/models/ingredient-types/types"
 
 export type PickedIngredientSliceState = {
   pickedIngredient: TIngredientObj[]

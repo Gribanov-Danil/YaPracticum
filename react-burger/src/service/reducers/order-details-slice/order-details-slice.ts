@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { TStatus } from "../../utils/models/redux-types/types"
+import { TStatus } from "../../../utils/models/redux-types/types"
 
 export type TOrderDetailsState = {
   id: number | undefined

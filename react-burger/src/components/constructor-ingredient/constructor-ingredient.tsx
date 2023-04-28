@@ -1,6 +1,6 @@
 import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components"
 import panelStyles from "../constructor-panel/constructor-panel.module.css"
-import { deleteDraggableIngredient } from "../../service/reducers/pickedIngredientsSlice"
+import { deleteDraggableIngredient } from "../../service/reducers/picked-ingredients-slice/picked-ingredients-slice"
 import { memo } from "react"
 import { Reorder } from "framer-motion"
 import { TIngredientObj } from "../../utils/models/ingredient-types/types"

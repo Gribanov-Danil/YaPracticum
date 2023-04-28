@@ -2,7 +2,7 @@ import constructorStyle from "./ingredients-block.module.css"
 import { IngredientsSection } from "../ingredients-section/ingredients-section"
 import { TabValue } from "../../utils/constants/tabValue"
 import { FC, RefObject } from "react"
-import { IngredientsSliceState } from "../../service/reducers/ingredientsSlice"
+import { IngredientsSliceState } from "../../service/reducers/ingredients-slice/ingredients-slice"
 import { useAppSelector } from "../../hooks/redux"
 
 interface IIngredientsBlock {
