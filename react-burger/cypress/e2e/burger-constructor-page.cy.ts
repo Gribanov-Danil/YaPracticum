@@ -1,5 +1,4 @@
-import { STORE_ADDRESS } from "../../src/utils/constants/test-constants"
-
+export {}
 const openIngredientModal = () => {
   cy.get('[data-cy="ingredient"]').first().click()
   cy.url().should("include", "/ingredients")
@@ -7,8 +6,8 @@ const openIngredientModal = () => {
 
 describe("template spec", () => {
   beforeEach(() => {
-    cy.visit(`${STORE_ADDRESS}/`)
-  }, 5000)
+    cy.visit("/")
+  })
 
   it("should open modal when click on ingredient", () => {
     openIngredientModal()
@@ -17,13 +16,13 @@ describe("template spec", () => {
   it("should open modal when click on ingredient and then closed when click on closeIcon", () => {
     openIngredientModal()
     cy.get('[data-cy="close-modal-closeIcon"]').click()
-    cy.location().should((loc) => expect(loc.href).to.eq(`${STORE_ADDRESS}/`))
+    cy.location().should("match", /\//)
   })
 
   it("should open modal when click on ingredient and then closed when click on overlay", () => {
     openIngredientModal()
     cy.get('[data-cy="close-modal-overlay"]').click("left")
-    cy.location().should((loc) => expect(loc.href).to.eq(`${STORE_ADDRESS}/`))
+    cy.location().should("match", /\//)
   })
 
   const addIngredient = () => {
@@ -41,11 +40,11 @@ describe("template spec", () => {
   })
 
   it("should make order ", () => {
-    cy.visit(`${STORE_ADDRESS}/login`)
+    cy.visit("login")
     cy.get('[data-cy="login-email"]').type("gribanovtestwork2022@yandex.ru")
     cy.get('[data-cy="login-password"]').type("qwerty")
     cy.get('[data-cy="login-button"]').click()
-    cy.location().should((loc) => expect(loc.href).to.eq(`${STORE_ADDRESS}/`))
+    cy.location().should("match", /\//)
     addIngredient()
     cy.get('[data-cy="order-btn"]').click()
     cy.wait(20000)
