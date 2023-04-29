@@ -15,7 +15,7 @@ const initialState: TOrderDetailsState = {
   },
 }
 
-describe("ingredients", () => {
+describe("orderDetails", () => {
   it("should make status.isLoading true when dataArray is fetching", () => {
     const action = { type: fetchDataProcessing.type }
     const store = orderDetailsSlice.reducer(initialState, action)
