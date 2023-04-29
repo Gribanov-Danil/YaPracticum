@@ -23,14 +23,16 @@ const initialState: TUserDataState = {
   },
 }
 
+export type TUserData = Omit<TUserDataState, "status">
+
 export const userDataSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setFetchDataSuccess: (state, action: PayloadAction<TUserDataState>) => {
+    setFetchDataSuccess: (state, action: PayloadAction<TUserData>) => {
       state.user.email = action.payload.user.email
       state.user.name = action.payload.user.name
-      state.accessToken = action.payload.accessToken
+      state.accessToken = action.payload.accessToken.split("Bearer ")[1]
       setCookie("token", action.payload.accessToken.split("Bearer ")[1])
       state.refreshToken = action.payload.refreshToken
       setCookie("refreshToken", action.payload.refreshToken)
@@ -45,7 +47,9 @@ export const userDataSlice = createSlice({
       state.status.isLoading = false
     },
     updateTokens: (state, action: PayloadAction<{ accessToken: string; refreshToken: string }>) => {
+      state.accessToken = action.payload.accessToken.split("Bearer ")[1]
       setCookie("token", action.payload.accessToken.split("Bearer ")[1])
+      state.refreshToken = action.payload.refreshToken
       setCookie("refreshToken", action.payload.refreshToken)
     },
     updateUser: (state, action: PayloadAction<TUser>) => {
