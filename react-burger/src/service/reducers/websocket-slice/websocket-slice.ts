@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { TOrders } from "../../../utils/models/websocket-types/types"
 
-type TWebsocketState = {
+export type TWebsocketState = {
   wsConnected: boolean
   orders: TOrders | null
   error: boolean
