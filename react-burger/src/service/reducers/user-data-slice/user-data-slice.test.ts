@@ -10,6 +10,7 @@ import {
   userDataSlice,
 } from "./user-data-slice"
 import { getCookie } from "../../cookies/getCookie"
+import { getAuthUser } from "../../../utils/authUserResponse"
 
 const initialState: TUserDataState = {
   user: {
@@ -84,11 +85,28 @@ describe("user", () => {
   it("should logout user", () => {
     const action = {
       type: logoutUser.type,
-      payload: {},
     }
     const store = userDataSlice.reducer(initialState, action)
     expect(store).toStrictEqual(initialState)
     expect(getCookie("refreshToken")).toEqual("")
     expect(getCookie("token")).toEqual("")
+  })
+
+  it("should make status.isLoading true when user data is pending", () => {
+    const action = { type: getAuthUser.pending.type }
+    const store = userDataSlice.reducer(initialState, action)
+    expect(store.status.isLoading).toBe(true)
+  })
+
+  it("should make status.isError true when fetching was rejected", () => {
+    const action = { type: getAuthUser.rejected.type }
+    const store = userDataSlice.reducer(initialState, action)
+    expect(store.status.isError).toBe(true)
+  })
+
+  it("should make initial status true when fetching was fulfilled", () => {
+    const action = { type: getAuthUser.fulfilled.type }
+    const store = userDataSlice.reducer(initialState, action)
+    expect(store.status).toStrictEqual(initialState.status)
   })
 })
