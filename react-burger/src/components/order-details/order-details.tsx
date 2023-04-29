@@ -18,7 +18,10 @@ export const OrderDetails: FC = () => {
       {!(state.status.isLoading || state.status.isError) && (
         <p
           className={`${styles.order_number} text text_type_digits-large`}
-        >{`${orderNumberStr}`}</p>
+          data-cy={"order-details"}
+        >
+          {`${orderNumberStr}`}
+        </p>
       )}
       <span className={`text text_type_main-medium mb-15 ${styles.order_description}`}>
         идентификатор заказа

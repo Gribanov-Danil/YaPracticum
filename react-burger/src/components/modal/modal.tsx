@@ -23,7 +23,7 @@ export const Modal: FC<IModal> = ({ onClick, children }) => {
   return createPortal(
     <ModalOverlay onClick={onClick}>
       <div className={modalStyles.modal_content} onClick={(e) => e.stopPropagation()}>
-        <div className={modalStyles.close}>
+        <div data-cy={"close-modal-closeIcon"} className={modalStyles.close}>
           <CloseIcon type="primary" onClick={onClick} />
         </div>
         {children}

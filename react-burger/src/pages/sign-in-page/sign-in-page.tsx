@@ -45,14 +45,22 @@ export const SignInPage = () => {
             value={values.email}
             name={"email"}
             extraClass={`mb-6`}
+            data-cy={"login-email"}
           />
           <PasswordInput
             onChange={handleChange}
             value={values.password}
             name={"password"}
             extraClass={`mb-6`}
+            data-cy={"login-password"}
           />
-          <Button htmlType="submit" type="primary" size="medium" extraClass={`mb-20`}>
+          <Button
+            htmlType="submit"
+            type="primary"
+            size="medium"
+            extraClass={`mb-20`}
+            data-cy={"login-button"}
+          >
             Войти
           </Button>
         </form>

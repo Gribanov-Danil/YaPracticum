@@ -1,5 +1,7 @@
 import { TIngredient } from "../models/ingredient-types/types"
 
+export const STORE_ADDRESS = "http://localhost:3000"
+
 export const testBun: TIngredient = {
   _id: "643d69a5c3f7b9001cfa093c",
   name: "Краторная булка N-200i",

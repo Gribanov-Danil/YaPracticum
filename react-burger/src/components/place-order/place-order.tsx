@@ -52,7 +52,13 @@ export const PlaceOrder = () => {
         gapInPx={8}
         icon={<CurrencyIcon type="primary" />}
       />
-      <Button htmlType="button" type="primary" size="medium" onClick={handleToggleModal}>
+      <Button
+        htmlType="button"
+        type="primary"
+        size="medium"
+        onClick={handleToggleModal}
+        data-cy={"order-btn"}
+      >
         Оформить заказ
       </Button>
       {isModalVisible && (
