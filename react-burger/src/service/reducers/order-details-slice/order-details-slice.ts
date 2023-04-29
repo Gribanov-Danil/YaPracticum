@@ -6,7 +6,7 @@ export type TOrderDetailsState = {
   status: TStatus
 }
 
-const initialState: TOrderDetailsState = {
+export const initialState: TOrderDetailsState = {
   id: undefined,
   status: {
     isError: false,

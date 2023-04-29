@@ -7,7 +7,7 @@ export type TWebsocketState = {
   error: boolean
 }
 
-const initialState: TWebsocketState = {
+export const initialState: TWebsocketState = {
   wsConnected: false,
   orders: null,
   error: false,

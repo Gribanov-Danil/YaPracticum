@@ -1,29 +1,16 @@
 import {
   fetchDataError,
   fetchingData,
+  initialState,
   logoutUser,
   setFetchDataSuccess,
   TUserData,
-  TUserDataState,
   updateTokens,
   updateUser,
   userDataSlice,
 } from "./user-data-slice"
 import { getCookie } from "../../cookies/getCookie"
 import { getAuthUser } from "../../../utils/authUserResponse"
-
-const initialState: TUserDataState = {
-  user: {
-    email: "",
-    name: "",
-  },
-  accessToken: "",
-  refreshToken: "",
-  status: {
-    isLoading: false,
-    isError: false,
-  },
-}
 
 describe("user", () => {
   it("should set user information and cookies", () => {

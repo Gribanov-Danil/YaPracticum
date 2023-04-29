@@ -1,24 +1,13 @@
-import { TIngredient } from "../../../utils/models/ingredient-types/types"
 import {
   deleteDraggableIngredient,
+  initialState,
   pickedIngredientSlice,
-  PickedIngredientSliceState,
   setFirstIngredient,
   setPickedBun,
   setPickedIngredient,
   updatePickedIngredient,
 } from "./picked-ingredients-slice"
 import { testBun, testIngredient } from "../../../utils/constants/test-constants"
-
-const initialState: PickedIngredientSliceState = {
-  pickedIngredient: [
-    {
-      id: "",
-      ingredient: {} as TIngredient,
-    },
-  ],
-  pickedBun: {} as TIngredient,
-}
 
 describe("pickedIngredient", () => {
   it("should set first ingredient", () => {

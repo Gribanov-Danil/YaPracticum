@@ -7,7 +7,7 @@ export type IngredientsSliceState = {
   status: TStatus
 }
 
-const initialState: IngredientsSliceState = {
+export const initialState: IngredientsSliceState = {
   dataArray: [],
   status: {
     isLoading: false,

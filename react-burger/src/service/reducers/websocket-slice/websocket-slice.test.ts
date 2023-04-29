@@ -1,5 +1,5 @@
 import {
-  TWebsocketState,
+  initialState,
   websocketSlice,
   wsClose,
   wsError,
@@ -7,12 +7,6 @@ import {
   wsSuccess,
 } from "./websocket-slice"
 import { testBun } from "../../../utils/constants/test-constants"
-
-const initialState: TWebsocketState = {
-  wsConnected: false,
-  orders: null,
-  error: false,
-}
 
 describe("websocketSlice", () => {
   it("should make wsConnected field true when connection is success", () => {

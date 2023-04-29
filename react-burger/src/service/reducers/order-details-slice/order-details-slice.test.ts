@@ -2,18 +2,10 @@ import {
   deleteId,
   fetchDataError,
   fetchDataProcessing,
+  initialState,
   orderDetailsSlice,
-  TOrderDetailsState,
   updateId,
 } from "./order-details-slice"
-
-const initialState: TOrderDetailsState = {
-  id: undefined,
-  status: {
-    isError: false,
-    isLoading: false,
-  },
-}
 
 describe("orderDetails", () => {
   it("should make status.isLoading true when dataArray is fetching", () => {

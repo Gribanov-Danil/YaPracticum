@@ -2,18 +2,10 @@ import {
   fetchDataError,
   fetchingData,
   ingredientsSlice,
-  IngredientsSliceState,
+  initialState,
   setFetchDataSuccess,
 } from "./ingredients-slice"
 import { testBun } from "../../../utils/constants/test-constants"
-
-const initialState: IngredientsSliceState = {
-  dataArray: [],
-  status: {
-    isLoading: false,
-    isError: false,
-  },
-}
 
 describe("ingredients", () => {
   it("should make status.isLoading true when dataArray is fetching", () => {

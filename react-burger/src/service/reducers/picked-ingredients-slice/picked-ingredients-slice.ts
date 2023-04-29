@@ -6,7 +6,7 @@ export type PickedIngredientSliceState = {
   pickedBun: TIngredient
 }
 
-const initialState: PickedIngredientSliceState = {
+export const initialState: PickedIngredientSliceState = {
   pickedIngredient: [
     {
       id: "",

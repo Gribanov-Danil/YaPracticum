@@ -10,7 +10,7 @@ export type TUserDataState = {
   status: TStatus
 }
 
-const initialState: TUserDataState = {
+export const initialState: TUserDataState = {
   user: {
     email: "",
     name: "",
