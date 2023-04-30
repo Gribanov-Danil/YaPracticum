@@ -1,6 +1,6 @@
 import { URL_AUTH_USER } from "./constants/axiosInstance"
 import { AxiosRequestInstance } from "./constants/axiosInstance"
-import { fetchDataError, updateUser } from "../service/reducers/userDataSlice"
+import { fetchDataError, updateUser } from "../service/reducers/user-data-slice/user-data-slice"
 import { getCookie } from "../service/cookies/getCookie"
 import { postRefreshUserData } from "./postRefreshUserData"
 import { TAppDispatch } from "../service/store"

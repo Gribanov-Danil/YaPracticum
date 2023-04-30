@@ -19,7 +19,6 @@ export const ProtectedRoute: FC<IProtectedRouteElement> = ({ element, onlyAuth =
   const init = async () => {
     let payload = await dispatch(getAuthUser())
     let res = unwrapResult(payload)
-
     if (res && res.success) {
       setIsSuccess(true)
     }
@@ -28,7 +27,6 @@ export const ProtectedRoute: FC<IProtectedRouteElement> = ({ element, onlyAuth =
   useEffect(() => {
     init()
   }, [])
-
   if (!isUserLoaded) {
     return null
   }

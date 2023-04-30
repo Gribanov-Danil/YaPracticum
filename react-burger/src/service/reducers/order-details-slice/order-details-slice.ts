@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { TStatus } from "../../utils/models/redux-types/types"
+import { TStatus } from "../../../utils/models/redux-types/types"
 
 export type TOrderDetailsState = {
   id: number | undefined
   status: TStatus
 }
 
-const initialState: TOrderDetailsState = {
+export const initialState: TOrderDetailsState = {
   id: undefined,
   status: {
     isError: false,

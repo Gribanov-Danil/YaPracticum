@@ -1,6 +1,6 @@
 import { URL_UPDATE_TOKEN } from "./constants/axiosInstance"
 import { AxiosRequestInstance } from "./constants/axiosInstance"
-import { fetchDataError, updateTokens } from "../service/reducers/userDataSlice"
+import { fetchDataError, updateTokens } from "../service/reducers/user-data-slice/user-data-slice"
 import { getCookie } from "../service/cookies/getCookie"
 import { createAsyncThunk } from "@reduxjs/toolkit"
 

@@ -52,6 +52,7 @@ export const IngredientItem = memo<IIngredientItem>(function IngredientItem({
       key={ingredient._id}
       to={`/ingredients/${ingredient._id}`}
       state={{ background: location }}
+      data-cy={"ingredient"}
     >
       <div
         ref={dragRef}

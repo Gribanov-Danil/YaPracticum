@@ -6,7 +6,7 @@ import {
   setFirstIngredient,
   setPickedBun,
   setPickedIngredient,
-} from "../../service/reducers/pickedIngredientsSlice"
+} from "../../service/reducers/picked-ingredients-slice/picked-ingredients-slice"
 import { DraggableIngredientsBlock } from "../draggable-ingredients-block/draggable-ingredients-block"
 import uuid from "react-uuid"
 import { EmptyOpenBun } from "../../ui/empty-open-bun/empty-open-bun"
@@ -36,7 +36,7 @@ export const ConstructorPanel: FC = () => {
   })
 
   return (
-    <div ref={dropTarget} className={`${panelStyles.panel} mb-10`}>
+    <div ref={dropTarget} className={`${panelStyles.panel} mb-10`} data-cy={"drop-area"}>
       {Object.keys(pickedBun).length !== 0 ? (
         <OpenBun bun={pickedBun} />
       ) : (

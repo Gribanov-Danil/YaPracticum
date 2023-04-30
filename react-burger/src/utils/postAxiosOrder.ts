@@ -3,7 +3,7 @@ import {
   fetchDataError,
   fetchDataProcessing,
   updateId,
-} from "../service/reducers/orderDetailsSlice"
+} from "../service/reducers/order-details-slice/order-details-slice"
 import { getCookie } from "../service/cookies/getCookie"
 import { TAppDispatch } from "../service/store"
 

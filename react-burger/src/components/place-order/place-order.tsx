@@ -4,7 +4,7 @@ import placeOrderStyles from "./place-order.module.css"
 import { Modal } from "../modal/modal"
 import { useCallback, useMemo, useState } from "react"
 import { OrderDetails } from "../order-details/order-details"
-import { deleteId } from "../../service/reducers/orderDetailsSlice"
+import { deleteId } from "../../service/reducers/order-details-slice/order-details-slice"
 import { postAxiosOrder } from "../../utils/postAxiosOrder"
 import { useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
@@ -52,7 +52,13 @@ export const PlaceOrder = () => {
         gapInPx={8}
         icon={<CurrencyIcon type="primary" />}
       />
-      <Button htmlType="button" type="primary" size="medium" onClick={handleToggleModal}>
+      <Button
+        htmlType="button"
+        type="primary"
+        size="medium"
+        onClick={handleToggleModal}
+        data-cy={"order-btn"}
+      >
         Оформить заказ
       </Button>
       {isModalVisible && (

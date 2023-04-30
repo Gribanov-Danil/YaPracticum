@@ -8,7 +8,7 @@ interface IModalOverlay {
 
 export const ModalOverlay: FC<IModalOverlay> = ({ children, onClick }) => {
   return (
-    <div className={styles.overlay} onClick={() => onClick()}>
+    <div data-cy={"close-modal-overlay"} className={styles.overlay} onClick={() => onClick()}>
       {children}
     </div>
   )

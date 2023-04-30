@@ -1,6 +1,6 @@
 import { URL_PASSWORD_RESET } from "./constants/axiosInstance"
 import { AxiosRequestInstance } from "./constants/axiosInstance"
-import { fetchDataError } from "../service/reducers/userDataSlice"
+import { fetchDataError } from "../service/reducers/user-data-slice/user-data-slice"
 import { TAppDispatch } from "../service/store"
 
 export const postResetPassword =
