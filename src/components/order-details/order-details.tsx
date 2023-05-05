@@ -27,7 +27,7 @@ export const OrderDetails: FC = () => {
         идентификатор заказа
       </span>
       <div className={styles.image_container}>
-        <img src={require("../../images/done.png")} alt={"Done"} />
+        <img src={require("../../assets/images/done.png")} alt={"Done"} />
       </div>
       <span className={`${styles.ready_order} text text_type_main-default`}>
         Ваш заказ начали готовить
