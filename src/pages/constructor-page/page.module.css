@@ -2,8 +2,13 @@
     display: flex;
 }
 
+.amount_order {
+    display: none;
+}
+
 @media (max-width: 1280px) {
     .amount_order {
+        display: block;
         position: sticky;
         bottom: 0;
         width: 100%;
