@@ -1,0 +1,9 @@
+.ingredients_container {
+    margin-right: 40px;
+}
+
+@media (max-width: 1280px) {
+    .ingredients_container {
+        margin-right: 0;
+    }
+}

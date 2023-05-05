@@ -2,14 +2,19 @@ import { Button, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-co
 import { IconicText } from "../../ui/iconic-text/iconic-text"
 import placeOrderStyles from "./place-order.module.css"
 import { Modal } from "../modal/modal"
-import { useCallback, useMemo, useState } from "react"
+import { FC, useCallback, useMemo, useState } from "react"
 import { OrderDetails } from "../order-details/order-details"
 import { deleteId } from "../../service/reducers/order-details-slice/order-details-slice"
 import { postAxiosOrder } from "../../utils/postAxiosOrder"
 import { useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 
-export const PlaceOrder = () => {
+interface IPlaceOrder {
+  buttonTitle?: string
+  extraClass? : string
+}
+
+export const PlaceOrder: FC<IPlaceOrder> = ({buttonTitle="Оформить заказ",extraClass}) => {
   const [isModalVisible, setModalVisible] = useState(false)
   const dispatch = useAppDispatch()
   const handleCloseModal = useCallback(() => {
@@ -44,9 +49,9 @@ export const PlaceOrder = () => {
   }, [ingredientsIdsList, dispatch])
 
   return (
-    <div className={placeOrderStyles.placeOrder}>
+    <div className={`${placeOrderStyles.placeOrder} ${extraClass}`}>
       <IconicText
-        text={orderAmount.toString()}
+        text={orderAmount.toString().padStart(5, "\xa0")}
         textClass={"text_type_digits-medium"}
         iconLocation={"right"}
         gapInPx={8}
@@ -59,7 +64,7 @@ export const PlaceOrder = () => {
         onClick={handleToggleModal}
         data-cy={"order-btn"}
       >
-        Оформить заказ
+        {buttonTitle}
       </Button>
       {isModalVisible && (
         <Modal onClick={handleCloseModal}>
