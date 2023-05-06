@@ -1,6 +1,6 @@
 import { Button, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components"
 import { IconicText } from "../../ui/iconic-text/iconic-text"
-import placeOrderStyles from "./place-order.module.css"
+import styles from "./place-order.module.css"
 import { Modal } from "../modal/modal"
 import { FC, useCallback, useMemo, useState } from "react"
 import { OrderDetails } from "../order-details/order-details"
@@ -49,7 +49,7 @@ export const PlaceOrder: FC<IPlaceOrder> = ({buttonTitle="Оформить за�
   }, [ingredientsIdsList, dispatch])
 
   return (
-    <div className={`${placeOrderStyles.placeOrder} ${extraClass}`}>
+    <div className={`${styles.placeOrder} ${extraClass}`}>
       <IconicText
         text={orderAmount.toString().padStart(5, "\xa0")}
         textClass={"text_type_digits-medium"}

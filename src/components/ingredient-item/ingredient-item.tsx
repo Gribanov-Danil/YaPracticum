@@ -5,10 +5,9 @@ import { useDrag } from "react-dnd"
 import { Link, useLocation } from "react-router-dom"
 import { useAppSelector } from "../../hooks/redux"
 import { TIngredient, TIngredientObj } from "../../utils/models/ingredient-types/types"
+import { getScreenType } from "../../utils/getScreenType"
 
 interface IIngredientItem {
-  index: number
-  collectionLength: number
   ingredient: TIngredient
 }
 
@@ -17,11 +16,7 @@ type TPickedIngredientState = {
   pickedBun: TIngredient
 }
 
-export const IngredientItem = memo<IIngredientItem>(function IngredientItem({
-  ingredient,
-  index,
-  collectionLength,
-}) {
+export const IngredientItem = memo<IIngredientItem>(function IngredientItem({ ingredient }) {
   const [ingredientCount, setIngredientCount] = useState<number>(0)
   const state: TPickedIngredientState = useAppSelector((state) => state.pickedIngredientsReducer)
 
@@ -41,11 +36,8 @@ export const IngredientItem = memo<IIngredientItem>(function IngredientItem({
     item: ingredient,
   })
 
-  let lastPairClass: string
-  if (collectionLength % 2 === 0)
-    lastPairClass = index === collectionLength - 2 || index === collectionLength - 1 ? "" : "mb-8"
-  else lastPairClass = index === collectionLength - 1 ? "" : "mb-8"
   const location = useLocation()
+  const screenType = getScreenType()
 
   return (
     <Link
@@ -54,12 +46,7 @@ export const IngredientItem = memo<IIngredientItem>(function IngredientItem({
       state={{ background: location }}
       data-cy={"ingredient"}
     >
-      <div
-        ref={dragRef}
-        className={`${lastPairClass} ${index % 2 === 0 ? "mr-6 ml-4" : ""} ${
-          constructorItemStyles.item_card
-        }`}
-      >
+      <div ref={dragRef} className={constructorItemStyles.item_card}>
         {ingredientCount !== 0 && (
           <Counter count={ingredientCount} size="default" extraClass="m-1" />
         )}
@@ -73,7 +60,11 @@ export const IngredientItem = memo<IIngredientItem>(function IngredientItem({
           <CurrencyIcon type="primary" />
         </div>
         <div>
-          <p className={`text text_type_main-default ${constructorItemStyles.name}`}>
+          <p
+            className={`text ${
+              screenType === "desktop" ? "text_type_main-default" : "text_type_main-small"
+            } ${constructorItemStyles.name}`}
+          >
             {ingredient.name}
           </p>
         </div>

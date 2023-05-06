@@ -20,12 +20,7 @@ export const IngredientsSection = forwardRef<HTMLParagraphElement, IIngredientsS
         </div>
         <div className={constructorStyle.type_container}>
           {itemList.map((item, index) => (
-            <IngredientItem
-              key={index}
-              index={index}
-              ingredient={item}
-              collectionLength={itemList.length}
-            />
+            <IngredientItem key={index} ingredient={item} />
           ))}
         </div>
       </section>

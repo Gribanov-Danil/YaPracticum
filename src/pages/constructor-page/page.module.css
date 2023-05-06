@@ -17,8 +17,11 @@
     }
 
     .placeOrder_mobile {
-        justify-content: space-between;
-        margin: 0 8px;
+        margin: 16px 8px;
+    }
+
+    .placeOrder_mobile button {
+        margin-left: auto;
     }
 }
 

@@ -18,3 +18,10 @@
 .name {
     text-align: center;
 }
+
+@media (max-width: 1280px) {
+    .item_card {
+        max-width: 144px;
+        min-height: 220px;
+    }
+}
