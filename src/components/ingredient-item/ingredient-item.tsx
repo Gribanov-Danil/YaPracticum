@@ -1,6 +1,6 @@
-import { Counter, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components"
-import constructorItemStyles from "./ingredient-item.module.css"
-import { memo, useEffect, useState } from "react"
+import { Button, Counter, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components"
+import styles from "./ingredient-item.module.css"
+import { memo, SyntheticEvent, useEffect, useState } from "react"
 import { useDrag } from "react-dnd"
 import { Link, useLocation } from "react-router-dom"
 import { useAppSelector } from "../../hooks/redux"
@@ -38,6 +38,10 @@ export const IngredientItem = memo<IIngredientItem>(function IngredientItem({ in
 
   const location = useLocation()
   const screenType = getScreenType()
+  const handleAddIngredient = (e: SyntheticEvent) => {
+    console.log(e)
+    e.stopPropagation()
+  }
 
   return (
     <Link
@@ -46,28 +50,35 @@ export const IngredientItem = memo<IIngredientItem>(function IngredientItem({ in
       state={{ background: location }}
       data-cy={"ingredient"}
     >
-      <div ref={dragRef} className={constructorItemStyles.item_card}>
+      <div ref={dragRef} className={styles.item_card}>
         {ingredientCount !== 0 && (
           <Counter count={ingredientCount} size="default" extraClass="m-1" />
         )}
         <div className="ml-4 mb-1 mr-4">
-          <img src={ingredient.image} alt="" />
+          <img src={screenType === "desktop" ? ingredient.image : ingredient.image_mobile} alt="" />
         </div>
-        <div className={`${constructorItemStyles.price_block} mb-1`}>
-          <p className={`text text_type_digits-default ${constructorItemStyles.price} mr-2`}>
-            {ingredient.price}
-          </p>
+        <div className={`${styles.price_block} mb-1`}>
+          <p className={`text text_type_digits-default ${styles.price} mr-2`}>{ingredient.price}</p>
           <CurrencyIcon type="primary" />
         </div>
-        <div>
+        <div className={styles.ingredient_name}>
           <p
             className={`text ${
               screenType === "desktop" ? "text_type_main-default" : "text_type_main-small"
-            } ${constructorItemStyles.name}`}
+            } ${styles.name}`}
           >
             {ingredient.name}
           </p>
         </div>
+        <Button
+          onClick={(e) => handleAddIngredient(e)}
+          htmlType="button"
+          type="secondary"
+          size="small"
+          extraClass={styles.btn_small}
+        >
+          Добавить
+        </Button>
       </div>
     </Link>
   )

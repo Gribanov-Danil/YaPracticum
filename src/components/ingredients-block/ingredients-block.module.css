@@ -25,11 +25,13 @@
 }
 
 @media (max-width: 1280px) {
+    .constructor {
+        height: 55vh;
+    }
     .constructor::-webkit-scrollbar {
         width: 0;
     }
     .type_container {
-        /*gap: 20px  60px;*/
-        gap:   20px max(calc((100% - (144px * 3)) / 3), 16px);
+        gap: 20px max(calc((100% - (144px * 3)) / 3), 16px);
     }
 }
