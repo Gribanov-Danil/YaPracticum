@@ -16,6 +16,68 @@ code {
     monospace;
 }
 
-.inactive {
-  display: none;
+html {
+  box-sizing: border-box;
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+p {
+  margin: 0;
+}
+
+picture {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-inline-start: 0;
+}
+
+main {
+  margin-bottom: auto;
+}
+
+
+.blue_text {
+  color: #0cc;
+}
+
+
+@media (max-width: 1280px) {
+  .inactive {
+    display: none;
+  }
+}
+
