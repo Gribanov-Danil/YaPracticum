@@ -10,11 +10,16 @@ import { useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 
 interface IPlaceOrder {
+  onClick?: () => void
   buttonTitle?: string
-  extraClass? : string
+  extraClass?: string
 }
 
-export const PlaceOrder: FC<IPlaceOrder> = ({buttonTitle="Оформить заказ",extraClass}) => {
+export const PlaceOrder: FC<IPlaceOrder> = ({
+  buttonTitle = "Оформить заказ",
+  extraClass,
+  onClick,
+}) => {
   const [isModalVisible, setModalVisible] = useState(false)
   const dispatch = useAppDispatch()
   const handleCloseModal = useCallback(() => {
@@ -61,7 +66,7 @@ export const PlaceOrder: FC<IPlaceOrder> = ({buttonTitle="Оформить за�
         htmlType="button"
         type="primary"
         size="medium"
-        onClick={handleToggleModal}
+        onClick={onClick ? onClick : handleToggleModal}
         data-cy={"order-btn"}
       >
         {buttonTitle}

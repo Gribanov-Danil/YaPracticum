@@ -68,7 +68,7 @@ export const BurgerIngredients = () => {
   }, [])
 
   return (
-    <div className={`mt-10 mb-10 ${styles.ingredients_container}`}>
+    <div id="BurgerIngredients" className={`mt-10 mb-10 ${styles.ingredients_container}`}>
       <p className="mb-5 text text_type_main-large">Соберите бургер</p>
       <IngredientsTab tabs={tabs} handleTabScroll={handleTabScroll} current={currentTab} />
       <IngredientsBlock refList={refList} />
