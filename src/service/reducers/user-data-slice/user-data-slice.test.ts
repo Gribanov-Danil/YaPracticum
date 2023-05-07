@@ -10,7 +10,7 @@ import {
   userDataSlice,
 } from "./user-data-slice"
 import { getCookie } from "../../cookies/getCookie"
-import { getAuthUser } from "../../../utils/authUserResponse"
+import { getAuthUser } from "../../../utils/REST/authUserResponse"
 
 describe("user", () => {
   it("should set user information and cookies", () => {

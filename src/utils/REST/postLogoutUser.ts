@@ -1,11 +1,11 @@
-import { URL_LOGOUT } from "./constants/axiosInstance"
-import { AxiosRequestInstance } from "./constants/axiosInstance"
+import { URL_LOGOUT } from "../constants/axiosInstance"
+import { AxiosRequestInstance } from "../constants/axiosInstance"
 import {
   fetchDataError,
   fetchingData,
   logoutUser,
-} from "../service/reducers/user-data-slice/user-data-slice"
-import { TAppDispatch } from "../service/store"
+} from "../../service/reducers/user-data-slice/user-data-slice"
+import { TAppDispatch } from "../../service/store"
 
 export const postLogout = (token: string) => async (dispatch: TAppDispatch) => {
   dispatch(fetchingData())

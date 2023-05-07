@@ -1,7 +1,7 @@
-import { URL_FORGOT_PASSWORD } from "./constants/axiosInstance"
-import { AxiosRequestInstance } from "./constants/axiosInstance"
-import { fetchDataError } from "../service/reducers/user-data-slice/user-data-slice"
-import { TAppDispatch } from "../service/store"
+import { URL_FORGOT_PASSWORD } from "../constants/axiosInstance"
+import { AxiosRequestInstance } from "../constants/axiosInstance"
+import { fetchDataError } from "../../service/reducers/user-data-slice/user-data-slice"
+import { TAppDispatch } from "../../service/store"
 
 export const postForgotPassword = (userEmail: string) => async (dispatch: TAppDispatch) => {
   try {

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { setCookie } from "../../cookies/setCookie"
 import { TStatus, TUser } from "../../../utils/models/redux-types/types"
-import { getAuthUser } from "../../../utils/authUserResponse"
+import { getAuthUser } from "../../../utils/REST/authUserResponse"
 
 export type TUserDataState = {
   user: TUser

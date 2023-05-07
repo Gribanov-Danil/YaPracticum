@@ -3,9 +3,15 @@ import styles from "./ingredient-item.module.css"
 import { memo, SyntheticEvent, useEffect, useState } from "react"
 import { useDrag } from "react-dnd"
 import { Link, useLocation } from "react-router-dom"
-import { useAppSelector } from "../../hooks/redux"
+import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { TIngredient, TIngredientObj } from "../../utils/models/ingredient-types/types"
 import { getScreenType } from "../../utils/getScreenType"
+import {
+  setFirstIngredient,
+  setPickedBun,
+  setPickedIngredient,
+} from "../../service/reducers/picked-ingredients-slice/picked-ingredients-slice"
+import uuid from "react-uuid"
 
 interface IIngredientItem {
   ingredient: TIngredient

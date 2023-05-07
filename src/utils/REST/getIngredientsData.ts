@@ -1,11 +1,11 @@
-import { AxiosRequestInstance, URL_INGREDIENTS } from "./constants/axiosInstance"
+import { AxiosRequestInstance, URL_INGREDIENTS } from "../constants/axiosInstance"
 import {
   fetchDataError,
   fetchingData,
   setFetchDataSuccess,
-} from "../service/reducers/ingredients-slice/ingredients-slice"
-import { TAppDispatch } from "../service/store"
-import { TIngredientsResponse } from "./models/redux-types/types"
+} from "../../service/reducers/ingredients-slice/ingredients-slice"
+import { TAppDispatch } from "../../service/store"
+import { TIngredientsResponse } from "../models/redux-types/types"
 
 export const getIngredientsData = () => async (dispatch: TAppDispatch) => {
   dispatch(fetchingData())
