@@ -6,12 +6,7 @@ import { Link, useLocation } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { TIngredient, TIngredientObj } from "../../utils/models/ingredient-types/types"
 import { getScreenType } from "../../utils/getScreenType"
-import {
-  setFirstIngredient,
-  setPickedBun,
-  setPickedIngredient,
-} from "../../service/reducers/picked-ingredients-slice/picked-ingredients-slice"
-import uuid from "react-uuid"
+import { addIngredientInStore } from "../../utils/addIngredientInStore"
 
 interface IIngredientItem {
   ingredient: TIngredient
@@ -44,9 +39,10 @@ export const IngredientItem = memo<IIngredientItem>(function IngredientItem({ in
 
   const location = useLocation()
   const screenType = getScreenType()
+  const dispatch = useAppDispatch()
   const handleAddIngredient = (e: SyntheticEvent) => {
-    console.log(e)
-    e.stopPropagation()
+    e.preventDefault()
+    addIngredientInStore(ingredient, pickedIngredient, dispatch)
   }
 
   return (
