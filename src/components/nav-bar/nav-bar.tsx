@@ -1,4 +1,4 @@
-import headerClasses from "../app-header/header.module.css"
+import headerClasses from "./nav-bar.module.css"
 import {
   BurgerIcon,
   ListIcon,

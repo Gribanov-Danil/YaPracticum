@@ -12,8 +12,11 @@ export const ConstructorPage: FC = () => {
   const toggleScreen = () => {
     const burgerIngredients = document.querySelector("#BurgerIngredients")
     const burgerConstructor = document.querySelector("#BurgerConstructor")
+    const mainHeader = document.querySelector("#pageHeader")
     burgerConstructor?.classList.toggle("inactive")
     burgerIngredients?.classList.toggle("inactive")
+    mainHeader?.classList.toggle("inactive")
+    mainHeader?.classList.toggle("header")
   }
   return (
     <>

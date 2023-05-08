@@ -1,4 +1,4 @@
-import headerClasses from "../app-header/header.module.css"
+import headerClasses from "../nav-bar/nav-bar.module.css"
 import { cloneElement, FC, ReactElement } from "react"
 import { IconicText } from "../../ui/iconic-text/iconic-text"
 import { NavLink } from "react-router-dom"

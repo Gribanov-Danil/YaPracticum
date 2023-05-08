@@ -1,10 +1,10 @@
 import { FC } from "react"
 import { NavBar } from "../nav-bar/nav-bar"
-import styles from "./header.module.css"
+import "./header.css"
 
 export const AppHeader: FC = () => {
   return (
-    <header className={styles.header}>
+    <header id="pageHeader" className="header">
       <NavBar />
     </header>
   )
