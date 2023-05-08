@@ -69,7 +69,9 @@ export const BurgerIngredients = () => {
 
   return (
     <div id="BurgerIngredients" className={`mt-10 mb-10 ${styles.ingredients_container}`}>
-      <p className="mb-5 text text_type_main-large">Соберите бургер</p>
+      <p className={`mb-5 text text_type_main-large ${styles.ingredients_container_title}`}>
+        Соберите бургер
+      </p>
       <IngredientsTab tabs={tabs} handleTabScroll={handleTabScroll} current={currentTab} />
       <IngredientsBlock refList={refList} />
     </div>

@@ -6,4 +6,8 @@
     .ingredients_container {
         margin-right: 0;
     }
+
+    .ingredients_container_title {
+        text-align: center;
+    }
 }
