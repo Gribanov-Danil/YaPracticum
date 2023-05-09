@@ -5,7 +5,7 @@ import styles from "./burger-constructor.module.css"
 
 export const BurgerConstructor: FC = () => {
   return (
-    <div id="BurgerConstructor" className={`mt-25 ${styles.constructor_container} inactive`}>
+    <div id="BurgerConstructor" className={`mt-25 ${styles.constructor_container}`}>
       <ConstructorPanel />
       <PlaceOrder />
     </div>

@@ -6,18 +6,12 @@ import { BurgerConstructor } from "../../components/burger-constructor/burger-co
 import { FC } from "react"
 import { useAppSelector } from "../../hooks/redux"
 import { PlaceOrder } from "../../components/place-order/place-order"
+import { BurgerConstructorMobile } from "../../components/burger-constructor-mobile/burger-constructor-mobile"
+import { toggleScreen } from "../../utils/toggle-constructor-screen"
 
 export const ConstructorPage: FC = () => {
   const state = useAppSelector((state) => state.ingredientsReducer)
-  const toggleScreen = () => {
-    const burgerIngredients = document.querySelector("#BurgerIngredients")
-    const burgerConstructor = document.querySelector("#BurgerConstructor")
-    const mainHeader = document.querySelector("#pageHeader")
-    burgerConstructor?.classList.toggle("inactive")
-    burgerIngredients?.classList.toggle("inactive")
-    mainHeader?.classList.toggle("inactive")
-    mainHeader?.classList.toggle("header")
-  }
+
   return (
     <>
       <main className={pageStyle.page}>
@@ -28,13 +22,16 @@ export const ConstructorPage: FC = () => {
         {!state.status.isLoading &&
           !state.status.isError &&
           Object.keys(state.dataArray).length && (
-            <DndProvider backend={HTML5Backend}>
-              <BurgerIngredients />
-              <BurgerConstructor />
-            </DndProvider>
+            <>
+              <DndProvider backend={HTML5Backend}>
+                <BurgerIngredients />
+                <BurgerConstructor />
+              </DndProvider>
+              <BurgerConstructorMobile />
+            </>
           )}
       </main>
-      <div className={pageStyle.amount_order}>
+      <div id="amountOrder" className={pageStyle.amount_order}>
         <PlaceOrder
           buttonTitle="Смотреть заказ"
           extraClass={pageStyle.placeOrder_mobile}

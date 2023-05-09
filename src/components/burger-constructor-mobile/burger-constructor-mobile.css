@@ -1,0 +1,24 @@
+.burger_constructor_container {
+    display: none;
+}
+
+@media (max-width: 1280px) {
+    .burger_constructor_container {
+        display: block;
+        width: 100vw;
+    }
+
+    .mobile_constructor_header {
+        width: calc(100% - 8px * 2);
+        display: flex;
+        justify-content: space-between;
+        margin: 16px 8px;
+    }
+
+    .inactive {
+        display: none;
+    }
+    .burger_constructor_title {
+        font-size: 28px;
+    }
+}
