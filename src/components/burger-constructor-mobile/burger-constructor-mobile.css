@@ -21,4 +21,10 @@
     .burger_constructor_title {
         font-size: 28px;
     }
+
+    .burger_constructor {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

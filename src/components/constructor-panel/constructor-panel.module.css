@@ -34,3 +34,14 @@
 .empty_open_bun {
     background-color: rgba(0,0,0,0.6);
 }
+
+@media (max-width: 1280px) {
+    .constructor_block {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .constructor_block::-webkit-scrollbar {
+        width: 0;
+    }
+}

@@ -31,7 +31,7 @@ export const ConstructorPanel: FC = () => {
       ) : (
         <EmptyOpenBun text={"Положите выбранную булку"} />
       )}
-      <DraggableIngredientsBlock pickedIngredients={pickedIngredient} />
+      <DraggableIngredientsBlock />
       {Object.keys(pickedBun).length !== 0 ? (
         <ClosingBun bun={pickedBun} />
       ) : (

@@ -3,13 +3,13 @@ import {
   BurgerIcon,
   ListIcon,
   Logo,
+  MenuIcon,
   ProfileIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components"
 import React, { FC } from "react"
 import { NavBarItem } from "../nav-barItem/nav-barItem"
 import { NavLink } from "react-router-dom"
 import { HeaderLogo } from "../../assets/SVGs/header-logo/header-logo"
-import { HeaderBurger } from "../../ui/header-burger/header-burger"
 
 export const NavBar: FC = () => {
   return (
@@ -44,7 +44,7 @@ export const NavBar: FC = () => {
       </nav>
       <nav className={`${headerClasses.navbar} ${headerClasses.navbarMobile}`}>
         <HeaderLogo />
-        <HeaderBurger />
+        <MenuIcon type="primary" />
       </nav>
     </>
   )
