@@ -1,6 +1,7 @@
 import { FC } from "react"
 import { TIngredient } from "../../utils/models/ingredient-types/types"
 import { ConstructorElement } from "../constructor-element/constructor-element"
+import styles from "./open-bun.module.css"
 
 interface IOpenBun {
   bun: TIngredient
@@ -8,7 +9,7 @@ interface IOpenBun {
 
 export const OpenBun: FC<IOpenBun> = ({ bun }) => {
   return (
-    <div className="ml-8">
+    <div className={styles.bun}>
       <ConstructorElement
         type="top"
         isLocked={true}

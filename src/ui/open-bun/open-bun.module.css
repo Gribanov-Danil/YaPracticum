@@ -1,0 +1,9 @@
+.bun {
+    margin-left: 32px;
+}
+
+@media (max-width: 1280px) {
+    .bun {
+        width: calc(100% - 32px);
+    }
+}
