@@ -38,10 +38,14 @@
 @media (max-width: 1280px) {
     .constructor_block {
         width: 100%;
-        display: flex;
-        justify-content: center;
+        min-height: initial;
+        max-height: initial;
+        min-width: initial;
     }
     .constructor_block::-webkit-scrollbar {
         width: 0;
+    }
+    .ingredient:not(:last-child) {
+        margin: 0;
     }
 }

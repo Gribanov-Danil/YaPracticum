@@ -1,6 +1,6 @@
-import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components"
 import { FC } from "react"
 import { TIngredient } from "../../utils/models/ingredient-types/types"
+import { ConstructorElement } from "../constructor-element/constructor-element"
 
 interface IOpenBun {
   bun: TIngredient

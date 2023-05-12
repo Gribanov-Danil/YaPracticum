@@ -74,6 +74,11 @@ main {
   color: #0cc;
 }
 
+.centered_element {
+  display: flex;
+  align-items: center;
+}
+
 
 @media (max-width: 1280px) {
   .inactive {
