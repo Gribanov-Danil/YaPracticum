@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { TIngredient } from "../../utils/models/ingredient-types/types"
-import { ConstructorElement } from "../constructor-element/constructor-element"
 import styles from "./closing-bun.module.css"
+import { ConstructorElement } from "../../hocs/constructor-element/constructor-element"
 
 interface IClosingBun {
   bun: TIngredient

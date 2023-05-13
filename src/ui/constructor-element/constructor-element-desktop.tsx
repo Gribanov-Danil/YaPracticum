@@ -1,4 +1,4 @@
-import { FC } from "react"
+import React from "react"
 import clsx from "clsx"
 import "./constructor-element.css"
 import {
@@ -8,7 +8,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components"
 
 /**
- * Элемент конструктора заказов
+ * Десктопная версия элемента конструктора заказов
  * @param text Название ингредиента
  * @param thumbnail Иконка ингредиента
  * @param price Цена ингредиента
@@ -17,7 +17,7 @@ import {
  * @param extraClass Дополнительные классы
  * @param handleClose Функция, вызываемая при клики на иконку закрытия
  */
-export const ConstructorElement: FC<{
+export const ConstructorElementDesktop: React.FC<{
   text: string
   thumbnail: string
   price: number
@@ -42,17 +42,13 @@ export const ConstructorElement: FC<{
 
   return (
     <div className={className}>
-      <span className="centered_element constructor-element__row">
-        <div className="centered_element">
-          <img className="constructor-element__image" src={thumbnail} alt={text} />
-          <span className="constructor-element__text">{text}</span>
-        </div>
-        <div>
-          <span className="constructor-element__price">
-            {price}
-            <CurrencyIcon type="primary" />
-          </span>
-        </div>
+      <span className="constructor-element__row">
+        <img className="constructor-element__image" src={thumbnail} alt={text} />
+        <span className="constructor-element__text">{text}</span>
+        <span className="constructor-element__price">
+          {price}
+          <CurrencyIcon type="primary" />
+        </span>
         <span className="constructor-element__action pr-2">{action}</span>
       </span>
     </div>

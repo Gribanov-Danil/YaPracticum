@@ -4,8 +4,8 @@ import { memo } from "react"
 import { Reorder, useDragControls } from "framer-motion"
 import { TIngredientObj } from "../../utils/models/ingredient-types/types"
 import { useAppDispatch } from "../../hooks/redux"
-import { ConstructorElement } from "../../ui/constructor-element/constructor-element"
 import { DragIcon } from "@ya.praktikum/react-developer-burger-ui-components"
+import { ConstructorElement } from "../../hocs/constructor-element/constructor-element"
 
 interface IConstructorIngredient {
   ingredientObj: TIngredientObj
