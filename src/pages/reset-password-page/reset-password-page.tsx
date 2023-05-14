@@ -2,7 +2,7 @@ import styles from "../pagesStyles.module.css"
 import { Button, Input, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components"
 import { Navigate, useLocation, useNavigate } from "react-router-dom"
 import { FormEvent, useEffect, useRef } from "react"
-import { postResetPassword } from "../../utils/postResetPassword"
+import { postResetPassword } from "../../utils/REST/postResetPassword"
 import { useAppDispatch } from "../../hooks/redux"
 import { useForm } from "../../hooks/use-form"
 

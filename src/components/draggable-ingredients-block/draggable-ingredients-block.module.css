@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 32px;
     border-radius: 40px;
     font-family: "Jet Brains Mono", sans-serif;
     background: #2f2f37;
@@ -10,4 +11,13 @@
     font-size: 16px;
     line-height: 24px;
     color: #f2f2f3;
+}
+
+@media (max-width: 1280px) {
+    .no_ingredient {
+        background: none;
+        font-size: 20px;
+        margin: 0;
+        padding: 0;
+    }
 }

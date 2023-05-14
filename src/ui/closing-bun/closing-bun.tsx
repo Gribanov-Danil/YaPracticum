@@ -1,6 +1,7 @@
-import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components"
 import { FC } from "react"
 import { TIngredient } from "../../utils/models/ingredient-types/types"
+import styles from "./closing-bun.module.css"
+import { ConstructorElement } from "../../hocs/constructor-element/constructor-element"
 
 interface IClosingBun {
   bun: TIngredient
@@ -8,7 +9,7 @@ interface IClosingBun {
 
 export const ClosingBun: FC<IClosingBun> = ({ bun }) => {
   return (
-    <div className="ml-8">
+    <div className={styles.bun}>
       <ConstructorElement
         type="bottom"
         isLocked={true}

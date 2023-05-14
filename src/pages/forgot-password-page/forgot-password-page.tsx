@@ -2,7 +2,7 @@ import styles from "../pagesStyles.module.css"
 import { Button, EmailInput } from "@ya.praktikum/react-developer-burger-ui-components"
 import { useNavigate } from "react-router-dom"
 import { FC, FormEvent } from "react"
-import { postForgotPassword } from "../../utils/postForgorPassword"
+import { postForgotPassword } from "../../utils/REST/postForgorPassword"
 import { useAppDispatch } from "../../hooks/redux"
 import { useForm } from "../../hooks/use-form"
 

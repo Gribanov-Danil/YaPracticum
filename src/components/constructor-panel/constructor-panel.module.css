@@ -34,3 +34,26 @@
 .empty_open_bun {
     background-color: rgba(0,0,0,0.6);
 }
+
+.test {
+    cursor: grab;
+}
+
+.test:active {
+    cursor: grabbing;
+}
+
+@media (max-width: 1280px) {
+    .constructor_block {
+        width: 100%;
+        min-height: initial;
+        max-height: initial;
+        min-width: initial;
+    }
+    .constructor_block::-webkit-scrollbar {
+        width: 0;
+    }
+    .ingredient:not(:last-child) {
+        margin: 0;
+    }
+}

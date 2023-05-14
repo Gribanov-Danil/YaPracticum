@@ -1,10 +1,10 @@
-import { URL_AUTH_USER } from "./constants/axiosInstance"
-import { AxiosRequestInstance } from "./constants/axiosInstance"
-import { fetchDataError, updateUser } from "../service/reducers/user-data-slice/user-data-slice"
-import { getCookie } from "../service/cookies/getCookie"
+import { URL_AUTH_USER } from "../constants/axiosInstance"
+import { AxiosRequestInstance } from "../constants/axiosInstance"
+import { fetchDataError, updateUser } from "../../service/reducers/user-data-slice/user-data-slice"
+import { getCookie } from "../../service/cookies/getCookie"
 import { postRefreshUserData } from "./postRefreshUserData"
-import { TAppDispatch } from "../service/store"
-import { TUserResponse } from "./models/redux-types/types"
+import { TAppDispatch } from "../../service/store"
+import { TUserResponse } from "../models/redux-types/types"
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
 export const getAuthUser = createAsyncThunk("getAuthUser", async (_, { dispatch }) => {

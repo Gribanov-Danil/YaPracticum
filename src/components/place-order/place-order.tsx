@@ -1,15 +1,25 @@
 import { Button, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components"
 import { IconicText } from "../../ui/iconic-text/iconic-text"
-import placeOrderStyles from "./place-order.module.css"
+import styles from "./place-order.module.css"
 import { Modal } from "../modal/modal"
-import { useCallback, useMemo, useState } from "react"
+import { FC, useCallback, useMemo, useState } from "react"
 import { OrderDetails } from "../order-details/order-details"
 import { deleteId } from "../../service/reducers/order-details-slice/order-details-slice"
-import { postAxiosOrder } from "../../utils/postAxiosOrder"
+import { postAxiosOrder } from "../../utils/REST/postAxiosOrder"
 import { useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 
-export const PlaceOrder = () => {
+interface IPlaceOrder {
+  onClick?: () => void
+  buttonTitle?: string
+  extraClass?: string
+}
+
+export const PlaceOrder: FC<IPlaceOrder> = ({
+  buttonTitle = "Оформить заказ",
+  extraClass,
+  onClick,
+}) => {
   const [isModalVisible, setModalVisible] = useState(false)
   const dispatch = useAppDispatch()
   const handleCloseModal = useCallback(() => {
@@ -44,9 +54,9 @@ export const PlaceOrder = () => {
   }, [ingredientsIdsList, dispatch])
 
   return (
-    <div className={placeOrderStyles.placeOrder}>
+    <div className={`${styles.placeOrder} ${extraClass}`}>
       <IconicText
-        text={orderAmount.toString()}
+        text={orderAmount.toString().padStart(5, "\xa0")}
         textClass={"text_type_digits-medium"}
         iconLocation={"right"}
         gapInPx={8}
@@ -56,10 +66,10 @@ export const PlaceOrder = () => {
         htmlType="button"
         type="primary"
         size="medium"
-        onClick={handleToggleModal}
+        onClick={onClick ? onClick : handleToggleModal}
         data-cy={"order-btn"}
       >
-        Оформить заказ
+        {buttonTitle}
       </Button>
       {isModalVisible && (
         <Modal onClick={handleCloseModal}>

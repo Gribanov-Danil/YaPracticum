@@ -18,3 +18,31 @@
 .name {
     text-align: center;
 }
+
+.btn_small {
+    font-family: 'Jet Brains Mono', sans-serif;
+    display: none;
+}
+
+@media (max-width: 1280px) {
+    .ingredient_name {
+        margin-bottom: 8px;
+    }
+    .item_card {
+        max-width: 144px;
+        min-height: 220px;
+    }
+    .btn_small {
+        display: block;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .price {
+        font-size: 22px;
+    }
+
+    .small {
+        min-width: 24px;
+    }
+}

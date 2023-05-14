@@ -2,6 +2,7 @@ import { IngredientsTab } from "../ingredients-tab/ingredients-tab"
 import { IngredientsBlock } from "../ingredients-block/ingredients-block"
 import { RefObject, useEffect, useRef, useState } from "react"
 import { TabValue } from "../../utils/constants/tabValue"
+import styles from "./burger-ingredients.module.css"
 
 export interface ITab {
   value: TabValue
@@ -67,10 +68,14 @@ export const BurgerIngredients = () => {
   }, [])
 
   return (
-    <div className="mt-10 mb-10 mr-10">
-      <p className="mb-5 text text_type_main-large">Соберите бургер</p>
-      <IngredientsTab tabs={tabs} handleTabScroll={handleTabScroll} current={currentTab} />
-      <IngredientsBlock refList={refList} />
-    </div>
+    <>
+      <div id="BurgerIngredients" className={`mt-10 mb-10 ${styles.ingredients_container}`}>
+        <p className={`mb-5 text text_type_main-large ${styles.ingredients_container_title}`}>
+          Соберите бургер
+        </p>
+        <IngredientsTab tabs={tabs} handleTabScroll={handleTabScroll} current={currentTab} />
+        <IngredientsBlock refList={refList} />
+      </div>
+    </>
   )
 }

@@ -7,7 +7,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components"
 import { useNavigate } from "react-router-dom"
 import { FormEvent, useEffect, useRef } from "react"
-import { postRegistration } from "../../utils/postRegistration"
+import { postRegistration } from "../../utils/REST/postRegistration"
 import { useAppDispatch } from "../../hooks/redux"
 import { useForm } from "../../hooks/use-form"
 

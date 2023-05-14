@@ -5,7 +5,7 @@ import {
   Input,
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components"
-import { patchAuthUser } from "../../utils/authUserResponse"
+import { patchAuthUser } from "../../utils/REST/authUserResponse"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { useForm } from "../../hooks/use-form"
 import styles from "../pagesStyles.module.css"

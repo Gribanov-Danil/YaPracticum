@@ -1,11 +1,11 @@
-import { AxiosRequestInstance, URL_ORDER } from "./constants/axiosInstance"
+import { AxiosRequestInstance, URL_ORDER } from "../constants/axiosInstance"
 import {
   fetchDataError,
   fetchDataProcessing,
   updateId,
-} from "../service/reducers/order-details-slice/order-details-slice"
-import { getCookie } from "../service/cookies/getCookie"
-import { TAppDispatch } from "../service/store"
+} from "../../service/reducers/order-details-slice/order-details-slice"
+import { getCookie } from "../../service/cookies/getCookie"
+import { TAppDispatch } from "../../service/store"
 
 export const postAxiosOrder = (ingredientsIdsList: string[]) => async (dispatch: TAppDispatch) => {
   dispatch(fetchDataProcessing())

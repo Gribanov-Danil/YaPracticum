@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from "react-router-dom"
 import { FC, ReactElement, useEffect, useState } from "react"
-import { getAuthUser } from "../../utils/authUserResponse"
+import { getAuthUser } from "../../utils/REST/authUserResponse"
 import { unwrapResult } from "@reduxjs/toolkit"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 

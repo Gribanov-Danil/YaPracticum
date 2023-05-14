@@ -5,7 +5,7 @@ import {
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components"
 import { useLocation, useNavigate } from "react-router-dom"
-import { postAuth } from "../../utils/postAuth"
+import { postAuth } from "../../utils/REST/postAuth"
 import { useAppDispatch } from "../../hooks/redux"
 import { useForm } from "../../hooks/use-form"
 import { FormEvent } from "react"
