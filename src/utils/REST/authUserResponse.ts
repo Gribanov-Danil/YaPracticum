@@ -9,6 +9,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit"
 
 /**
  *  GET запрос, возвращающий TUserResponse в случае успеха
+ *
+ *  @return {TUserResponse} TUserResponse
  */
 export const getAuthUser = createAsyncThunk("getAuthUser", async (_, { dispatch }) => {
   try {

@@ -7,10 +7,21 @@ import {
 } from "../../service/reducers/user-data-slice/user-data-slice"
 import { TAppDispatch } from "../../service/store"
 
+export type TPostLogoutResponse = {
+  message: string
+  success: boolean
+}
+
+/**
+ * POST запрос разлогинивающий пользователя
+ * @param token refreshToken пользователя
+ *
+ * @return {TPostLogoutResponse} TPostLogoutResponse
+ */
 export const postLogout = (token: string) => async (dispatch: TAppDispatch) => {
   dispatch(fetchingData())
   try {
-    const response = await AxiosRequestInstance.post(URL_LOGOUT, {
+    const response = await AxiosRequestInstance.post<TPostLogoutResponse>(URL_LOGOUT, {
       token,
     })
     dispatch(logoutUser())

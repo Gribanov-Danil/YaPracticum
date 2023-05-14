@@ -3,9 +3,8 @@ import { NavLink, Route, Routes, useNavigate } from "react-router-dom"
 import { ProfileDataPage } from "../profile-data-page/profile-data-page"
 import { UserOrdersPage } from "../user-orders-page/user-orders-page"
 import { ProtectedRoute } from "../../hocs/protected-route-element/protected-route-element"
-import { postLogout } from "../../utils/REST/postLogoutUser"
+import { postLogout, TPostLogoutResponse } from "../../utils/REST/postLogoutUser"
 import { getCookie } from "../../service/cookies/getCookie"
-import { unwrapResult } from "@reduxjs/toolkit"
 import { useAppDispatch } from "../../hooks/redux"
 
 export const ProfilePage = () => {
@@ -13,13 +12,13 @@ export const ProfilePage = () => {
   const navigate = useNavigate()
 
   const onExitClick = async () => {
-    let response
+    let response: TPostLogoutResponse | undefined
     let refreshToken = getCookie("refreshToken")
     if (refreshToken) {
       response = await dispatch(postLogout(refreshToken))
     }
-    unwrapResult(response)
-    if (response.success) {
+
+    if (response?.success) {
       navigate("/login", { replace: true })
     }
   }

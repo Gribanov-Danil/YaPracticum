@@ -7,6 +7,9 @@ import {
 import { getCookie } from "../../service/cookies/getCookie"
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
+/**
+ * POST запрос, обновляющий token пользователя
+ */
 export const postRefreshUserData = createAsyncThunk(
   "postRefreshUserData",
   async (_, { dispatch }) => {
@@ -14,6 +17,7 @@ export const postRefreshUserData = createAsyncThunk(
       const response = await AxiosRequestInstance.post(URL_UPDATE_TOKEN, {
         token: getCookie("refreshToken"),
       })
+      console.log(response)
       const data = response.data
       dispatch(updateTokens({ accessToken: data.accessToken, refreshToken: data.refreshToken }))
     } catch (e) {
