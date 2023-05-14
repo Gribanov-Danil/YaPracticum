@@ -57,7 +57,7 @@ export const ResetPasswordPage = () => {
             placeholder={"Введите код из письма"}
             onChange={handleChange}
             value={values.token}
-            name={"name"}
+            name={"token"}
             error={false}
             ref={inputRef}
             errorText={"Ошибка"}
