@@ -38,6 +38,9 @@ export const ConstructorPage: FC = () => {
           onClick={toggleScreen}
         />
       </div>
+      <div id="PlaceOrderMobile" className={`${pageStyle.amount_order} inactive`}>
+        <PlaceOrder buttonTitle="Заказать" extraClass={pageStyle.placeOrder_mobile} />
+      </div>
     </>
   )
 }

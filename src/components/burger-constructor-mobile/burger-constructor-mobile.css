@@ -28,4 +28,20 @@
         justify-content: center;
         align-items: center;
     }
+
+    .placeOrder_mobile {
+        margin: 16px 8px;
+    }
+
+    .placeOrder_mobile button {
+        margin-left: auto;
+    }
+    .amount_order {
+        display: block;
+        position: sticky;
+        bottom: 0;
+        width: 100%;
+        background-color: #1C1C21;
+        border-radius: 15px 15px 0 0;
+    }
 }
