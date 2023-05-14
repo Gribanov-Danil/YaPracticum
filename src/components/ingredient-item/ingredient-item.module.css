@@ -41,4 +41,8 @@
     .price {
         font-size: 22px;
     }
+
+    .small {
+        min-width: 24px;
+    }
 }

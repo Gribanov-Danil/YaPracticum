@@ -45,6 +45,13 @@ export const IngredientItem = memo<IIngredientItem>(function IngredientItem({ in
     addIngredientInStore(ingredient, pickedIngredient, dispatch)
   }
 
+  const AdaptiveCounter = () =>
+    screenType === "desktop" ? (
+      <Counter count={ingredientCount} size="default" extraClass="m-1" />
+    ) : (
+      <Counter count={ingredientCount} size="small" extraClass={styles.small} />
+    )
+
   return (
     <Link
       key={ingredient._id}
@@ -53,9 +60,7 @@ export const IngredientItem = memo<IIngredientItem>(function IngredientItem({ in
       data-cy={"ingredient"}
     >
       <div ref={dragRef} className={styles.item_card}>
-        {ingredientCount !== 0 && (
-          <Counter count={ingredientCount} size="default" extraClass="m-1" />
-        )}
+        {ingredientCount !== 0 && <AdaptiveCounter />}
         <div className="ml-4 mb-1 mr-4">
           <img src={screenType === "desktop" ? ingredient.image : ingredient.image_mobile} alt="" />
         </div>
