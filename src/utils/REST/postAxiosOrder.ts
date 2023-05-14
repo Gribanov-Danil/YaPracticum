@@ -1,4 +1,4 @@
-import { AxiosRequestInstance, URL_ORDER } from "../constants/axiosInstance"
+import { AxiosRequestInstance, URL_ORDER } from "../constants/axios-instance"
 import {
   fetchDataError,
   fetchDataProcessing,

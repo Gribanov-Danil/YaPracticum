@@ -1,5 +1,5 @@
-import { URL_UPDATE_TOKEN } from "../constants/axiosInstance"
-import { AxiosRequestInstance } from "../constants/axiosInstance"
+import { URL_UPDATE_TOKEN } from "../constants/axios-instance"
+import { AxiosRequestInstance } from "../constants/axios-instance"
 import {
   fetchDataError,
   updateTokens,

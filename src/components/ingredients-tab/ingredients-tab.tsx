@@ -1,7 +1,7 @@
 import tabStyles from "./ingredients-tab.module.css"
 import { FC } from "react"
 import { ITab } from "../burger-ingredients/burger-ingredients"
-import { TabValue } from "../../utils/constants/tabValue"
+import { TabValue } from "../../utils/constants/tab-value"
 import { Tab } from "../../ui/tab/tab"
 import { getScreenType } from "../../utils/getScreenType"
 

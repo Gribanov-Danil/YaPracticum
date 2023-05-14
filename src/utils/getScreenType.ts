@@ -3,8 +3,6 @@ export const ScreenType = {
   DESKTOP: "desktop",
 } as const
 
-export type TScreenType = (typeof ScreenType)[keyof typeof ScreenType]
-
 /**
  * Функция, возвращающая типа экрана
  */

@@ -1,5 +1,5 @@
-import { URL_FORGOT_PASSWORD } from "../constants/axiosInstance"
-import { AxiosRequestInstance } from "../constants/axiosInstance"
+import { URL_FORGOT_PASSWORD } from "../constants/axios-instance"
+import { AxiosRequestInstance } from "../constants/axios-instance"
 import { fetchDataError } from "../../service/reducers/user-data-slice/user-data-slice"
 import { TAppDispatch } from "../../service/store"
 

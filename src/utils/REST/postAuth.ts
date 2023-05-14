@@ -1,5 +1,5 @@
-import { URL_LOGIN } from "../constants/axiosInstance"
-import { AxiosRequestInstance } from "../constants/axiosInstance"
+import { URL_LOGIN } from "../constants/axios-instance"
+import { AxiosRequestInstance } from "../constants/axios-instance"
 import {
   fetchDataError,
   fetchingData,
