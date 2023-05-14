@@ -273,12 +273,11 @@
         background: none;
     }
     .delete_block {
+        width: 72px;
         display: flex;
         justify-content: center;
         align-items: center;
         background-color: #E52B1A;
     }
-    .swipe-action__trailing > * {
-        justify-content: center;
-    }
+
 }

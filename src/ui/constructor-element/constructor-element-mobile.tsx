@@ -7,6 +7,7 @@ import {
   SwipeableListItem,
   SwipeAction,
   TrailingActions,
+  Type,
 } from "react-swipeable-list"
 
 /**
@@ -28,7 +29,7 @@ export const ConstructorElementMobile: FC<{
 
   const trailingActions = () => (
     <TrailingActions>
-      <SwipeAction onClick={() => console.info("swipe trailingActions triggered")}>
+      <SwipeAction onClick={handleClose ? handleClose : () => {}}>
         <div className="delete_block">
           <DeleteIcon type={"primary"} />
         </div>
@@ -37,7 +38,7 @@ export const ConstructorElementMobile: FC<{
   )
 
   return (
-    <SwipeableList fullSwipe={false}>
+    <SwipeableList type={Type.IOS} threshold={0.225} fullSwipe={true}>
       <SwipeableListItem trailingActions={trailingActions()}>
         <div className={className}>
           <span className="centered_element constructor-element__row">
