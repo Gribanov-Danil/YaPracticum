@@ -6,19 +6,21 @@ import { ProtectedRoute } from "../../hocs/protected-route-element/protected-rou
 import { postLogout, TPostLogoutResponse } from "../../utils/REST/postLogoutUser"
 import { getCookie } from "../../service/cookies/getCookie"
 import { useAppDispatch } from "../../hooks/redux"
+import { unwrapResult } from "@reduxjs/toolkit"
 
 export const ProfilePage = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
   const onExitClick = async () => {
-    let response: TPostLogoutResponse | undefined
+    let result: TPostLogoutResponse | undefined
     let refreshToken = getCookie("refreshToken")
     if (refreshToken) {
-      response = await dispatch(postLogout(refreshToken))
+      let response = await dispatch(postLogout({ token: refreshToken }))
+      result = unwrapResult(response)
     }
 
-    if (response?.success) {
+    if (result?.success) {
       navigate("/login", { replace: true })
     }
   }
