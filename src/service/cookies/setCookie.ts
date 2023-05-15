@@ -4,6 +4,12 @@ interface SetCookieProps {
   [propName: string]: any
 }
 
+/**
+ * Функция, сохраняющая куки
+ * @param name имя кук
+ * @param value значение кук
+ * @param props SetCookieProps, в которых можно указать время жизни кук
+ */
 export function setCookie(name: string, value: string, props?: SetCookieProps) {
   props = props || {}
   let exp = props.expires
