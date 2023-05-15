@@ -7,6 +7,10 @@ interface IOpenBun {
   bun: TIngredient
 }
 
+/**
+ * Верхняя булка в конструкторе заказа
+ * @param bun булка типа TIngredient
+ */
 export const OpenBun: FC<IOpenBun> = ({ bun }) => {
   return (
     <div className={styles.bun}>
