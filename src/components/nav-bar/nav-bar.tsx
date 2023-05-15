@@ -11,6 +11,9 @@ import { NavBarItem } from "../nav-barItem/nav-barItem"
 import { NavLink } from "react-router-dom"
 import { HeaderLogo } from "../../assets/SVGs/header-logo/header-logo"
 
+/**
+ * Навигация в шапке сайта
+ */
 export const NavBar: FC = () => {
   return (
     <>

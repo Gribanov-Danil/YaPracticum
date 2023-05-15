@@ -1,6 +1,7 @@
 import { FC, ReactElement } from "react"
+import styles from "./iconic-text.module.css"
 
-interface IIconifyText {
+interface IIconicText {
   text: string
   textClass: string
   iconLocation: "right" | "left"
@@ -8,22 +9,35 @@ interface IIconifyText {
   icon: ReactElement
 }
 
-export const IconicText: FC<IIconifyText> = ({ text, textClass, iconLocation, gapInPx, icon }) => {
-  let outputComponent
+/**
+ * Текст с иконкой
+ * @param text текст
+ * @param textClass стил для текста
+ * @param iconLocation "right" | "left" расположение иконки
+ * @param gapInPx гэп между текстом и иконкой в пикселях
+ * @param icon компонент иконки
+ */
+export const IconicText: FC<IIconicText> = ({ text, textClass, iconLocation, gapInPx, icon }) => {
+  let OutputComponent: FC
   const textBlock = <p className={`text ${textClass}`}>{text}</p>
   if (iconLocation === "right")
-    outputComponent = (
-      <div style={{ display: "flex", gap: gapInPx, alignItems: "center" }}>
-        {textBlock}
-        {icon}
-      </div>
-    )
+    OutputComponent = () => {
+      return (
+        <div style={{ gap: gapInPx }} className={styles.iconic_text}>
+          {textBlock}
+          {icon}
+        </div>
+      )
+    }
   else
-    outputComponent = (
-      <div style={{ display: "flex", gap: gapInPx, alignItems: "center" }}>
-        {icon}
-        {textBlock}
-      </div>
-    )
-  return <>{outputComponent}</>
+    OutputComponent = () => {
+      return (
+        <div style={{ gap: gapInPx }} className={styles.iconic_text}>
+          {icon}
+          {textBlock}
+        </div>
+      )
+    }
+
+  return <OutputComponent />
 }

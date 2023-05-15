@@ -3,6 +3,9 @@ import { PlaceOrder } from "../place-order/place-order"
 import { FC } from "react"
 import styles from "./burger-constructor.module.css"
 
+/**
+ * Конструкор бургеров для десктопа
+ */
 export const BurgerConstructor: FC = () => {
   return (
     <div id="BurgerConstructor" className={`mt-25 ${styles.constructor_container}`}>

@@ -3,6 +3,9 @@ import { Button } from "@ya.praktikum/react-developer-burger-ui-components"
 import styles from "./404-styles.module.css"
 import { FC } from "react"
 
+/**
+ * Страница неизвестного роута
+ */
 export const NotFound404: FC = () => {
   const navigate = useNavigate()
   const onClick = () => navigate("/")

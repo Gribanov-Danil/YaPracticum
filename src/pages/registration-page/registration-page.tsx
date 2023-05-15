@@ -17,6 +17,9 @@ interface IRegistrationPageForm {
   password: string
 }
 
+/**
+ * Страница регистрации
+ */
 export const RegistrationPage = () => {
   const navigate = useNavigate()
   const onLoginClick = () => navigate("/login", { replace: true })

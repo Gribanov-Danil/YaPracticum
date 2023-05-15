@@ -9,6 +9,12 @@ interface IIngredientsSection {
   id: string
 }
 
+/**
+ * Блок ингредиентов одного типа
+ * @param sectionTitle название секции
+ * @param itemList список ингредиентов секции
+ * @param id id секции
+ */
 export const IngredientsSection = forwardRef<HTMLParagraphElement, IIngredientsSection>(
   ({ sectionTitle, itemList, id }, ref) => {
     return (

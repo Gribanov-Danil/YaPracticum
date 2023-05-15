@@ -8,6 +8,9 @@ import { useForm } from "../../hooks/use-form"
 import { unwrapResult } from "@reduxjs/toolkit"
 
 /* /forgot-password */
+/**
+ * Страница сброса пароля
+ */
 export const ForgotPasswordPage: FC = () => {
   const navigate = useNavigate()
   const onLoginClick = () => navigate("/login", { replace: true })

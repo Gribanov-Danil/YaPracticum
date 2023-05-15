@@ -8,6 +8,13 @@ interface IOrdersNumberBlock {
   extraClass?: string
 }
 
+/**
+ * Блок с номерами заказов
+ * @param title название блока заказов
+ * @param orders массив заказов типа TOrderItem
+ * @param extraClass дополнительные классы
+ * @constructor
+ */
 export const OrdersNumberBlock: FC<IOrdersNumberBlock> = ({ title, extraClass, orders }) => {
   return (
     <>

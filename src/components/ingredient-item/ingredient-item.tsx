@@ -17,6 +17,9 @@ type TPickedIngredientState = {
   pickedBun: TIngredient
 }
 
+/**
+ * Объект ингредиента
+ */
 export const IngredientItem = memo<IIngredientItem>(function IngredientItem({ ingredient }) {
   const [ingredientCount, setIngredientCount] = useState<number>(0)
   const state: TPickedIngredientState = useAppSelector((state) => state.pickedIngredientsReducer)

@@ -10,6 +10,13 @@ interface INavBarItem {
   linkAddress: string
 }
 
+/**
+ * Элемент навигации
+ * @param textClass стиль текста элемента навигации
+ * @param text текст элемента навигации
+ * @param icon иконка элемента навигации
+ * @param linkAddress ссылка, открывающаяся при клике на элемент навигации
+ */
 export const NavBarItem: FC<INavBarItem> = ({ textClass, text, icon, linkAddress }) => {
   return (
     <div className={`pl-5 pr-5 pb-4 pt-4 ${headerClasses.navbarItem}`}>

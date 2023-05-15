@@ -6,6 +6,11 @@ interface IIngredientCharacteristic {
   characteristic: number
 }
 
+/**
+ * Характеристика ингредиента для попапа
+ * @param title название характеристики
+ * @param characteristic значение характеристики
+ */
 export const IngredientCharacteristic: FC<IIngredientCharacteristic> = ({
   title,
   characteristic,

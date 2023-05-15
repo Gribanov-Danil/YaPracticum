@@ -8,6 +8,9 @@ import { getCookie } from "../../service/cookies/getCookie"
 import { useAppDispatch } from "../../hooks/redux"
 import { unwrapResult } from "@reduxjs/toolkit"
 
+/**
+ * Страница профиля
+ */
 export const ProfilePage = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()

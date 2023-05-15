@@ -10,6 +10,14 @@ interface IngredientIconProps {
   children?: ReactNode
 }
 
+/**
+ * Круглая иконка ингредиента для ленты заказов
+ * @param srcSet src картинки для тега picture
+ * @param src src картинки для тега img
+ * @param alt подпись к картинке
+ * @param extraClass дополнительный класс
+ * @param children ReactNode
+ */
 export const IngredientIcon: FC<IngredientIconProps> = ({
   srcSet,
   src,

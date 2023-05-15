@@ -11,6 +11,12 @@ interface IIngredientsTab {
   current: string
 }
 
+/**
+ * Панель с табами для навигации
+ * @param tabs массив ITab
+ * @param handleTabScroll функция, скролящая до нужной секции
+ * @param current текущий активный таб
+ */
 export const IngredientsTab: FC<IIngredientsTab> = ({ tabs, handleTabScroll, current }) => {
   const screenType = getScreenType()
   return (

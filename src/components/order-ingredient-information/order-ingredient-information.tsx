@@ -9,6 +9,10 @@ interface IOrderIngredientInformation {
   processedOrder?: [TIngredient, number]
 }
 
+/**
+ * Информация о ингредиенте из заказа
+ * @param processedOrder кортеж обрабатываемого заказа
+ */
 export const OrderIngredientInformation: FC<IOrderIngredientInformation> = ({ processedOrder }) => {
   const [src] = useState(processedOrder ? processedOrder[0].image_mobile : "")
   return (

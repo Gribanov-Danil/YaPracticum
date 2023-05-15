@@ -11,6 +11,11 @@ interface IModal {
 
 const portal = document.getElementById("react-modals") as HTMLDivElement
 
+/**
+ * Портал модального окна
+ * @param onClick функция, вызывающая при клике на оверлей модального окна
+ * @param children ReactNode
+ */
 export const Modal: FC<IModal> = ({ onClick, children }) => {
   useEffect(() => {
     const closeOnEscapeKey = (e: KeyboardEvent) => (e.key === "Escape" ? onClick() : null)

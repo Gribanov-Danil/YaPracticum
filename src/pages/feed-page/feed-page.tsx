@@ -7,6 +7,9 @@ import { wsDisconnect, wsStart } from "../../service/actions/websocket-actions/w
 import { WS_ALL } from "../../utils/constants/websocket"
 import { TOrderItem } from "../../utils/models/websocket-types/types"
 
+/**
+ * Страница истории заказов всех пользователей
+ */
 export const FeedPage = () => {
   const dispatch = useAppDispatch()
   const { orders } = useAppSelector((state) => state.websocketReducer)

@@ -8,9 +8,11 @@ import { TIngredient } from "../../utils/models/ingredient-types/types"
 import { CurrencyIcon, FormattedDate } from "@ya.praktikum/react-developer-burger-ui-components"
 import { IconicText } from "../../ui/iconic-text/iconic-text"
 import styles from "./order-information.module.css"
-
 import { OrderIngredientInformation } from "../order-ingredient-information/order-ingredient-information"
 
+/**
+ * Модальное окно с информацией заказа из истории
+ */
 export const OrderInformation = () => {
   const location = useLocation()
   const { id } = useParams()

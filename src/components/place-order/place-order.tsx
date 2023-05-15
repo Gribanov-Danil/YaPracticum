@@ -15,6 +15,13 @@ interface IPlaceOrder {
   extraClass?: string
 }
 
+/**
+ * Панель с суммой заказа и кнопкой
+ * @param buttonTitle текст кнопки (по умолчанию = "Оформить заказ")
+ * @param extraClass дополнительные классы
+ * @param onClick функция, вызываемая при клике на кнопку
+ * @constructor
+ */
 export const PlaceOrder: FC<IPlaceOrder> = ({
   buttonTitle = "Оформить заказ",
   extraClass,
