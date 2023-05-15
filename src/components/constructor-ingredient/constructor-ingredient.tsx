@@ -11,7 +11,10 @@ interface IConstructorIngredient {
   ingredientObj: TIngredientObj
 }
 
-// Элемент, имеющий днд
+/**
+ * Ингредиент, находящийся в конструкторе, поддерживающий dnd
+ * @param ingredientObj ингредиент с ID типа TIngredientObj
+ */
 export const ConstructorIngredient = memo<IConstructorIngredient>(function ConstructorIngredient({
   ingredientObj,
 }) {

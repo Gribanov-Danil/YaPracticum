@@ -10,6 +10,9 @@ import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { TIngredient } from "../../utils/models/ingredient-types/types"
 import { addIngredientInStore } from "../../utils/addIngredientInStore"
 
+/**
+ * Контейнер конструктора бургера
+ */
 export const ConstructorPanel: FC = () => {
   const state = useAppSelector((state) => state.pickedIngredientsReducer)
   const pickedIngredient = state.pickedIngredient

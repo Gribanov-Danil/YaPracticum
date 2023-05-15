@@ -12,6 +12,10 @@ type TOrderCard = {
   order: TOrderItem
 }
 
+/**
+ * Карточка заказа
+ * @param order заказ типа TOrderItem
+ */
 export const OrderCard: FC<TOrderCard> = ({ order }) => {
   const state = useAppSelector((state) => state.ingredientsReducer)
   const ingredients = state.dataArray

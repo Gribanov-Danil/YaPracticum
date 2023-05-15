@@ -6,6 +6,9 @@ import { OpenBun } from "../../ui/open-bun/open-bun"
 import { useAppSelector } from "../../hooks/redux"
 import { ClosingBun } from "../../ui/closing-bun/closing-bun"
 
+/**
+ * Конструкор бургеров для мобилок
+ */
 export const BurgerConstructorMobile = () => {
   const state = useAppSelector((state) => state.pickedIngredientsReducer)
   const pickedBun = state.pickedBun

@@ -16,6 +16,9 @@ function isTabValue(checkedString: string): checkedString is TabValue {
   return checkedString === "Булки" || checkedString === "Соусы" || checkedString === "Начинки"
 }
 
+/**
+ * Список ингредиентов с табами
+ */
 export const BurgerIngredients = () => {
   const [currentTab, setCurrentTab] = useState(TabValue.BUNS)
 

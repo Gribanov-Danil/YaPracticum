@@ -8,7 +8,10 @@ import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { TIngredientObj } from "../../utils/models/ingredient-types/types"
 import { getScreenType } from "../../utils/getScreenType"
 
-export const DraggableIngredientsBlock = memo(function DraggableIngredientsBlock({}) {
+/**
+ * Контейнер конструктора бургеров с поддержкой dnd
+ */
+export const DraggableIngredientsBlock = memo(function DraggableIngredientsBlock() {
   const state = useAppSelector((state) => state.pickedIngredientsReducer)
   const pickedIngredients = state.pickedIngredient
   const dispatch = useAppDispatch()

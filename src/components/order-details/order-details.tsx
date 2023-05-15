@@ -2,6 +2,9 @@ import styles from "./order-details.module.css"
 import { FC } from "react"
 import { useAppSelector } from "../../hooks/redux"
 
+/**
+ * Модальное окно деталей заказа
+ */
 export const OrderDetails: FC = () => {
   const state = useAppSelector((state) => state.orderDetailsReducer)
   const orderNumberStr = String(state.id).padStart(5, "0")

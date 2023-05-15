@@ -1,9 +1,12 @@
 import styles from "./ingredient-details.module.css"
-import { IngredientCharacteristic } from "../ingredient-characteristic/ingredient-characteristic"
+import { IngredientCharacteristic } from "../../ui/ingredient-characteristic/ingredient-characteristic"
 import { useLocation, useParams } from "react-router-dom"
 import { FC } from "react"
 import { useAppSelector } from "../../hooks/redux"
 
+/**
+ * Модальное окно с характеристиками ингредиента
+ */
 export const IngredientsDetails: FC = () => {
   const location = useLocation()
   const background = location.state?.background

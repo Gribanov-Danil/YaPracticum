@@ -13,6 +13,10 @@ interface IIngredientsBlock {
   }
 }
 
+/**
+ * Блок секций ингредиентов
+ * @param refList объект с ссылками на секции
+ */
 export const IngredientsBlock: FC<IIngredientsBlock> = ({ refList }) => {
   const state: IngredientsSliceState = useAppSelector((state) => state.ingredientsReducer)
   const data = state.dataArray

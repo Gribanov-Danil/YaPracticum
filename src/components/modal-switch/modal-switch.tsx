@@ -8,6 +8,11 @@ interface IModalSwitch {
   background: Location
 }
 
+/**
+ * Переключатель модального окна
+ * Открывает модального окно при наличии background или отдельную страницу при его отсутствии
+ * @param background бэкграунд локейшена пользователя
+ */
 export const ModalSwitch: FC<IModalSwitch> = ({ background }) => {
   const navigate = useNavigate()
   const handleCloseModal = () => navigate(-1)
