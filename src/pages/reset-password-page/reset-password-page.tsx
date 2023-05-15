@@ -13,6 +13,9 @@ interface IResetPasswordPageForm {
 }
 
 /* /reset-password */
+/**
+ * Страница подтверждения сброса пароля
+ */
 export const ResetPasswordPage = () => {
   const navigate = useNavigate()
   const initialStateForm: IResetPasswordPageForm = {

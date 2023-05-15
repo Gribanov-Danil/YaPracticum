@@ -9,6 +9,9 @@ import { PlaceOrder } from "../../components/place-order/place-order"
 import { BurgerConstructorMobile } from "../../components/burger-constructor-mobile/burger-constructor-mobile"
 import { toggleScreen } from "../../utils/toggle-constructor-screen"
 
+/**
+ * Главная страница с конструктором бургеров
+ */
 export const ConstructorPage: FC = () => {
   const state = useAppSelector((state) => state.ingredientsReducer)
 

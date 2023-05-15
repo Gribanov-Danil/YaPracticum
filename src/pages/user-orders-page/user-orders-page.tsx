@@ -5,6 +5,9 @@ import { OrderCard } from "../../components/order-card/order-card"
 import styles from "./user-orders-page.module.css"
 import { getCookie } from "../../service/cookies/getCookie"
 
+/**
+ * Страница истории заказов авторизованного пользователя
+ */
 export const UserOrdersPage = () => {
   const dispatch = useAppDispatch()
   const { wsConnected, orders } = useAppSelector((state) => state.websocketReducer)

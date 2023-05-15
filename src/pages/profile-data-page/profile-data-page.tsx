@@ -17,6 +17,9 @@ interface IProfileDataPageForm {
   password: string
 }
 
+/**
+ * Страница информации о пользователи в личном кабинете
+ */
 export const ProfileDataPage: FC = () => {
   const { user } = useAppSelector((state) => state.userDataReducer)
 

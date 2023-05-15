@@ -15,6 +15,9 @@ interface IResetPasswordPageForm {
   password: string
 }
 
+/**
+ * Страница авторизации
+ */
 export const SignInPage = () => {
   const navigate = useNavigate()
   const initialStateForm: IResetPasswordPageForm = {
