@@ -1,7 +1,6 @@
 import { Navigate, useLocation } from "react-router-dom"
 import { FC, ReactElement, useEffect, useState } from "react"
 import { getAuthUser } from "../../utils/REST/authUserResponse"
-import { unwrapResult } from "@reduxjs/toolkit"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 
 interface IProtectedRouteElement {
@@ -9,19 +8,20 @@ interface IProtectedRouteElement {
   onlyAuth?: boolean
 }
 
+/**
+ * Компонент высшего порядка, проверяющий доступ пользователя к различным роутам
+ * @param element ReactElement
+ * @param onlyAuth доступность элемента только авторизированным пользователям;
+ * при значении false - доступ предоставляется только неавторизованным пользователям
+ */
 export const ProtectedRoute: FC<IProtectedRouteElement> = ({ element, onlyAuth = true }) => {
   const [isUserLoaded, setUserLoaded] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
   const { user } = useAppSelector((state) => state.userDataReducer)
   let dispatch = useAppDispatch()
   const location = useLocation()
   const from = location.state?.from || "/"
   const init = async () => {
-    let payload = await dispatch(getAuthUser({}))
-    let res = unwrapResult(payload)
-    if (res && res.success) {
-      setIsSuccess(true)
-    }
+    await dispatch(getAuthUser({}))
     setUserLoaded(true)
   }
   useEffect(() => {
