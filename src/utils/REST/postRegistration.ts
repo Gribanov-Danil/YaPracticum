@@ -1,12 +1,6 @@
-import { URL_REGISTRATION } from "../constants/axios-instance"
-import { AxiosRequestInstance } from "../constants/axios-instance"
-import {
-  fetchDataError,
-  fetchingData,
-  setFetchDataSuccess,
-} from "../../service/reducers/user-data-slice/user-data-slice"
-import { TAppDispatch } from "../../service/store"
+import { AxiosRequestInstance, URL_REGISTRATION } from "../constants/axios-instance"
 import { TUser } from "../models/redux-types/types"
+import { createAsyncThunk } from "@reduxjs/toolkit"
 
 type TPostRegistrationResponse = {
   user: TUser
@@ -21,21 +15,19 @@ type TPostRegistrationResponse = {
  * @param password пароль нового пользователя
  * @param name имя нового пользователя
  */
-export const postRegistration =
-  (email: string, password: string, name: string) => async (dispatch: TAppDispatch) => {
-    dispatch(fetchingData())
-    try {
-      const response = await AxiosRequestInstance.post<TPostRegistrationResponse>(
-        URL_REGISTRATION,
-        {
-          email: email,
-          password: password,
-          name: name,
-        },
-      )
-      const data = response.data
-      dispatch(setFetchDataSuccess(data))
-    } catch (e) {
-      dispatch(fetchDataError())
-    }
+export const postRegistration = createAsyncThunk<
+  TPostRegistrationResponse,
+  { email: string; password: string; name: string },
+  { success: boolean; rejectValue: string }
+>("postRegistration", async function ({ email, password, name }, { dispatch, rejectWithValue }) {
+  try {
+    const response = await AxiosRequestInstance.post<TPostRegistrationResponse>(URL_REGISTRATION, {
+      email: email,
+      password: password,
+      name: name,
+    })
+    return response.data
+  } catch (e) {
+    return rejectWithValue("Некорректная почта или пароль")
   }
+})

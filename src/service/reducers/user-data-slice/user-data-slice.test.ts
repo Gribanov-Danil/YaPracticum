@@ -3,8 +3,6 @@ import {
   fetchingData,
   initialState,
   logoutUser,
-  setFetchDataSuccess,
-  TUserData,
   updateTokens,
   updateUser,
   userDataSlice,
@@ -13,29 +11,6 @@ import { getCookie } from "../../cookies/getCookie"
 import { getAuthUser } from "../../../utils/REST/authUserResponse"
 
 describe("user", () => {
-  it("should set user information and cookies", () => {
-    const payload: TUserData = {
-      user: {
-        email: "test@test.ru",
-        name: "superBulk",
-      },
-      accessToken: "Bearer abcc",
-      refreshToken: "ccba",
-    }
-    const action = {
-      type: setFetchDataSuccess.type,
-      payload,
-    }
-    const store = userDataSlice.reducer(initialState, action)
-    expect(store).toStrictEqual({
-      ...payload,
-      accessToken: "abcc",
-      status: { isLoading: false, isError: false },
-    })
-    expect(getCookie("refreshToken")).toEqual("ccba")
-    expect(getCookie("token")).toEqual("abcc")
-  })
-
   it("should make status.isLoading true when user data is fetching", () => {
     const action = { type: fetchingData.type }
     const store = userDataSlice.reducer(initialState, action)

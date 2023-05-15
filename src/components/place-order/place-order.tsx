@@ -5,7 +5,7 @@ import { Modal } from "../modal/modal"
 import { FC, useCallback, useMemo, useState } from "react"
 import { OrderDetails } from "../order-details/order-details"
 import { deleteId } from "../../service/reducers/order-details-slice/order-details-slice"
-import { postAxiosOrder } from "../../utils/REST/postAxiosOrder"
+import { postOrder } from "../../utils/REST/postOrder"
 import { useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 
@@ -45,7 +45,7 @@ export const PlaceOrder: FC<IPlaceOrder> = ({
 
   const { user } = useAppSelector((state) => state.userDataReducer)
   const handleToggleModal = useCallback(async () => {
-    dispatch(postAxiosOrder(ingredientsIdsList))
+    dispatch(postOrder(ingredientsIdsList))
     if (user.email !== "") {
       setModalVisible(true)
     } else {

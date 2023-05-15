@@ -1,12 +1,6 @@
-import { URL_LOGIN } from "../constants/axios-instance"
-import { AxiosRequestInstance } from "../constants/axios-instance"
-import {
-  fetchDataError,
-  fetchingData,
-  setFetchDataSuccess,
-} from "../../service/reducers/user-data-slice/user-data-slice"
-import { TAppDispatch } from "../../service/store"
+import { AxiosRequestInstance, URL_LOGIN } from "../constants/axios-instance"
 import { TUser } from "../models/redux-types/types"
+import { createAsyncThunk } from "@reduxjs/toolkit"
 
 type TPostAuthResponse = {
   accessToken: string
@@ -15,25 +9,18 @@ type TPostAuthResponse = {
   user: TUser
 }
 
-/**
- * POST запрос для авторизации пользователя, возвращающий success в случае успеха
- * @param email email пользователя
- * @param password пароль пользователя
- *
- * @return {success} success
- */
-export const postAuth = (email: string, password: string) => async (dispatch: TAppDispatch) => {
-  dispatch(fetchingData())
+export const postAuth = createAsyncThunk<
+  TPostAuthResponse,
+  { email: string; password: string },
+  { success: boolean; rejectValue: string }
+>("postAuth", async function ({ email, password }, { dispatch, rejectWithValue }) {
   try {
     const response = await AxiosRequestInstance.post<TPostAuthResponse>(URL_LOGIN, {
       email,
       password,
     })
-    const data = response.data
-    const success = data.success
-    dispatch(setFetchDataSuccess(data))
-    return success
+    return response.data
   } catch (e) {
-    dispatch(fetchDataError())
+    return rejectWithValue("Некорректная почта или пароль")
   }
-}
+})

@@ -33,7 +33,7 @@ type TPostOrderResponse = {
  * POST запрос, возвращающий TPostOrderResponse в случае успеха
  * @param ingredientsIdsList список ингредиентов в заказе
  */
-export const postAxiosOrder = (ingredientsIdsList: string[]) => async (dispatch: TAppDispatch) => {
+export const postOrder = (ingredientsIdsList: string[]) => async (dispatch: TAppDispatch) => {
   dispatch(fetchDataProcessing())
   try {
     const response = await AxiosRequestInstance.post<TPostOrderResponse>(

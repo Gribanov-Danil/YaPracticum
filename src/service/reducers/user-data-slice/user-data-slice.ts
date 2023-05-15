@@ -2,6 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { setCookie } from "../../cookies/setCookie"
 import { TStatus, TUser } from "../../../utils/models/redux-types/types"
 import { getAuthUser } from "../../../utils/REST/authUserResponse"
+import { postAuth } from "../../../utils/REST/postAuth"
+import { postRegistration } from "../../../utils/REST/postRegistration"
 
 export type TUserDataState = {
   user: TUser
@@ -29,16 +31,6 @@ export const userDataSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setFetchDataSuccess: (state, action: PayloadAction<TUserData>) => {
-      state.user.email = action.payload.user.email
-      state.user.name = action.payload.user.name
-      state.accessToken = action.payload.accessToken.split("Bearer ")[1]
-      setCookie("token", action.payload.accessToken.split("Bearer ")[1])
-      state.refreshToken = action.payload.refreshToken
-      setCookie("refreshToken", action.payload.refreshToken)
-      state.status.isLoading = false
-      state.status.isError = false
-    },
     fetchingData: (state) => {
       state.status.isLoading = true
     },
@@ -77,14 +69,36 @@ export const userDataSlice = createSlice({
         state.status.isError = false
         state.status.isLoading = false
       })
+      .addCase(postAuth.pending, (state) => {
+        state.status.isLoading = true
+      })
+      .addCase(postAuth.rejected, (state) => {
+        state.status.isError = true
+        state.status.isLoading = false
+      })
+      .addCase(postAuth.fulfilled, (state, action) => {
+        state.user = action.payload.user
+        setCookie("token", action.payload.accessToken.split("Bearer ")[1])
+        setCookie("refreshToken", action.payload.refreshToken)
+        state.status.isLoading = false
+        state.status.isError = false
+      })
+      .addCase(postRegistration.pending, (state) => {
+        state.status.isLoading = true
+      })
+      .addCase(postRegistration.rejected, (state) => {
+        state.status.isError = true
+        state.status.isLoading = false
+      })
+      .addCase(postRegistration.fulfilled, (state, action) => {
+        state.user = action.payload.user
+        setCookie("token", action.payload.accessToken.split("Bearer ")[1])
+        setCookie("refreshToken", action.payload.refreshToken)
+        state.status.isLoading = false
+        state.status.isError = false
+      })
   },
 })
 
-export const {
-  setFetchDataSuccess,
-  fetchingData,
-  fetchDataError,
-  updateTokens,
-  updateUser,
-  logoutUser,
-} = userDataSlice.actions
+export const { fetchingData, fetchDataError, updateTokens, updateUser, logoutUser } =
+  userDataSlice.actions

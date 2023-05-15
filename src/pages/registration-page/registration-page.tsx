@@ -32,7 +32,9 @@ export const RegistrationPage = () => {
   const dispatch = useAppDispatch()
   const onRegistrationClick = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    dispatch(postRegistration(values.email, values.password, values.name))
+    dispatch(
+      postRegistration({ email: values.email, password: values.password, name: values.name }),
+    )
   }
   useEffect(() => {
     if (inputRef.current) {
