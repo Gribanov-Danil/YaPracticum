@@ -5,6 +5,7 @@ import { FC, FormEvent } from "react"
 import { postForgotPassword } from "../../utils/REST/postForgorPassword"
 import { useAppDispatch } from "../../hooks/redux"
 import { useForm } from "../../hooks/use-form"
+import { unwrapResult } from "@reduxjs/toolkit"
 
 /* /forgot-password */
 export const ForgotPasswordPage: FC = () => {
@@ -16,8 +17,9 @@ export const ForgotPasswordPage: FC = () => {
   const dispatch = useAppDispatch()
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    let response = await dispatch(postForgotPassword(values.email))
-    if (response && response.success) {
+    const response = await dispatch(postForgotPassword({ userEmail: values.email }))
+    const result = unwrapResult(response)
+    if (result.success) {
       navigate("/reset-password", { replace: true })
     } else {
       SaveClickErrorMessage = () => (

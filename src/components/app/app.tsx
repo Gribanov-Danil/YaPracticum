@@ -25,7 +25,7 @@ function App() {
   }, [])
 
   const init = async () => {
-    await dispatch(getAuthUser())
+    await dispatch(getAuthUser({}))
   }
   useEffect(() => {
     init()

@@ -1,7 +1,7 @@
 import { IngredientsTab } from "../ingredients-tab/ingredients-tab"
 import { IngredientsBlock } from "../ingredients-block/ingredients-block"
 import { RefObject, useEffect, useRef, useState } from "react"
-import { TabValue } from "../../utils/constants/tabValue"
+import { TabValue } from "../../utils/constants/tab-value"
 import styles from "./burger-ingredients.module.css"
 
 export interface ITab {

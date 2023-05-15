@@ -1,21 +1,29 @@
-import { URL_LOGOUT } from "../constants/axiosInstance"
-import { AxiosRequestInstance } from "../constants/axiosInstance"
-import {
-  fetchDataError,
-  fetchingData,
-  logoutUser,
-} from "../../service/reducers/user-data-slice/user-data-slice"
-import { TAppDispatch } from "../../service/store"
+import { URL_LOGOUT } from "../constants/axios-instance"
+import { AxiosRequestInstance } from "../constants/axios-instance"
+import { createAsyncThunk } from "@reduxjs/toolkit"
 
-export const postLogout = (token: string) => async (dispatch: TAppDispatch) => {
-  dispatch(fetchingData())
+export type TPostLogoutResponse = {
+  message: string
+  success: boolean
+}
+
+/**
+ * POST запрос разлогинивающий пользователя
+ * @param token refreshToken пользователя
+ *
+ * @return {TPostLogoutResponse} TPostLogoutResponse
+ */
+export const postLogout = createAsyncThunk<
+  TPostLogoutResponse,
+  { token: string },
+  { rejectValue: string }
+>("postLogout", async ({ token }, { rejectWithValue }) => {
   try {
-    const response = await AxiosRequestInstance.post(URL_LOGOUT, {
+    const response = await AxiosRequestInstance.post<TPostLogoutResponse>(URL_LOGOUT, {
       token,
     })
-    dispatch(logoutUser())
     return response.data
   } catch (e) {
-    dispatch(fetchDataError())
+    return rejectWithValue("Ошибка выхода")
   }
-}
+})

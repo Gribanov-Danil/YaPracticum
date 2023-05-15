@@ -1,13 +1,30 @@
-import { URL_FORGOT_PASSWORD } from "../constants/axiosInstance"
-import { AxiosRequestInstance } from "../constants/axiosInstance"
-import { fetchDataError } from "../../service/reducers/user-data-slice/user-data-slice"
-import { TAppDispatch } from "../../service/store"
+import { URL_FORGOT_PASSWORD } from "../constants/axios-instance"
+import { AxiosRequestInstance } from "../constants/axios-instance"
+import { createAsyncThunk } from "@reduxjs/toolkit"
 
-export const postForgotPassword = (userEmail: string) => async (dispatch: TAppDispatch) => {
+type TPostForgotPasswordResponse = {
+  message: string
+  success: boolean
+}
+
+/**
+ * POST запрос, возвращающий TPostForgotPasswordResponse в случае успеха
+ * @param userEmail email пользователя
+ *
+ * @return {TPostForgotPasswordResponse} TPostForgotPasswordResponse
+ */
+export const postForgotPassword = createAsyncThunk<
+  TPostForgotPasswordResponse,
+  { userEmail: string },
+  { rejectValue: string }
+>("postForgotPassword", async ({ userEmail }, { rejectWithValue }) => {
   try {
-    const response = await AxiosRequestInstance.post(URL_FORGOT_PASSWORD, { email: userEmail })
+    const response = await AxiosRequestInstance.post<TPostForgotPasswordResponse>(
+      URL_FORGOT_PASSWORD,
+      { email: userEmail },
+    )
     return response.data
   } catch (e) {
-    dispatch(fetchDataError())
+    return rejectWithValue("Некорректная почта или пароль")
   }
-}
+})

@@ -17,7 +17,7 @@ export const ProtectedRoute: FC<IProtectedRouteElement> = ({ element, onlyAuth =
   const location = useLocation()
   const from = location.state?.from || "/"
   const init = async () => {
-    let payload = await dispatch(getAuthUser())
+    let payload = await dispatch(getAuthUser({}))
     let res = unwrapResult(payload)
     if (res && res.success) {
       setIsSuccess(true)

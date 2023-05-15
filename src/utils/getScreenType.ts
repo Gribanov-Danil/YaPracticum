@@ -3,10 +3,10 @@ export const ScreenType = {
   DESKTOP: "desktop",
 } as const
 
-export type TScreenType = (typeof ScreenType)[keyof typeof ScreenType]
-
 /**
  * Функция, возвращающая типа экрана
+ *
+ * @return {ScreenType} Тип экрана ScreenType
  */
 export const getScreenType = () =>
   window.innerWidth >= 1280 ? ScreenType.DESKTOP : ScreenType.MOBILE

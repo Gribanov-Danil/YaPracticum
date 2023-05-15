@@ -29,7 +29,7 @@ export const SignInPage = () => {
   const dispatch = useAppDispatch()
   const onLoginClick = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    let isSuccess = await dispatch(postAuth(values.email, values.password))
+    let isSuccess = await dispatch(postAuth({ email: values.email, password: values.password }))
     const from = location.state?.from || "/"
     if (isSuccess) {
       navigate(from, { replace: true })

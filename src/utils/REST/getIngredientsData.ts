@@ -1,4 +1,4 @@
-import { AxiosRequestInstance, URL_INGREDIENTS } from "../constants/axiosInstance"
+import { AxiosRequestInstance, URL_INGREDIENTS } from "../constants/axios-instance"
 import {
   fetchDataError,
   fetchingData,
@@ -7,6 +7,9 @@ import {
 import { TAppDispatch } from "../../service/store"
 import { TIngredientsResponse } from "../models/redux-types/types"
 
+/**
+ * GET запрос, сохраняющий полученные ингредиенты в ingredients в случае успеха
+ */
 export const getIngredientsData = () => async (dispatch: TAppDispatch) => {
   dispatch(fetchingData())
   try {

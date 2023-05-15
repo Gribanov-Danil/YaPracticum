@@ -1,5 +1,8 @@
 import axios from "axios"
 
+/**
+ * Дефолтный инстанс запроса по роуту https://norma.nomoreparties.space/api/
+ */
 export const AxiosRequestInstance = axios.create({
   baseURL: "https://norma.nomoreparties.space/api/",
   timeout: 5000,

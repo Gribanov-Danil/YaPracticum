@@ -9,6 +9,7 @@ import { patchAuthUser } from "../../utils/REST/authUserResponse"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { useForm } from "../../hooks/use-form"
 import styles from "../pagesStyles.module.css"
+import { unwrapResult } from "@reduxjs/toolkit"
 
 interface IProfileDataPageForm {
   name: string
@@ -37,8 +38,11 @@ export const ProfileDataPage: FC = () => {
 
   const applyChanges = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    let res = await dispatch(patchAuthUser(values.name, values.email, values.password))
-    if (!res) {
+    const res = await dispatch(
+      patchAuthUser({ name: values.name, email: values.email, password: values.password }),
+    )
+    const result = unwrapResult(res)
+    if (!result) {
       setIsEditFieldVisible(false)
       setValues(initialStateForm)
     }

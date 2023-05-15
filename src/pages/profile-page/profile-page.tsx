@@ -3,23 +3,24 @@ import { NavLink, Route, Routes, useNavigate } from "react-router-dom"
 import { ProfileDataPage } from "../profile-data-page/profile-data-page"
 import { UserOrdersPage } from "../user-orders-page/user-orders-page"
 import { ProtectedRoute } from "../../hocs/protected-route-element/protected-route-element"
-import { postLogout } from "../../utils/REST/postLogoutUser"
+import { postLogout, TPostLogoutResponse } from "../../utils/REST/postLogoutUser"
 import { getCookie } from "../../service/cookies/getCookie"
-import { unwrapResult } from "@reduxjs/toolkit"
 import { useAppDispatch } from "../../hooks/redux"
+import { unwrapResult } from "@reduxjs/toolkit"
 
 export const ProfilePage = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
   const onExitClick = async () => {
-    let response
+    let result: TPostLogoutResponse | undefined
     let refreshToken = getCookie("refreshToken")
     if (refreshToken) {
-      response = await dispatch(postLogout(refreshToken))
+      let response = await dispatch(postLogout({ token: refreshToken }))
+      result = unwrapResult(response)
     }
-    unwrapResult(response)
-    if (response.success) {
+
+    if (result?.success) {
       navigate("/login", { replace: true })
     }
   }

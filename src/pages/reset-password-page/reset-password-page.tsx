@@ -5,6 +5,7 @@ import { FormEvent, useEffect, useRef } from "react"
 import { postResetPassword } from "../../utils/REST/postResetPassword"
 import { useAppDispatch } from "../../hooks/redux"
 import { useForm } from "../../hooks/use-form"
+import { unwrapResult } from "@reduxjs/toolkit"
 
 interface IResetPasswordPageForm {
   token: string
@@ -30,8 +31,11 @@ export const ResetPasswordPage = () => {
   const dispatch = useAppDispatch()
   const onSaveClick = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    let res = await dispatch(postResetPassword(values.password, values.token))
-    if (res && res.success) {
+    const res = await dispatch(
+      postResetPassword({ password: values.password, token: values.token }),
+    )
+    const result = unwrapResult(res)
+    if (result && result.success) {
       navigate("/login", { replace: true })
     }
   }
@@ -57,7 +61,7 @@ export const ResetPasswordPage = () => {
             placeholder={"Введите код из письма"}
             onChange={handleChange}
             value={values.token}
-            name={"name"}
+            name={"token"}
             error={false}
             ref={inputRef}
             errorText={"Ошибка"}
