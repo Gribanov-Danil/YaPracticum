@@ -13,6 +13,7 @@ interface IPlaceOrder {
   onClick?: () => void
   buttonTitle?: string
   extraClass?: string
+  isButtonDisabled?: boolean
 }
 
 /**
@@ -20,12 +21,14 @@ interface IPlaceOrder {
  * @param buttonTitle текст кнопки (по умолчанию = "Оформить заказ")
  * @param extraClass дополнительные классы
  * @param onClick функция, вызываемая при клике на кнопку
+ * @param isButtonDisabled доступность клика по кнопке
  * @constructor
  */
 export const PlaceOrder: FC<IPlaceOrder> = ({
   buttonTitle = "Оформить заказ",
   extraClass,
   onClick,
+  isButtonDisabled = false,
 }) => {
   const [isModalVisible, setModalVisible] = useState(false)
   const dispatch = useAppDispatch()
@@ -75,6 +78,7 @@ export const PlaceOrder: FC<IPlaceOrder> = ({
         size="medium"
         onClick={onClick ? onClick : handleToggleModal}
         data-cy={"order-btn"}
+        disabled={isButtonDisabled}
       >
         {buttonTitle}
       </Button>
