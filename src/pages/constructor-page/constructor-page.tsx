@@ -14,6 +14,7 @@ import { toggleScreen } from "../../utils/toggle-constructor-screen"
  */
 export const ConstructorPage: FC = () => {
   const state = useAppSelector((state) => state.ingredientsReducer)
+  const { pickedIngredient, pickedBun } = useAppSelector((state) => state.pickedIngredientsReducer)
 
   return (
     <>
@@ -42,7 +43,11 @@ export const ConstructorPage: FC = () => {
         />
       </div>
       <div id="PlaceOrderMobile" className={`${pageStyle.amount_order} inactive`}>
-        <PlaceOrder buttonTitle="Заказать" extraClass={pageStyle.placeOrder_mobile} />
+        <PlaceOrder
+          buttonTitle="Заказать"
+          extraClass={pageStyle.placeOrder_mobile}
+          isButtonDisabled={!pickedBun && pickedIngredient.length === 0}
+        />
       </div>
     </>
   )
