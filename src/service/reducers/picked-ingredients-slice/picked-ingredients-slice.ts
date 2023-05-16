@@ -50,6 +50,10 @@ export const pickedIngredientSlice = createSlice({
     updatePickedIngredient: (state, action: PayloadAction<TIngredientObj[]>) => {
       state.pickedIngredient = [...action.payload]
     },
+    cleanConstructor: (state) => {
+      state.pickedIngredient = initialState.pickedIngredient
+      state.pickedBun = initialState.pickedBun
+    },
   },
 })
 
@@ -59,4 +63,5 @@ export const {
   setPickedBun,
   deleteDraggableIngredient,
   updatePickedIngredient,
+  cleanConstructor,
 } = pickedIngredientSlice.actions

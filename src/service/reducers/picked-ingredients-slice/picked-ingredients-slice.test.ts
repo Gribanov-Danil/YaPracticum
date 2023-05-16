@@ -1,4 +1,5 @@
 import {
+  cleanConstructor,
   deleteDraggableIngredient,
   initialState,
   pickedIngredientSlice,
@@ -74,5 +75,15 @@ describe("pickedIngredient", () => {
       action,
     )
     expect(store.pickedIngredient).toStrictEqual([secondIngredient, firstIngredient])
+  })
+
+  it("should clean constructor", () => {
+    const action = { type: cleanConstructor.type }
+    const testState = {
+      pickedIngredient: [{ id: "132", ingredient: testIngredient }],
+      pickedBun: testBun,
+    }
+    const store = pickedIngredientSlice.reducer(testState, action)
+    expect(store).toStrictEqual(initialState)
   })
 })
