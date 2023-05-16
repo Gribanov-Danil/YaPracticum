@@ -29,13 +29,9 @@ export const ConstructorPanel: FC = () => {
 
   return (
     <div ref={dropTarget} className={`${panelStyles.panel} mb-10`} data-cy={"drop-area"}>
-      {Object.keys(pickedBun).length !== 0 ? (
-        <OpenBun bun={pickedBun} />
-      ) : (
-        <EmptyOpenBun text={"Положите выбранную булку"} />
-      )}
+      {pickedBun ? <OpenBun bun={pickedBun} /> : <EmptyOpenBun text={"Положите выбранную булку"} />}
       <DraggableIngredientsBlock />
-      {Object.keys(pickedBun).length !== 0 ? (
+      {pickedBun ? (
         <ClosingBun bun={pickedBun} />
       ) : (
         <EmptyClosingBun text={"Положите выбранную булку"} />

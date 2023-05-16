@@ -3,17 +3,12 @@ import { TIngredient, TIngredientObj } from "../../../utils/models/ingredient-ty
 
 export type PickedIngredientSliceState = {
   pickedIngredient: TIngredientObj[]
-  pickedBun: TIngredient
+  pickedBun: TIngredient | null
 }
 
 export const initialState: PickedIngredientSliceState = {
-  pickedIngredient: [
-    {
-      id: "",
-      ingredient: {} as TIngredient,
-    },
-  ],
-  pickedBun: {} as TIngredient,
+  pickedIngredient: [],
+  pickedBun: null,
 }
 
 export const pickedIngredientSlice = createSlice({
@@ -50,6 +45,10 @@ export const pickedIngredientSlice = createSlice({
     updatePickedIngredient: (state, action: PayloadAction<TIngredientObj[]>) => {
       state.pickedIngredient = [...action.payload]
     },
+    cleanConstructor: (state) => {
+      state.pickedIngredient = initialState.pickedIngredient
+      state.pickedBun = initialState.pickedBun
+    },
   },
 })
 
@@ -59,4 +58,5 @@ export const {
   setPickedBun,
   deleteDraggableIngredient,
   updatePickedIngredient,
+  cleanConstructor,
 } = pickedIngredientSlice.actions

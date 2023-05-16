@@ -7,6 +7,7 @@ import {
 import { getCookie } from "../../service/cookies/getCookie"
 import { TAppDispatch } from "../../service/store"
 import { TOrderItem } from "../models/websocket-types/types"
+import { cleanConstructor } from "../../service/reducers/picked-ingredients-slice/picked-ingredients-slice"
 
 type TPostOrderResponse = {
   name: string
@@ -47,7 +48,10 @@ export const postOrder = (ingredientsIdsList: string[]) => async (dispatch: TApp
         timeout: 1000 * 30,
       },
     )
-    const { order } = response.data
+    const { order, success } = response.data
+    if (success) {
+      dispatch(cleanConstructor())
+    }
     dispatch(updateId(order.number))
   } catch (e) {
     dispatch(fetchDataError())

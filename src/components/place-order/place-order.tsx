@@ -37,7 +37,7 @@ export const PlaceOrder: FC<IPlaceOrder> = ({
   const state = useAppSelector((state) => state.pickedIngredientsReducer)
   const pickedIngredient = state.pickedIngredient
 
-  let pickedBun = Object.keys(state.pickedBun).length !== 0 ? [state.pickedBun] : []
+  let pickedBun = state.pickedBun ? [state.pickedBun] : []
   let orderItems = [...pickedBun, ...pickedBun]
   pickedIngredient.map((ingredientObj) => orderItems.push(ingredientObj.ingredient))
   let ingredients = orderItems

@@ -27,16 +27,24 @@ export const DraggableIngredientsBlock = memo(function DraggableIngredientsBlock
       values={pickedIngredients}
       className={panelStyles.constructor_block}
     >
-      {pickedIngredients.map((ingredientObj) =>
-        Object.keys(ingredientObj.ingredient).length !== 0 ? (
-          <ConstructorIngredient key={ingredientObj.id} ingredientObj={ingredientObj} />
-        ) : (
-          <div key={ingredientObj.id} className={styles.no_ingredient}>
-            {screenType === "desktop"
-              ? "И не забудтье добавить начинку"
-              : "Добавьте свой первый ингредиент!"}
-          </div>
-        ),
+      {pickedIngredients.length === 0 ? (
+        <div className={styles.no_ingredient}>
+          {screenType === "desktop"
+            ? "И не забудтье добавить начинку"
+            : "Добавьте свой первый ингредиент!"}
+        </div>
+      ) : (
+        pickedIngredients.map((ingredientObj) =>
+          Object.keys(ingredientObj.ingredient).length !== 0 ? (
+            <ConstructorIngredient key={ingredientObj.id} ingredientObj={ingredientObj} />
+          ) : (
+            <div key={ingredientObj.id} className={styles.no_ingredient}>
+              {screenType === "desktop"
+                ? "И не забудтье добавить начинку"
+                : "Добавьте свой первый ингредиент!"}
+            </div>
+          ),
+        )
       )}
     </Reorder.Group>
   )
