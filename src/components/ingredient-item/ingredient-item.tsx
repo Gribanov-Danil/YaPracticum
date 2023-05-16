@@ -12,22 +12,17 @@ interface IIngredientItem {
   ingredient: TIngredient
 }
 
-type TPickedIngredientState = {
-  pickedIngredient: TIngredientObj[]
-  pickedBun: TIngredient
-}
-
 /**
  * Объект ингредиента
  */
 export const IngredientItem = memo<IIngredientItem>(function IngredientItem({ ingredient }) {
   const [ingredientCount, setIngredientCount] = useState<number>(0)
-  const state: TPickedIngredientState = useAppSelector((state) => state.pickedIngredientsReducer)
+  const state = useAppSelector((state) => state.pickedIngredientsReducer)
 
   const pickedIngredient = state.pickedIngredient
   let pickedBun = state.pickedBun
   let data: TIngredient[] = []
-  if (Object.keys(pickedBun).length !== 0) {
+  if (pickedBun) {
     data = [pickedBun, pickedBun]
   }
   pickedIngredient.map((ingredientObj: TIngredientObj) => data.push(ingredientObj.ingredient))

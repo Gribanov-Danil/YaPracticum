@@ -3,17 +3,12 @@ import { TIngredient, TIngredientObj } from "../../../utils/models/ingredient-ty
 
 export type PickedIngredientSliceState = {
   pickedIngredient: TIngredientObj[]
-  pickedBun: TIngredient
+  pickedBun: TIngredient | null
 }
 
 export const initialState: PickedIngredientSliceState = {
-  pickedIngredient: [
-    {
-      id: "",
-      ingredient: {} as TIngredient,
-    },
-  ],
-  pickedBun: {} as TIngredient,
+  pickedIngredient: [],
+  pickedBun: null,
 }
 
 export const pickedIngredientSlice = createSlice({

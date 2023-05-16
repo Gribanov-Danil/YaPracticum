@@ -19,9 +19,9 @@ export const BurgerConstructorMobile = () => {
         <CloseIcon type="primary" onClick={toggleScreen} />
       </header>
       <section className="burger_constructor">
-        {Object.keys(pickedBun).length !== 0 && <OpenBun bun={pickedBun} />}
+        {pickedBun && <OpenBun bun={pickedBun} />}
         <DraggableIngredientsBlock />
-        {Object.keys(pickedBun).length !== 0 && <ClosingBun bun={pickedBun} />}
+        {pickedBun && <ClosingBun bun={pickedBun} />}
       </section>
     </div>
   )
